@@ -8,7 +8,7 @@ Distributed application architecture defines separate, specialized modules or co
 
 This book will walk you through building distributed applications in Ruby on Rails. We will discuss monolithic applications, breaking those applications into smaller units (microservices), and ways to share data between those services.
 
-Even if your primary framework isn't Rails, hopefully this book will at least give you an overview of what is possible with this language.
+Even if your primary framework isn't Rails, hopefully this book will give you an overview of what is possible with this framework.
 
 Chap 1?: As your application becomes popular, you and your team add features, and eventually end up with a large monolithic application. Large applications become difficult to maintain, test, and deploy. Microservice architecture is one solution which provides patterns for breaking your monilithic application down into smaller maintainable, testable, and deployable units of functionality.
 

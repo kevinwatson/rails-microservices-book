@@ -9,12 +9,12 @@
 1. What you need
 1. Online resources
 1. Acknowledgements
-1. Chapter - Setup
+1. Chapter 0 - Setup
    1. Why Docker?
    1. Install Docker Desktop
-   1. Install Docker Compose
+   1. Install Ruby
    1. Wrap-up
-1. Chapter - Microservices Overview
+1. Chapter 1 - Microservices Overview
    1. Monoliths vs microservices vs function as a service
    1. What are microservices?
    1. Why should I design microservices?
