@@ -36,8 +36,9 @@
    1. Rails in the enterprise
    1. Wrap-up
 1. Chapter 4 - ActiveRecord and ActiveModel
-   1. ActiveRecord
    1. ActiveModel
+   1. ActiveRecord
+   1. ActiveResource
    1. What's the difference
    1. Wrap-up
 1. Chapter 5 - ActiveRemote
