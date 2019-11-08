@@ -42,7 +42,7 @@
    1. What's the difference
    1. Wrap-up
 1. Chapter 5 - ActiveRemote
-   1. ActiveRemote
+   1. Introduction
    1. Philosophy
    1. Wrap-up
 1. Chapter 6 - Messaging Systems
@@ -53,10 +53,18 @@
    1. Testing
    1. Monitoring
    1. Wrap-up
-1. Chapter 7 - Microservice Playground
+1. Chapter 7 - Data Relationships
+   1. Overview
+   1. Primary and Foreign Keys
+   1. Natural vs Surrogate
+   1. Database vs App Generated
+      1. Globally Unique Identifier vs Universally Unique Identifier
+   1. When to use each
+   1. Wrap-up
+1. Chapter 8 - Microservice Playground
    1. Setup
    1. Exposed ports
    1. Testing
    1. Monitoring
    1. Wrap-up
-1. Chapter 8 - Summary
+1. Chapter 9 - Summary

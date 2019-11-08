@@ -2,11 +2,7 @@
 
 ## Introduction
 
-   1. ActiveRecord
-   1. ActiveModel
-   1. ActiveSupport
-   1. What's the difference
-   1. Wrap-up
+The model architectural pattern provides the serialization and deserialization of data for your application.
 
 #### Active Model
 
@@ -57,3 +53,7 @@ Active Model is used by Active Record for data validation, serialization and a n
 Not all models need to be Active Record models that map to a database. We can add models to our app where some models are backed by a database, while another model could map to an API endpoint. This leads us to Active Remote - models that map to a remote service over a message bus. We'll discuss this in detail in the next chapter.
 
 ActiveRecord 
+
+## Wrap-up
+
+There are a variety of Ruby gems available that can help you build your application's model layer. If you follow some type of Model architectural pattern, you can create models that are backed by a RESTful resource, a database table, or something else. In the next chapter, we're going to discuss a new model type: Active Remote. Active Remote allows you to share data between applications efficiently. TODO: fix.
