@@ -1,4 +1,4 @@
-### Chapter 4 - ActiveRecord and ActiveModel
+### Chapter 4 - Active Record and Active Model
 
 ## Introduction
 
