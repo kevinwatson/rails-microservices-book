@@ -61,7 +61,11 @@
       1. Globally Unique Identifier vs Universally Unique Identifier
    1. When to use each
    1. Wrap-up
-1. Chapter 8 - Microservice Playground
+1. Chapter 8 - Protobuf
+   1. Overview
+
+   1. Wrap-up
+1. Chapter 9 - Microservice Playground
    1. Setup
    1. Exposed ports
    1. Testing
