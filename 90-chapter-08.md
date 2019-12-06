@@ -168,7 +168,7 @@ $ docker-compose run active-record rails generate scaffold Employee first_name:s
 $ docker-compose run active-record rails db:migrate
 ```
 
-Let's add the necessary gems to the `active-remote` app's Gemfile and run bundler to retrieve the new dependencies.
+Let's add the necessary gems to the `active-remote` app's Gemfile and run bundler to retrieve the new dependencies. The `active_remote` gem depends on the `protobuf` gem and this gem will be included when we run the `bundle` command. The `protobuf` gem will be used to serialize our data and share that data between our microservices.
 
 ```bash
 $ echo "gem 'active_remote'" >> ./active-remote/Gemfile
@@ -224,6 +224,10 @@ class Employee < ActiveRemote::Base
   attribute :last_name
 end
 ```
+
+We'll also need to modify the `./active-remote/app/controllers/employees_controller.rb` file to call methods to retrieve records that are exposed by ActiveRemote. The scaffolding we used earlier generated the standard ActiveRecord method calls.
+
+```ruby
 
 Make sure you save the file.
 
