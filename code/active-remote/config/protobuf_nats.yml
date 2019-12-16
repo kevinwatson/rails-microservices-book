@@ -1,0 +1,6 @@
+default: &default
+  servers:
+    - "nats://nats:4222"
+
+development:
+  <<: *default

@@ -21,7 +21,7 @@ Because you installed Docker Desktop, there is no need to install Ruby or the Ru
 
 ### Testing our Docker and Docker Compose installation
 
-We can test our installation by running the `docker-compose --version` command. This will create two directories, one for each of our microservices.
+We can test our installation by running the `docker-compose --version` command. This will create two directories, one for each of our microservices. The `active-record` Rails app will own the data, and the `active-remote` will be a consumer of this data. The `active-remote` app will be a normal Rails app with a model, and in a lot of ways we can treat this model as if it was an ActiveRecord model.
 
 ```bash
 $ mkdir -p ~/rails-book/{active-record,active-remote}
@@ -93,6 +93,13 @@ services:
   busybox:
     image: busybox:latest
     stdin_open: true
+
+  protobuf:
+    build:
+      context: ./protobuf
+      dockerfile: Dockerfile
+    volumes:
+      - ./protobuf:/usr/src/protobuf
 ```
 
 Let's start and log into the Active Record container. We'll then create a basic Rails app, add an Active Record model and related controller and views, and create a record. The first time you run a `docker-compose` command, Docker will download any specified images and build a new image to run the container.
@@ -141,7 +148,7 @@ docker-compose run active-remote rails new -J --skip-coffee .
 Now, let's use Rails scaffolding to add views, a controller and a model to the active record application, using SQLite as the database. SQLite is the default database.
 
 ```bash
-$ docker-compose run active-record rails generate scaffold Employee first_name:string last_name:string
+$ docker-compose run active-record rails generate scaffold Employee guid:string first_name:string last_name:string
 ```
 
 Now let's start the app and test our application.
@@ -157,6 +164,7 @@ Let's add the necessary gems to the `active-record` app's Gemfile and run bundle
 
 ```bash
 $ echo "gem 'active_remote'" >> ./active-record/Gemfile
+$ echo "gem 'protobuf-nats'" >> ./active-record/Gemfile
 $ docker-compose run active-record bundle
 ```
 
@@ -164,7 +172,7 @@ Now, let's set up the active-remote app to view the record we just created in th
 
 
 ```bash
-$ docker-compose run active-record rails generate scaffold Employee first_name:string last_name:string
+$ docker-compose run active-record rails generate scaffold Employee guid:string first_name:string last_name:string
 $ docker-compose run active-record rails db:migrate
 ```
 
@@ -172,6 +180,7 @@ Let's add the necessary gems to the `active-remote` app's Gemfile and run bundle
 
 ```bash
 $ echo "gem 'active_remote'" >> ./active-remote/Gemfile
+$ echo "gem 'protobuf-nats'" >> ./active-remote/Gemfile
 $ docker-compose run active-remote bundle
 ```
 
@@ -205,7 +214,7 @@ class EmployeeService < RPCService
 Let's use Rails scaffolding to add a controller with views to our `active-remote` app. We'll delete the migrations and create our own Active Remote model.
 
 ```bash
-$ docker-compose run active-remote rails generate scaffold Employee first_name:string last_name: string
+$ docker-compose run active-remote rails generate scaffold Employee guid:string first_name:string last_name:string
 ```
 
 Now let's create an Active Remote model. We'll also need to add the `attribute` macros to define the remote fields.
@@ -219,6 +228,7 @@ $ rm ./active-remote/db/migrate/*.rb
 In your favorite editor, open the `./active-remote/app/models/employee.rb` file and replace the existing code with the following code.
 
 ```ruby
+# active-remote/app/models/employee.rb
 class Employee < ActiveRemote::Base
   attribute :first_name
   attribute :last_name
@@ -228,14 +238,100 @@ end
 We'll also need to modify the `./active-remote/app/controllers/employees_controller.rb` file to call methods to retrieve records that are exposed by ActiveRemote. The scaffolding we used earlier generated the standard ActiveRecord method calls.
 
 ```ruby
+```
 
 Make sure you save the file.
 
+Let's use the protobuf compiler and the Protobuf gem's code to read a protobuf message and generate a Ruby class to serialize the data and pass that object between services.
 
-Now we're all set up and ready to test it out. We need to start the `active-record` app, the `active-remote` app, and the NATS server. Create the following `docker-compose.yml` file in your code directory.
+Create a directory and add the following files:
 
-```yaml
+```bash
+$ mkdir protobuf
+```
 
+```docker
+# protobuf/Dockerfile
+FROM ruby:2.6.5
+
+RUN apt-get update && apt-get install -qq -y --no-install-recommends build-essential protobuf-compiler
+
+ENV INSTALL_PATH /usr/src/service
+ENV HOME=$INSTALL_PATH PATH=$INSTALL_PATH/bin:$PATH
+RUN mkdir -p $INSTALL_PATH
+WORKDIR $INSTALL_PATH
+
+RUN gem install protobuf
+```
+
+```protobuf
+# protobuf/definitions/employee_message.proto
+syntax = "proto3";
+
+message EmployeeMessage {
+  string guid = 1;
+  string first_name = 2;
+  string last_name = 3;
+}
+
+message EmployeeMessageRequest {
+  string guid = 1;
+  string first_name = 2;
+  string last_name = 3;
+}
+
+message EmployeeMessageList {
+  repeated EmployeeMessage employees = 1;
+}
+
+service EmployeeMessageService {
+  rpc Search (EmployeeMessageRequest) returns (EmployeeMessageList);
+  rpc Create (EmployeeMessage) returns (EmployeeMessage);
+  rpc Update (EmployeeMessage) returns (EmployeeMessage);
+  rpc Delete (EmployeeMessage) returns (EmployeeMessage);  
+}
+```
+
+Add a Rakefile: # TODO: get the relative path working
+
+```bash
+#load 'protobuf/tasks/compile.rake'
+load '/usr/local/bundle/gems/protobuf-3.10.2/lib/protobuf/tasks/compile.rake'
+```
+
+Create a lib directory:
+
+```bash
+$ mkdir protobuf/lib
+```
+
+Generate the Ruby file via a rake task provided by the protobuf gem:
+
+```bash
+$ cd protobuf
+$ docker-compose run protobuf rake protobuf:compile
+```
+
+You should now have a `protobuf/lib/employee_pb.rb` file. Both services need this object definition, so copy this file to the lib directory in both services. In the real world, you'll probably want to create a gem that your services will depend on.
+
+```bash
+$ cd ..
+$ mkdir {active-record,active-remote}/app/lib
+$ cp protobuf/lib/employee_message.pb.rb active-record/app/lib/
+$ cp protobuf/lib/employee_message.pb.rb active-remote/app/lib/
+```
+
+We'll need to set the protobuf rpc hostname (because 127.0.0.1 is isolated to each container).
+
+```ruby
+# active-remote/config/initializers/protobuf_rpc_service.rb
+Protobuf::Rpc::Service.configure(host: "active-remote")
+```
+
+Now we're all set up and ready to test it out. We need to start the `active-record` app, the `active-remote` app, and the NATS server. We'll use the same `docker-compose.yml` file we created previously.
+
+```bash
+$ docker-compose up
 ```
 
 Let's restart our docker services. This will reload the Ruby files we've added to the project. Go back to the terminal where you ran the the `docker-compose up` command and press Ctrl-C to stop the services. Run `docker-compose up` to start them back up.

@@ -1,0 +1,47 @@
+# encoding: utf-8
+
+##
+# This file is auto-generated. DO NOT EDIT!
+#
+require 'protobuf'
+require 'protobuf/rpc/service'
+require_relative '../services/employee_service'
+
+##
+#  Classes
+#
+class Employee < ::Protobuf::; end
+class EmployeeRequest < ::Protobuf::; end
+class EmployeeList < ::Protobuf::; end
+
+
+##
+#  Fields
+#
+class Employee
+  optional :string, :guid, 1
+  optional :string, :first_name, 2
+  optional :string, :last_name, 3
+end
+
+class EmployeeRequest
+  optional :string, :guid, 1
+  optional :string, :first_name, 2
+  optional :string, :last_name, 3
+end
+
+class EmployeeList
+  repeated ::Employee, :records, 1
+end
+
+
+##
+# Service Classes
+#
+class EmployeeService < ::Protobuf::Rpc::Service
+  rpc :search, ::EmployeeRequest, ::EmployeeList
+  rpc :create, ::Employee, ::Employee
+  rpc :update, ::Employee, ::Employee
+  rpc :delete, ::Employee, ::Employee
+end
+

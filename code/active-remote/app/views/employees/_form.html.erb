@@ -12,6 +12,11 @@
   <% end %>
 
   <div class="field">
+    <%= form.label :guid %>
+    <%= form.text_field :guid, id: :employee_guid, readonly: true %>
+  </div>
+
+  <div class="field">
     <%= form.label :first_name %>
     <%= form.text_field :first_name, id: :employee_first_name %>
   </div>
@@ -19,11 +24,6 @@
   <div class="field">
     <%= form.label :last_name %>
     <%= form.text_field :last_name, id: :employee_last_name %>
-  </div>
-
-  <div class="field">
-    <%= form.label :string %>
-    <%= form.text_field :string, id: :employee_string %>
   </div>
 
   <div class="actions">

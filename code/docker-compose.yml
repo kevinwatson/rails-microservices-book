@@ -2,17 +2,25 @@ version: "3.4"
 
 services:
   active-record:
+    environment:
+    - PB_SERVER_TYPE=protobuf/nats/runner
+    - PB_CLIENT_TYPE=protobuf/nats/client
     build:
       context: ./active-record
       dockerfile: ../Dockerfile
-    command: bundle exec puma -C config/puma.rb
+    command: bundle exec rpc_server start -p 9399 -o active-record ./config/environment.rb #bundle exec rpc_server start -p 9399 -o active-record ./app/services/employee_message_service.rb #bundle exec puma -C config/puma.rb & && rpc_server -p 9399 ./config/environment.rb
     ports:
       - 3001:3000
     volumes:
       - ./active-record:/usr/src/service
-    #stdin_open: true
+    depends_on:
+    - nats
+    stdin_open: true
+    tty: true
 
   active-remote:
+    environment:
+    - PB_CLIENT_TYPE=protobuf/nats/client
     build:
       context: ./active-remote
       dockerfile: ../Dockerfile
@@ -21,14 +29,25 @@ services:
       - 3002:3000
     volumes:
       - ./active-remote:/usr/src/service
+    stdin_open: true
+    tty: true
+    #depends_on:
+    #- nats
+
+  #protobuf:
+  #  build:
+  #    context: ./protobuf
+  #    dockerfile: Dockerfile
+  #  volumes:
+  #    - ./protobuf:/usr/src/protobuf
     #stdin_open: true
 
   nats:
     image: nats:latest
-    #ports:
+    ports:
     #  - 4222:4222
-    #  - 8222:8222
+      - 8222:8222
     #stdin_open: true
-  busybox:
-    image: busybox:latest
-    stdin_open: true
+  #busybox:
+  #  image: busybox:latest
+  #  stdin_open: true

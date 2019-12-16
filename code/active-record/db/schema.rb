@@ -13,6 +13,7 @@
 ActiveRecord::Schema.define(version: 20191203143126) do
 
   create_table "employees", force: :cascade do |t|
+    t.string "guid"
     t.string "first_name"
     t.string "last_name"
     t.datetime "created_at", null: false

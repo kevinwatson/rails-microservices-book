@@ -1,0 +1,24 @@
+syntax = "proto3";
+
+message EmployeeMessage {
+  string guid = 1;
+  string first_name = 2;
+  string last_name = 3;
+}
+
+message EmployeeMessageRequest {
+  string guid = 1;
+  string first_name = 2;
+  string last_name = 3;
+}
+
+message EmployeeMessageList {
+  repeated EmployeeMessage records = 1;
+}
+
+service EmployeeMessageService {
+  rpc Search (EmployeeMessageRequest) returns (EmployeeMessageList);
+  rpc Create (EmployeeMessage) returns (EmployeeMessage);
+  rpc Update (EmployeeMessage) returns (EmployeeMessage);
+  rpc Delete (EmployeeMessage) returns (EmployeeMessage);  
+}

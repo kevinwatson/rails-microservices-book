@@ -5,9 +5,9 @@
 <table>
   <thead>
     <tr>
+      <th>Guid</th>
       <th>First name</th>
       <th>Last name</th>
-      <th>String</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -15,9 +15,9 @@
   <tbody>
     <% @employees.each do |employee| %>
       <tr>
+        <td><%= employee.guid %></td>
         <td><%= employee.first_name %></td>
         <td><%= employee.last_name %></td>
-        <td><%= employee.string %></td>
         <td><%= link_to 'Show', employee %></td>
         <td><%= link_to 'Edit', edit_employee_path(employee) %></td>
         <td><%= link_to 'Destroy', employee, method: :delete, data: { confirm: 'Are you sure?' } %></td>
