@@ -62,8 +62,8 @@
    1. When to use each
    1. Wrap-up
 1. Chapter 8 - Protobuf
-   1. Overview
-
+   1. Introduction
+   1. Philosophy
    1. Wrap-up
 1. Chapter 9 - Microservice Playground
    1. Setup
