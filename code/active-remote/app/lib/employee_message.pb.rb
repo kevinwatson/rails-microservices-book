@@ -42,6 +42,6 @@ class EmployeeMessageService < ::Protobuf::Rpc::Service
   rpc :search, ::EmployeeMessageRequest, ::EmployeeMessageList
   rpc :create, ::EmployeeMessage, ::EmployeeMessage
   rpc :update, ::EmployeeMessage, ::EmployeeMessage
-  rpc :delete, ::EmployeeMessage, ::EmployeeMessage
+  rpc :destroy, ::EmployeeMessage, ::EmployeeMessage
 end
 

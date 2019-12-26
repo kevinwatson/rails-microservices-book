@@ -20,5 +20,7 @@ service EmployeeMessageService {
   rpc Search (EmployeeMessageRequest) returns (EmployeeMessageList);
   rpc Create (EmployeeMessage) returns (EmployeeMessage);
   rpc Update (EmployeeMessage) returns (EmployeeMessage);
-  rpc Delete (EmployeeMessage) returns (EmployeeMessage);  
+  rpc Destroy (EmployeeMessage) returns (EmployeeMessage);  
 }
+
+

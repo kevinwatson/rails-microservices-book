@@ -1,10 +1,5 @@
-require 'employee_message.pb'
-
 class Employee < ActiveRemote::Base
-  #service_class EmployeeMessageService
-  service_name :employee_message_service
-  
-  alias_attribute :id, :guid
+  service_class ::EmployeeMessageService
 
   attribute :guid
   attribute :first_name

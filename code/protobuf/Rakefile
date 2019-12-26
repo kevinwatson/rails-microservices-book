@@ -1,2 +1,1 @@
-#load 'protobuf/tasks/compile.rake'
-load '/usr/local/bundle/gems/protobuf-3.10.2/lib/protobuf/tasks/compile.rake'
+require "protobuf/tasks"

@@ -1,9 +1,0 @@
-version: "3.4"
-
-services:
-  protobuf:
-    build:
-      context: .
-      dockerfile: Dockerfile
-    volumes:
-      - .:/usr/src/protobuf
