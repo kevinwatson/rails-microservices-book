@@ -54,7 +54,7 @@ Personally, I like to create projects in my `~/projects` directory. Following th
     * active-remote
     * protobuf
 
-### Set up a development Docker Compose file
+### Set up a development environment
 
 Let's get started by creating a builder Dockerfile and Docker Compose file. We'll use the Dockerfile file to build an image with the command-line apps we need, and we'll use a Docker Compose configuration file to reduce the number of parameters we'll need to run with each command. The alternative is to simply use a Dockerfile and related `docker` commands.
 
@@ -106,6 +106,8 @@ $ docker-compose -f docker-compose.builder.yml run builder bash
 The `run` Docker Compose command will build the image (if it wasn't built already), start the container, ssh into the running container and give us a command prompt using the `bash` shell.
 
 You should now see that you're logged in as the root user in the container (you'll see a prompt starting with a hash `#`). Logging in as the root user is usually ok inside a container, because the isolation of the container environment limits what the root user can do.
+
+### Protobuf
 
 Now let's create a Protobuf message and compile the `.proto` file to generate the related Ruby file, containing the classes that will be copied to each of our Ruby on Rails apps. This file will define the Protobuf message, requests and remote procedure call definitions.
 
@@ -167,6 +169,8 @@ $ docker-compose -f docker-compose.builder.yml run builder bash
 ```
 
 This will generate a file named `employee_message.pb.rb` file in the `protobuf/lib` directory. We'll copy this file into the `app/lib` directory in the Rails apps we'll create next.
+
+### Create a Rails App with a Database
 
 The first Rails app we'll generate will have an Active Record model and will be able to persist the records to a SQLite database. We'll add a the `active_remote`, `protobuf-nats` and `protobuf-activerecord` gems to the `Gemfile` file. We'll then run the `bundle` command to retrieve the gems from https://rubygems.org. After retrieving the gems, we'll create scaffolding for an Employee entity and generate an `employees` table in the SQLite database. We could connect our app to a PostgreSQL or MySQL database, but for the purposes of this demo app, the file-based SQLite database is sufficient for the purposes of this demo app. Of course, the Active Remote app we generate will not know nor will it care how the data is persisted (or if the data is persisted at all).
 
@@ -272,6 +276,8 @@ default: &default
 development:
   <<: *default
 ```
+
+### Create a Rails App without a Database
 
 Now it's time to create our second Rails app. We'll call this one `active-remote`. It will have a model, but the model classes will inherit from `ActiveRemote::Base` instead of the default `ApplicationRecord` (which inherits from `ActiveRecord::Base`). In other words, these models will interact with the `active-remote`'s models by sending messages via the Nats server.
 
@@ -397,6 +403,8 @@ services:
   - 8222:8222
 ```
 
+### Run the Apps
+
 Congratulations! Your apps are now configured and ready to run in a Docker container. Run the following command to download the required images, build a new image that will be used by both Rails containers, and start three services: `active-record`, `active-remote` and `nats`.
 
 ```bash
@@ -407,7 +415,11 @@ It may take a few minutes, but once all of the containers are up and running, yo
 
 TODO: add screenshot of the index page
 
-The Rails app running on port 3000 is the Active Remote app. Reviewing the log output in the console where you ran the `docker-compose up` command, you should see output like the following:
+The Rails app running on port 3000 is the Active Remote app.
+
+### Monitoring
+
+Review the log output in the console where you ran the `docker-compose up` command, you should see output like the following:
 
 ```bash
 active-remote_1  | I, [2019-12-28T00:35:06.460838 #1]  INFO -- : [CLT] - 6635f4080982 - 2aca3d71d6d0 - EmployeeMessageService#search - 48B/75B - 0.0647s - OK - 2019-12-28T00:35:06+00:00
@@ -421,7 +433,7 @@ Go ahead and click the `New Employee` link. Fill out the First name and Last nam
 active-remote_1  | I, [2019-12-28T00:40:43.597089 #1]  INFO -- : [CLT] - 0d6886451aa0 - 3f910c005424 - EmployeeMessageService#create
 ```
 
-We can also check the Nats connection info to verify that data is being passed over the Nats server. Browse to http://localhost:8222 and click the 'Connz' link. Clicking links to pull data on the http://localhost:3000/employees page will pass additional messages to the `active-record` app through the Nats server. Refreshing the http://localhost:8222/connz page will display incrementing counters on the `num_connections` and the `num_connections/in_msgs` and `num_connections/out_msgs` fields.
+We can also check the Nats connection info to verify that data is being passed over the Nats server. Browse to http://localhost:8222 and click the 'connz' link. Clicking links to pull data on the http://localhost:3000/employees page will pass additional messages to the `active-record` app through the Nats server. Refreshing the http://localhost:8222/connz page will display incrementing counters on the `num_connections` and the `num_connections/in_msgs` and `num_connections/out_msgs` fields.
 
 ## Wrap-up
 
