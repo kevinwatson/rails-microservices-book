@@ -27,7 +27,7 @@ Because you installed Docker Desktop, there is no need to install Ruby, the Ruby
 
 We can test our installation by running the `docker version` and the `docker-compose --version` commands. The versions you see in your output may differ from the versions you see below.
 
-```bash
+```console
 $ docker version
 Client: Docker Engine - Community
  Version:           19.03.5
@@ -99,7 +99,7 @@ services:
 
 Let's start and log into the builder container. We'll then run the Rails generate commands from the container, which will create two Rails apps. Because we've mapped a volume in the `.yml` file above, the files that are generated will be saved to the `~/projects/rails-book` directory. If we didn't map a volume, the files we generate would only exist inside the container, and each time we stop and restart the container they would need to be regenerated. Mapping a volume to a directory on the host computer's will serve files through the container's environment, which includes a specific version of Ruby, Rails and the gems we'll need to run our apps.
 
-```bash
+```console
 $ docker-compose -f docker-compose.builder.yml run builder bash
 ```
 
@@ -117,7 +117,7 @@ Create a couple of directories for our input and output files. The `mkdir -p` co
   * definitions
   * lib
 
-```bash
+```console
 $ mkdir -p protobuf/{definitions,lib}
 ```
 
@@ -162,7 +162,7 @@ require "protobuf/tasks"
 
 Now we can run the `compile` Rake task to generate the file.
 
-```bash
+```console
 $ docker-compose -f docker-compose.builder.yml run builder bash
 # cd protobuf
 # rake protobuf:compile
@@ -176,7 +176,7 @@ The first Rails app we'll generate will have an Active Record model and will be 
 
 Let's generate the Rails app that will act as the server and owner of the data. As the owner of the data, it can persist the data to a database. We'll call this app `active-record`.
 
-```bash
+```console
 # rails new active-record
 # cd active-record
 # echo "gem 'active_remote'" >> Gemfile
@@ -192,7 +192,7 @@ Be sure to inspect the output of each of the commands above, looking for errors.
 
 Let's customize the app to serve our Employee entity via Protobuf. We'll need an `app/lib` directory, and then we'll copy the generated `employee_message.pb.rb` file to this directory.
 
-```bash
+```console
 $ mkdir active-record/app/lib
 $ cp protobuf/lib/employee_message.pb.rb active-record/app/lib/
 ```
@@ -217,7 +217,7 @@ class Employee < ApplicationRecord
 end
 ```
 
-```bash
+```console
 $ mkdir active-record/app/services
 ```
 
@@ -283,7 +283,7 @@ Now it's time to create our second Rails app. We'll call this one `active-remote
 
 Let's generate the `active-remote` app. We won't need the Active Record persistence layer, so we'll use the `--skip-active-record` flag. We'll need the `active_remote` and `protobuf-nats` gems, but not the `protobuf-activerecord` gem that we included in the `active-record` app. We'll use Rails scaffolding to generate a model, controller and views to view and manage our Employee entity that will be shared between the two apps.
 
-```bash
+```console
 $ docker-compose -f docker-compose.builder.yml run builder bash
 # rails new active-remote --skip-active-record
 # cd active-remote
@@ -295,7 +295,7 @@ $ docker-compose -f docker-compose.builder.yml run builder bash
 
 We'll need to make a couple of changes to the `active-remote` app. First, let's copy the Protobuf file.
 
-```bash
+```console
 $ mkdir active-remote/app/lib
 $ cp protobuf/lib/employee_message.pb.rb active-remote/app/lib/
 ```
@@ -409,7 +409,7 @@ services:
 
 Congratulations! Your apps are now configured and ready to run in a Docker container. Run the following command to download the required images, build a new image that will be used by both Rails containers, and start three services: `active-record`, `active-remote` and `nats`.
 
-```bash
+```console
 $ docker-compose up
 ```
 
@@ -423,7 +423,7 @@ The Rails app running on port 3000 is the Active Remote app.
 
 Review the log output in the console where you ran the `docker-compose up` command, you should see output like the following:
 
-```bash
+```console
 active-remote_1  | I, [2019-12-28T00:35:06.460838 #1]  INFO -- : [CLT] - 6635f4080982 - 2aca3d71d6d0 - EmployeeMessageService#search - 48B/75B - 0.0647s - OK - 2019-12-28T00:35:06+00:00
 ```
 
@@ -431,7 +431,7 @@ This indicates that the `EmployeeMessageService#search` method was called. Not a
 
 Go ahead and click the `New Employee` link. Fill out the First name and Last name fields and click the `Create Employee` button to create a new Employee record. Review the logs again. You should see a message like the one below.
 
-```bash
+```console
 active-remote_1  | I, [2019-12-28T00:40:43.597089 #1]  INFO -- : [CLT] - 0d6886451aa0 - 3f910c005424 - EmployeeMessageService#create
 ```
 
