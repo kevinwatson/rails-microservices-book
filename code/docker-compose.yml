@@ -29,3 +29,6 @@ services:
     - nats
   nats:
     image: nats:latest
+    ports:
+    - 8222:8222
+
