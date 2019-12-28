@@ -401,8 +401,8 @@ services:
     - nats
   nats:
     image: nats:latest
-  ports:
-  - 8222:8222
+    ports:
+    - 8222:8222
 ```
 
 ### Run the Apps
