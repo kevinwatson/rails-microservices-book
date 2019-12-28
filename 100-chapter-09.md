@@ -345,6 +345,8 @@ $ cat active-remote/controllers/employees_controller.rb
   end
 ```
 
+### Create and Configure Our Environment
+
 Last but not least, let's add a `Dockerfile` and `docker-compose.yml` file to create an image and spin up containers and link our services together.
 
 ```dockerfile
