@@ -1,5 +1,8 @@
 ### Chapter 6 - Messaging Systems
 
+> There are around seven octillion atoms in a human body. That's a lot of goddamn atoms to disassemble, shoot back through time and space, and reassemble in perfect order.
+> - Elan Mastai, All Our Wrong Todays
+
 ## Overview
 
 Messaging communication systems are used as a critical component when designing distributed systems. NATS is one such messaging platform which provides security, resiliency, is scalable and can meet the performance requirements of most systems. As of the time of this writing, it has clients written in over 30 programming languages.

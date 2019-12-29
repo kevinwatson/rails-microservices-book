@@ -1,5 +1,8 @@
 ### Chapter 5 - Active Remote
 
+> ...Senator Amidala, the former Queen of Naboo, is returning to the Galactic Senate to vote on the critical issue of creating an ARMY OF THE REPUBLIC to assist the overwhelmed Jedi....
+> - Star Wars Episode II: Attack of the Clones Opening crawl
+
 ## Introduction
 
 Active Remote is a Ruby library that acts as a model, but communicates over the network via a message bus with another model. If you're using Rails, it appears as a local model but the Active Record model exists in another location on your network.

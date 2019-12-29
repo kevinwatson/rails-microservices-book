@@ -1,5 +1,8 @@
 ### Chapter 8 - Protocol Buffers (Protobuf)
 
+> Humans had developed a sequential mode of awareness, while heptapods had developed a simultaneous mode of awareness. We experienced events in an order, and perceived their relationship as cause and effect. They experienced all events at once, and perceived a purpose underlying them all. A minimizing, maximizing purpose.
+> - Ted Chiang, Stories of Your Life and Others
+
 ## Introduction
 
 Why did you build your app? Most likely the reason was that you needed to track some data. You or someone at your company may have started with a spreadsheet, but over time, realized that tracking the data in a spreadsheet became cumbersome and no longer met your needs. So, an app was born. Your fresh out-of-the-box app then started to grow, with relationships between data entities. As the amount of data and the number of relationships and the processing requirements grew, you decided that you needed to split your app into separate services. When a piece of data needs to be shared between applications, we need to make a couple of decisions. What attributes will be shared? How will clients access the data? Which app will own and persist the data? How can we make it easy to extend or add new attributes to our entities that are still backwards compatible?
