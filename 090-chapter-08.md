@@ -1,7 +1,6 @@
 ### Chapter 8 - Protocol Buffers (Protobuf)
 
-> Humans had developed a sequential mode of awareness, while heptapods had developed a simultaneous mode of awareness. We experienced events in an order, and perceived their relationship as cause and effect. They experienced all events at once, and perceived a purpose underlying them all. A minimizing, maximizing purpose.
-> - Ted Chiang, Stories of Your Life and Others
+> Humans had developed a sequential mode of awareness, while heptapods had developed a simultaneous mode of awareness. We experienced events in an order, and perceived their relationship as cause and effect. They experienced all events at once, and perceived a purpose underlying them all. A minimizing, maximizing purpose. - Ted Chiang, Stories of Your Life and Others
 
 ## Introduction
 

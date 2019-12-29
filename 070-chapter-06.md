@@ -1,7 +1,6 @@
 ### Chapter 6 - Messaging Systems
 
-> There are around seven octillion atoms in a human body. That's a lot of goddamn atoms to disassemble, shoot back through time and space, and reassemble in perfect order.
-> - Elan Mastai, All Our Wrong Todays
+> There are around seven octillion atoms in a human body. That's a lot of goddamn atoms to disassemble, shoot back through time and space, and reassemble in perfect order. - Elan Mastai, All Our Wrong Todays
 
 ## Overview
 

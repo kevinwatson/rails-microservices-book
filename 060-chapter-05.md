@@ -1,7 +1,6 @@
 ### Chapter 5 - Active Remote
 
-> ...Senator Amidala, the former Queen of Naboo, is returning to the Galactic Senate to vote on the critical issue of creating an ARMY OF THE REPUBLIC to assist the overwhelmed Jedi....
-> - Star Wars Episode II: Attack of the Clones Opening crawl
+> ...Senator Amidala, the former Queen of Naboo, is returning to the Galactic Senate to vote on the critical issue of creating an ARMY OF THE REPUBLIC to assist the overwhelmed Jedi.... - Star Wars: Episode II: Attack of the Clones opening crawl
 
 ## Introduction
 
