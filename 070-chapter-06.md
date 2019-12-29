@@ -18,7 +18,7 @@ Let's use Docker to run a local NATS server and write messages to it. We'll incl
 
 Listing 6-1 Docker compose with NATS and BusyBox
 
-```bash
+```yml
 $ cat ~/projects/nats/docker-compose.yml
 # usage: docker-compose up
 
@@ -40,7 +40,7 @@ Save the file with the filename `docker-compose.yml`. Let's now switch to that d
 
 Listing 6-2 Start NATS and Busybox
 
-```bash
+```console
 $ cd ~/projects/nats
 $ docker-compose up
 Starting nats_nats_1    ... done
@@ -58,7 +58,7 @@ Creating a subscriber is simple. We'll open a NATS session with telnet. Telnet i
 
 Listing 6-3 Subscribing to a Subject
 
-```bash
+```console
 $ docker-compose exec busybox sh
 / # telnet nats 4222
 ...
@@ -72,7 +72,7 @@ Let's run a telnet command to publish messages to NATS.
 
 Listing 6-4 Publishing to a Subject
 
-```bash
+```console
 $ docker-compose exec busybox sh
 / # telnet nats 4222
 ...

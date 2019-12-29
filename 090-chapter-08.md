@@ -13,7 +13,7 @@ Developed by Google, protobuf is a method of serializing data in a binary format
 
 ## Philosophy
 
-Protobuf serializes data to a binary format that is not self-describing. In contrast, a JSON or XML object is usually human readable and human editable, and each object can be inspected and the developer can view the field names and their values. Protobuf is a binary format, implements an ordered field format and both of the services sharing the message need to know the structure of the message.
+Protobuf serializes data to a binary format that is not self-describing. In contrast, a JSON or XML object is usually human readable and human editable, and each object can be inspected and the developer can view the field names and their values. Protobuf is a binary format. It implements an ordered field format and both of the services sharing the message need to know the structure of the message.
 
 There are many ways to encode and share data. XML, JSON and other formats are well-defined and easy to generate and consume. But what if you want better encoding and decoding performance? What if you want to reduce the network load of messages being passed between systems? What if your platform, the number of developers, and the number of messages passed between systems grows overnight?
 
