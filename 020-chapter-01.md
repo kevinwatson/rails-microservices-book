@@ -15,9 +15,10 @@ When you're first designing a service, the requirements usually start out small.
 
 ## What is a microservice?
 
-A microservice is a small
-
+A microservice is a small app that provides a limited set of functionality. In the UNIX philosophy (as documented by Doug McIlroy), one tenet is to make each program do one thing and do it well. In terms of a microservice architecture, your goal is to build small programs or services that provide a specific set of features. As this feature set becomes more wide used in your organization, you can scale up and out that particular feature to keep up with the needs of the business.
 
 ## Why should I design microservices?
+
+By nature, building a microservices architecture incurs additional overhead that may not be worth the time in the early stages of a project. Once the app becomes popular and you can identify bottlenecks in the process, then it's time to identify and carve out specific functionality that should be scaled out.
 
 ## Wrap-up

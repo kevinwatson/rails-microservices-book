@@ -23,7 +23,7 @@ We'll also use Docker Compose to configure and run several applications from a s
 * Nats
 * SQLite
 
-Because you installed Docker Desktop, there is no need to install Ruby, the Ruby on Rails framework, Nats or SQLite on your computer. They will be installed inside of the Docker images and containers that we will spin up next.
+Because we installed Docker Desktop, there is no need to install Ruby, the Ruby on Rails framework, Nats or SQLite on your computer. They will be installed inside of the Docker images and containers that we will spin up next.
 
 ### Testing our Docker and Docker Compose installation
 
