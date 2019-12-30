@@ -20,10 +20,10 @@ We'll also use Docker Compose to configure and run several applications from a s
 
 * Ruby
 * Ruby on Rails and related gems
-* Nats
+* NATS
 * SQLite
 
-Because we installed Docker Desktop, there is no need to install Ruby, the Ruby on Rails framework, Nats or SQLite on your computer. They will be installed inside of the Docker images and containers that we will spin up next.
+Because we installed Docker Desktop, there is no need to install Ruby, the Ruby on Rails framework, NATS or SQLite on your computer. They will be installed inside of the Docker images and containers that we will spin up next.
 
 ### Testing our Docker and Docker Compose installation
 
@@ -281,7 +281,7 @@ development:
 
 ### Create a Rails App without a Database
 
-Now it's time to create our second Rails app. We'll call this one `active-remote`. It will have a model, but the model classes will inherit from `ActiveRemote::Base` instead of the default `ApplicationRecord` (which inherits from `ActiveRecord::Base`). In other words, these models will interact with the `active-remote`'s models by sending messages via the Nats server.
+Now it's time to create our second Rails app. We'll call this one `active-remote`. It will have a model, but the model classes will inherit from `ActiveRemote::Base` instead of the default `ApplicationRecord` (which inherits from `ActiveRecord::Base`). In other words, these models will interact with the `active-remote`'s models by sending messages via the NATS server.
 
 Let's generate the `active-remote` app. We won't need the Active Record persistence layer, so we'll use the `--skip-active-record` flag. We'll need the `active_remote` and `protobuf-nats` gems, but not the `protobuf-activerecord` gem that we included in the `active-record` app. We'll use Rails scaffolding to generate a model, controller and views to view and manage our Employee entity that will be shared between the two apps.
 
@@ -437,7 +437,7 @@ Go ahead and click the `New Employee` link. Fill out the First name and Last nam
 active-remote_1  | I, [2019-12-28T00:40:43.597089 #1]  INFO -- : [CLT] - 0d6886451aa0 - 3f910c005424 - EmployeeMessageService#create
 ```
 
-We can also check the Nats connection info to verify that data is being passed over the Nats server. Browse to http://localhost:8222 and click the 'connz' link. Clicking links to pull data on the http://localhost:3000/employees page will pass additional messages to the `active-record` app through the Nats server. Refreshing the http://localhost:8222/connz page will display incrementing counters on the `num_connections` and the `num_connections/in_msgs` and `num_connections/out_msgs` fields.
+We can also check the NATS connection info to verify that data is being passed over the NATS server. Browse to http://localhost:8222 and click the 'connz' link. Clicking links to pull data on the http://localhost:3000/employees page will pass additional messages to the `active-record` app through the NATS server. Refreshing the http://localhost:8222/connz page will display incrementing counters on the `num_connections` and the `num_connections/in_msgs` and `num_connections/out_msgs` fields.
 
 ## Wrap-up
 

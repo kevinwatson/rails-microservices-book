@@ -47,7 +47,7 @@
    1. Wrap-up
 1. Chapter 6 - Messaging Systems
    1. Overview
-   1. Nats Server
+   1. NATS Server
    1. Rabbit MQ ??
    1. Setup
    1. Testing

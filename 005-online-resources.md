@@ -8,3 +8,6 @@ The following links will be referenced throughout the book:
 * https://nats.io
 * https://rubygems.org
 * https://rubyonrails.org
+* https://github.com/abrandoned/protobuf-nats
+* https://github.com/liveh2o/active_remote
+* https://github.com/liveh2o/protobuf-activerecord

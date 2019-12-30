@@ -6,7 +6,7 @@
 
 Messaging communication systems are used as a critical component when designing distributed systems. NATS is one such messaging platform which provides security, resiliency, is scalable and can meet the performance requirements of most systems. As of the time of this writing, it has clients written in over 30 programming languages.
 
-1. Nats Server
+1. NATS Server
 1. Rabbit MQ ??
 1. Setup
 1. Testing
