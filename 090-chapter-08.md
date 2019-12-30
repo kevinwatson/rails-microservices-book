@@ -49,7 +49,7 @@ Protocol Buffers are a way to package and share data between our services. They 
 
 ## References
 
-https://developers.google.com/protocol-buffers
-https://github.com/ruby-protobuf/protobuf/wiki/Compiling-Definitions
+* https://developers.google.com/protocol-buffers
+* https://github.com/ruby-protobuf/protobuf/wiki/Compiling-Definitions
 
 [Next >>](100-chapter-09.md)
