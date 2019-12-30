@@ -57,3 +57,5 @@ ActiveRecord
 ## Wrap-up
 
 There are a variety of Ruby gems available that can help you build your application's model layer. If you follow some type of Model architectural pattern, you can create models that are backed by a RESTful resource, a database table, or something else. In the next chapter, we're going to discuss a new model type: Active Remote. Active Remote allows you to share data between applications efficiently. TODO: fix.
+
+[Next >>](060-chapter-05.md)

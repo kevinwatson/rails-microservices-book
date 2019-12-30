@@ -15,3 +15,5 @@ Ruby continues to evolve and grow in popularity. MX's open source contributions 
 Because MX's platform is built on top of open standards (e.g. Protobuf and NATS), new services can be spun up in any programming language. As long as a service can understand Protobuf messages and connect to NATS, it can respond to messages from any application written in any supported language. 
 
 Even if your go-to language isn't Ruby, hopefully this book will give you an overview how to design and build distributed services.
+
+[Next >>](002-who-is-this-book-for.md)

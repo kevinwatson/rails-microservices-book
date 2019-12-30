@@ -19,3 +19,5 @@ During application start, Active Record models read the database schema and gene
 Active Remote provides a communication platform that follows established architectural patterns such as MVC, but still build a platform that can scale.
 
 By using a message bus to communicate between services, Active Remote also gives your services resiliency. As long as the message bus service remains online, your Rails apps can send a message to another service, and eventually get a reply when the other service comes back online.
+
+[Next >>](070-chapter-06.md)

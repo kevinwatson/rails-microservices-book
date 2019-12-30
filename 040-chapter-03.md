@@ -17,3 +17,5 @@
 ## Rails in the enterprise
 
 ## Wrap-up
+
+[Next >>](050-chapter-04.md)

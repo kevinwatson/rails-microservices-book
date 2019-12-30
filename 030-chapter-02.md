@@ -20,7 +20,9 @@ The format of the message that is sent is also important. Here are some options:
 
 
 ## JSON
-   1. XML
-   1. Message Bus
-   1. Shared Database
-   1. Wrap-up
+## XML
+## Message Bus
+## Shared Database
+## Wrap-up
+
+[Next >>](040-chapter-03.md)

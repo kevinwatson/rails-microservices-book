@@ -95,3 +95,5 @@ As of the time of this writing, there are 5 links on the page. Let's briefly loo
 Some of the endpoints above also have querystring parameters that can be passed, e.g. http://localhost:8222/connz?sort=start, which will sort the connections by the start time. Check out the documentation at https://nats-io.github.io/docs/nats_server/monitoring.html for more information about these endpoints and their options.
 
 We have successfully spun up a NATS server, subscribed to a subject, and published messages over that subject. We also learned about the instrumentation that NATS provides on port 8222. Next, we'll set up a full environment with several Rails applications that will use NATS to communicate.
+
+[Next >>](080-chapter-07.md)
