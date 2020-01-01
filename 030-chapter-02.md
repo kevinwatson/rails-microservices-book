@@ -14,7 +14,7 @@ As your service infrastructure grows, you'll need to find a communication protoc
 The data that is sent over the wire needs to be encoded. A few ways to encode this data are in the table below:
 
 | Format | Text/Binary | Advantages | Disadvantages |
-|---|---|---|---|---|
+|---|---|---|---|
 | html | text | semi-structured, human readable | data could be received in a loosley-structured format, intended for human, not machine consumption |
 | json | text | structured, human readable | |
 | protocol buffers (protobuf) | binary | small footprint | both client and server need to know the structure of the encoded message |
