@@ -38,12 +38,6 @@ Active Record maps a class to a database table.
 
 https://guides.rubyonrails.org/active_record_basics.html
 
-#### Active Resource
-
-Active Resource provides a way to map a model class to a RESTful resource. It can manage data at an HTTP endpoint in either XML or JSON format.
-
-For example, if you need to access data at http://localhost:8080/bicycles, you can 
-
 #### What's the Difference?
 
 The most common way to present and persist data in a Rails application is with Active Record. Active Record is a wrapper for database tables and their relationships. Active Resource is a wrapper for RESTful. 
@@ -52,10 +46,8 @@ Active Model is used by Active Record for data validation, serialization and a n
 
 Not all models need to be Active Record models that map to a database. We can add models to our app where some models are backed by a database, while another model could map to an API endpoint. This leads us to Active Remote - models that map to a remote service over a message bus. We'll discuss this in detail in the next chapter.
 
-ActiveRecord 
-
 ## Wrap-up
 
-There are a variety of Ruby gems available that can help you build your application's model layer. If you follow some type of Model architectural pattern, you can create models that are backed by a RESTful resource, a database table, or something else. In the next chapter, we're going to discuss a new model type: Active Remote. Active Remote allows you to share data between applications efficiently. TODO: fix.
+There are a variety of Ruby gems available that can help you build your application's model layer. If you follow some type of Model architectural pattern, you can create models that are backed by a RESTful resource, a database table, or something else. In the next chapter, we're going to discuss a new model type: Active Remote. Active Remote allows you to share data between applications efficiently.
 
 [Next >>](060-chapter-05.md)
