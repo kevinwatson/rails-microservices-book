@@ -1,8 +1,8 @@
-### Chapter 1
+### Chapter 1 - Microservices
 
 > I need you to be clever, Bean. I need you to think of solutions to problems we haven't seen yet. I want you to try things that no one has ever tried because they're absolutely stupid. - Orson Scott Card, Ender's Game
 
-## Monoliths vs microservices vs serverless
+## Service Architectures
 
 First, a few definitions:
 

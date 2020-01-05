@@ -18,7 +18,7 @@ There are many ways to encode and share data. XML, JSON and other formats are we
 
 Protobuf attempts to solve these and other problems by encoding data to a binary format (which of course is much smaller than a XML or JSON encoded object). Protobuf definitions consist of one or more uniquely numbered fields. Each encoded field is assigned a field number and a value. This field number is what differentiates Protobuf from other objects. The field number is used to encode and decode the message attributes, reduces the amount of data that needs to be encoded by leaving out the attribute name, and allows for extendability so developers can add fields to a definition without having to upgrade all of the apps that consume that message at the same time. This is possible because existing apps will ignore new fields on any messages the receive and decode.
 
-## Usage
+## Implementation
 
 An example Protobuf definition is below. Protobuf files have the file extension `.proto`.
 

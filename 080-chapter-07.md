@@ -1,6 +1,6 @@
 ### Chapter 7 - Data Relationships
 
-## Overview
+## Introduction
 
 Your application will most likely be designed on top of one or more database tables, whether they are stored in a relational database or a NoSQL database. As the application grows, you'll define relationships between entities that will need to be defined both in the application and in the database.
 

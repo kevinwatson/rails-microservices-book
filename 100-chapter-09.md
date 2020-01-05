@@ -1,4 +1,4 @@
-### Chapter 8 - Microservice Playground
+### Chapter 9 - Microservice Playground
 
 > I try to formulate a plan but my thoughts are a toxic fizz of regret, panic, and self-loathing, as if someone shook up a bottle of carbonated soda and uncapped it inside my brain. - Elan Mastai, All Our Wrong Todays
 
@@ -16,7 +16,7 @@ If you're using Windows or macOS, download and install Docker Desktop. Download 
 
 We'll also use Docker Compose to configure and run several applications from a single configuration file. Docker Compose is included in Docker Desktop for macOS and Windows. If you're running Linux, you'll need to install Docker separately and then follow the Docker Compose installation instructions found here: https://docs.docker.com/compose/install.
 
-## What we'll need in our image
+## What we'll need
 
 * Ruby
 * Ruby on Rails and related gems

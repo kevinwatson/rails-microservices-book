@@ -2,7 +2,7 @@
 
 > There are around seven octillion atoms in a human body. That's a lot of goddamn atoms to disassemble, shoot back through time and space, and reassemble in perfect order. - Elan Mastai, All Our Wrong Todays
 
-## Overview
+## Introduction
 
 Messaging communication systems are used as a critical component when designing distributed systems. NATS is one such messaging platform which provides security, resiliency, is scalable and can meet the performance requirements of most systems. As of the time of this writing, it has clients written in over 30 programming languages.
 
@@ -12,6 +12,8 @@ Messaging communication systems are used as a critical component when designing 
 1. Testing
 1. Monitoring
 1. Wrap-up
+
+## Let's run it
 
 Let's use Docker to run a local NATS server and write messages to it. We'll include a BusyBox image so we can run telnet commands to test NATS.
 
@@ -94,5 +96,7 @@ As of the time of this writing, there are 5 links on the page. Let's briefly loo
 Some of the endpoints above also have querystring parameters that can be passed, e.g. http://localhost:8222/connz?sort=start, which will sort the connections by the start time. Check out the documentation at https://nats-io.github.io/docs/nats_server/monitoring.html for more information about these endpoints and their options.
 
 We have successfully spun up a NATS server, subscribed to a subject, and published messages over that subject. We also learned about the instrumentation that NATS provides on port 8222. Later, we'll set up a full environment with two Rails applications that will use NATS to communicate.
+
+## Wrap-up
 
 [Next >>](080-chapter-07.md)
