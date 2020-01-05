@@ -31,7 +31,7 @@
   * Database vs App Generated
   * When to use each
   * Wrap-up
-* [Chapter 8 - Protocol Buffers (Protobuf)](090-chapter-08,md)
+* [Chapter 8 - Protocol Buffers (Protobuf)](090-chapter-08.md)
   * Introduction
   * Philosophy
   * Implementation
