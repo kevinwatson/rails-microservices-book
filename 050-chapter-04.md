@@ -8,17 +8,17 @@ The model architectural pattern provides the serialization and deserialization o
 
 Active Model is a library of modules that provides various methods to Active Record. Active Model's modules can also be included in your classes to provide the same functionality. Some of the included modules are below.
 
-* AttributeMethods - adds custom prefixes and suffixes on methods of a class
-* Callbacks - adds before, after and around methods
-* Conversion - adds `to_model`, `to_key` and `to_param` methods to an object
-* Dirty - adds methods to determine whrther the object has been changed or not
-* Validations - adds validation methods to an object
-* Naming - adds class methods that provide singular and plural versions of the class name
-* Model - adds class methods for validations, translations, conversions, etc, and the ability to initialize an object with a hash of attributes
-* Serialization - adds functionality to make it easy to serialize and deserialize an object to and from a hash or JSON object
-* Translation - adds methods for internationalization using the i18n framework
-* Lint Tests - adds functionality to test whether your object is compliant with the Active Model API
-* SecurePassword - adds methods to store passwords or other data securely using the `bcrypt` gem
+- AttributeMethods - adds custom prefixes and suffixes on methods of a class
+- Callbacks - adds before, after and around methods
+- Conversion - adds `to_model`, `to_key` and `to_param` methods to an object
+- Dirty - adds methods to determine whether the object has been changed or not
+- Validations - adds validation methods to an object
+- Naming - adds class methods that provide singular and plural versions of the class name
+- Model - adds class methods for validations, translations, conversions, etc, and the ability to initialize an object with a hash of attributes
+- Serialization - adds functionality to make it easy to serialize and deserialize an object to and from a hash or JSON object
+- Translation - adds methods for internationalization using the i18n framework
+- Lint Tests - adds functionality to test whether your object is compliant with the Active Model API
+- SecurePassword - adds methods to store passwords or other data securely using the `bcrypt` gem
 
 https://guides.rubyonrails.org/active_model_basics.html
 
