@@ -6,7 +6,7 @@
 
 Active Remote is a Ruby gem that can replace Active Record models in your application to provide access to other models that exist in other applications on your network. Similar in philosophy to Active Resource (https://github.com/rails/activeresource), Active Remote provides data access for remote resources.
 
-The difference is that while Active Remote provides access to RESTful resources, Active Remote provides access using more durable and efficient methods (e.g. using a message bus for durability, and Protobuf for efficient data serialization and deserialization).
+The difference is that while Active Resource provides access to RESTful resources, Active Remote provides access using more durable and efficient methods (e.g. using a message bus for durability, and Protobuf for efficient data serialization and deserialization).
 
 ## Philosophy
 
