@@ -1,8 +1,8 @@
 ## Online Resources
 
-The code referenced in this book is available on the book's website at [TODO]. You're encouraged to download and run the examples, if not to save keystrokes or see the finished product.
+The code referenced in this book is available on the book's website at https://github.com/kevinwatson/rails-microservices-sample-code. You can either download and run the sample code, or build the same applications by following along in Chapter 9 - Microservice Playground.
 
-The following links will be referenced throughout the book:
+In addition to the sample code on the GitHub website, the following websites will be referenced in this book:
 
 * https://docker.com
 * https://nats.io
