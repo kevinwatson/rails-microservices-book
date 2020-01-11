@@ -4,14 +4,11 @@
 
 ## Introduction
 
-Messaging communication systems are used as a critical component when designing distributed systems. NATS is one such messaging platform which provides security, resiliency, is scalable and can meet the performance requirements of most systems. As of the time of this writing, it has clients written in over 30 programming languages.
+Messaging communication systems are a critical component when designing distributed systems. They are used to provide a layer in your platform architecture which is used to shuffle messages between services. A message layer provides a endpoint for services to communicate. Each servie only needs to know how to communicate with the message queue, which queues to subscribe to, and which queues to listen on.
 
-1. NATS Server
-1. Rabbit MQ ??
-1. Setup
-1. Testing
-1. Monitoring
-1. Wrap-up
+NATS is one such messaging system that provides security, resiliency, is scalable and can meet the performance requirements of most platforms. As of the time of this writing, NATS has clients written in over 30 programming languages.
+
+In this chapter, we'll spin up a NATS server. We'll test it by publishing and subscribing to messages using a telnet client.
 
 ## Let's run it
 
@@ -95,8 +92,12 @@ As of the time of this writing, there are 5 links on the page. Let's briefly loo
 
 Some of the endpoints above also have querystring parameters that can be passed, e.g. http://localhost:8222/connz?sort=start, which will sort the connections by the start time. Check out the documentation at https://nats-io.github.io/docs/nats_server/monitoring.html for more information about these endpoints and their options.
 
-We have successfully spun up a NATS server, subscribed to a subject, and published messages over that subject. We also learned about the instrumentation that NATS provides on port 8222. Later, we'll set up a full environment with two Rails applications that will use NATS to communicate.
-
 ## Wrap-up
+
+Messaging systems are a layer in a system architecture that allows you to build a platform that is asynchronous, reliable, decoupled and scalable. NATS is one messaging system that is simple to configure and use.
+
+In this chapter, we successfully spun up a local NATS server, created a subject, then published and subscribed to messages to that subject. We also learned about the instrumentation that NATS provides.
+
+In the next chapter, we'll discuss structured data and what types of keys to use to share data between systems. In chapter 9, we'll set up a microservice environment consisting of two Rails applications that will use NATS to share data.
 
 [Next >>](080-chapter-07.md)
