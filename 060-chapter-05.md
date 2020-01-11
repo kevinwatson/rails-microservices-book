@@ -26,4 +26,6 @@ Because Active Remote implements a message bus to communicate between services, 
 
 Active Remote also implements Protobuf, an efficient serialization and deserialization. As your platform grows, minimizing the amount of data traveling over the wire will pay dividends as you continue to scale your platform.
 
+In the next chapter, we'll discuss messaging queues. We'll spin up a NATS server and send and receive simple messages via the telnet protocol.
+
 [Next >>](070-chapter-06.md)
