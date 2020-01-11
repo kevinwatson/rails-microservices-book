@@ -23,23 +23,23 @@ Protobuf attempts to solve these and other problems by encoding data to a binary
 An example Protobuf definition is below. Protobuf files have the file extension `.proto`.
 
 ```proto
-1 # file employee.proto
-2 syntax = "proto3";
-3 
-4 message Employee {
-5   string guid = 1;
-6   string first_name = 2;
-7   string last_name = 3;
-8 }
+// file employee.proto
+1 syntax = "proto3";
+2
+3 message Employee {
+4   string guid = 1;
+5   string first_name = 2;
+6   string last_name = 3;
+7 }
 ```
 
 Let's inspect each line.
 
-Line 2 defines the version of the Protobuf syntax we'd like to use.
+Line 1 defines the version of the Protobuf syntax we'd like to use.
 
 Line 3 is the beginning of our message declaration.
 
-Lines 4-7 are the field definitions. Each line has a type (the guid field is a string type). Line 5 has an attribute name of `guid`, and the field number of 1.
+Lines 4-6 are the field definitions. Each line has a type (the guid field is a string type). Line 5 has an attribute name of `guid`, and the field number of 1.
 
 This Protobuf definition is by itself not used in your application. What we do next is compile this `employee.proto` field to a class or structure file in the same language your app is written in, whether that's Java, C#, Go or Ruby. If you support a heterogeneous platform with multiple languages, you may want to build scripts which will automatically compile your `.proto` files to the required languages each time you add a new `.proto` file or add a new field to one of the definitions.
 
