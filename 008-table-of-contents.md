@@ -11,8 +11,8 @@
   * Data Serialization
   * Wrap-up
 * [Chapter 3 - Ruby on Rails](040-chapter-03.md)
-  * Why Ruby on Rails?
-  * Rails in the enterprise
+  * Ruby on Rails
+  * Ruby
   * Wrap-up
 * [Chapter 4 - Active Record and Active Model](050-chapter-04.md)
   * Introduction

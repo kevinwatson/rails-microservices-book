@@ -2,7 +2,7 @@
 
 > What if every creative idea that someone has is unconsciously borrowed from that person's experiences in another reality? Maybe all ideas are plagiarized without us knowing it, because they come to us through some cryptic and unprovable reality slippage? - Elan Mastai, All Our Wrong Todays
 
-## Why Ruby on Rails?
+## Ruby on Rails
 
 If read to this point in this guide, you'll most likely familiar with the benefits of the Ruby language and the Ruby on Rails framework for building applications. If not, my take is that the Ruby language and the Ruby on Rails framework provides the tools a developer needs to be highly productive while building web applications. New applications can be spun up in a matter of seconds. There are a large number of libraries available (known in the Ruby world as gems), that can be used to extend your application's functionality. For example, if you need to run background processes, there's a gem for that (https://rubygems.org/gems/sidekiq). If your app needs to manage money and currencies, there's a gem for that (https://rubygems.org/gems/money). I could go on, but you get the point.
 
