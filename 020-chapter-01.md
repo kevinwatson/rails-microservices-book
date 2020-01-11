@@ -31,4 +31,6 @@ If you have different uptime requirements for functionality of your application,
 
 There are many ways to provide the logic that meets your business requirements. Most business applications start small, but grow to meet the needs of your business. Most of the time, business applications grow into a large, monolithic app. While there are many reasons to keep the monolith, as your business and team grow, you may want to split your codebase into smaller, easier to maintain units.
 
+In the next chapter, we'll discuss communications between microservices. We'll cover the pros and cons of various protocols, and some of the serialization methods that can be used to encode our data.
+
 [Next >>](030-chapter-02.md)
