@@ -7,6 +7,8 @@
   * Wrap-up
 * [Chapter 2 - Service Communications](030-chapter-02.md)
   * Introduction
+  * Protocols
+  * Data Serialization
   * Wrap-up
 * [Chapter 3 - Ruby on Rails](040-chapter-03.md)
   * Why Ruby on Rails?
