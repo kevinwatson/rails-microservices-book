@@ -21,6 +21,7 @@
   * Introduction
   * Philosophy
   * Design
+  * Implementation
   * Wrap-up
 * [Chapter 6 - Messaging Systems](070-chapter-06.md)
   * Introduction

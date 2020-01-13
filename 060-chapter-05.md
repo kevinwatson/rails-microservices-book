@@ -18,6 +18,19 @@ Further, because Active Remote implements a pub-sub messaging system, clients do
 
 During application initialization, Active Record models read the database schema and generate all of the getters, setters and methods which reduces the amount of biolerplate code that needs to be added to your models which inherit from ActiveRecord::Base. Because Active Remote doesn't have direct access to the database, on the client side, you'll need to declare the Active Remote model's attributes using the `attribute` method. On the server side, where you want to share the Active Record data, you'll need to create a Service class for each model that will define endpoints to allow for searching, creating, updating, deleting, etc.
 
+## Implementation
+
+Active Remote is packaged as a Ruby gem. The Active Remote gem provides a DSL (domain-specific language), handles primary key guid fields, handles serialization, among a number of other features. The Active Remote gem depends on the Protobuf gem, so that gem will get installed automatically when you install or include the Active Remote gem.
+
+To share data between services, you'll need to include the Protobuf NATS gem. For the client Rails app, the Active Remote and Protobuf NATS are the two gems you'll need to include with your application. In the server Rails app, you'll want to include the Active Remote, Protobuf NATS and the Protobuf Active Record gems. The Protobuf Active Record gem glues together Protobuf and Active Record, providing features such as linking your Protobuf messages to your Active Remote classes.
+
+## Online Resources
+
+* https://github.com/liveh2o/active_remote
+* https://github.com/ruby-protobuf/protobuf
+* https://github.com/abrandoned/protobuf-nats
+* https://github.com/liveh2o/protobuf-activerecord
+
 ## Wrap-up
 
 Active Remote allows you to build a durable and efficient communication platform between microservices. It also allows you to follow established architectural patterns such as MVC.
