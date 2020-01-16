@@ -74,15 +74,17 @@
 1. Chapter 10 - Event Driven Messaging
    1. Introduction
    1. Wrap-up
-1. Chapter 11 - Action Subscriber
-   1. Introduction
-   1. Philosophy
-   1. Wrap-up
-1. Chapter 12 - Rabbit MQ
+1. Chapter 11 - Rabbit MQ
    1. Introduction
    1. Setup
    1. Testing
    1. Monitoring
+   1. Wrap-up
+1. Chapter 12 - Active Publisher and Action Subscriber
+   1. Introduction
+   1. Philosophy
+   1. Setup
+   1. Testing
    1. Wrap-up
 1. Chapter 13 - Event Driven Playground
    1. Introduction
