@@ -21,3 +21,5 @@ The gems we'll use to implement our event driven architecture in the next couple
 Event driven messaging architectures provide numerous advantages. Some of these advantages are loose-coupling of services, zero downtime when adding new services and in some cases a better user experience.
 
 Earlier, we implemented the NATS service to route messages between our services. In the next chapter, we'll spin up a RabbitMQ service, subscribe to and publish events to see how an .
+
+[Next >>](120-chapter-11.md)
