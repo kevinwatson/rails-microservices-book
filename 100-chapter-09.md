@@ -443,4 +443,6 @@ We can also check the NATS connection info to verify that data is being passed o
 
 Now that you have configured and spun up two new services that can communicate and share data via Protobuf, feel free to experiement by adding new Protobuf messages, additional remote procedure calls, etc.
 
+After completing the exercises in this chapter, we've built a synchronous platform. In other words, when the service asks for a specific Active Remote object, it expects a quick response from one of the services that own the Active Record model. In the next chapter, we'll discuss the event-driven architectural pattern. This pattern allows us to add one or more of services that can each perform an action when an event is detected.
+
 [Next >>](110-chapter-10.md)
