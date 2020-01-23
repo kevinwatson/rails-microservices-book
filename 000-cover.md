@@ -1,6 +1,6 @@
 # Building Distributed Rails Applications
 
-## Using Protocol Buffers and NATS
+## Using Protocol Buffers, NATS and RabbitMQ
 
 ### Kevin Watson
 
