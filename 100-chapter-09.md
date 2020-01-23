@@ -1,4 +1,4 @@
-### Chapter 9 - Microservice Playground
+### Chapter 9 - Active Remote Microservice Playground
 
 > I try to formulate a plan but my thoughts are a toxic fizz of regret, panic, and self-loathing, as if someone shook up a bottle of carbonated soda and uncapped it inside my brain. - Elan Mastai, All Our Wrong Todays
 
