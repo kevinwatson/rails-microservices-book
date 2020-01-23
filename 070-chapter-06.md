@@ -4,7 +4,7 @@
 
 ## Introduction
 
-Messaging communication systems are a critical component when designing distributed systems. They are used to provide a layer in your platform architecture which is used to shuffle messages between services. A message layer provides a endpoint for services to communicate. Each servie only needs to know how to communicate with the message queue, which queues to subscribe to, and which queues to listen on.
+Messaging communication systems are a critical component when designing distributed systems. They are used to provide a layer in your platform architecture which is used to shuffle messages between services. A message layer provides a endpoint for services to communicate. Each service only needs to know how to communicate with the message queue, which queues to subscribe to, and which queues to listen on.
 
 NATS is one such messaging system that provides security, resiliency, is scalable and can meet the performance requirements of most platforms. As of the time of this writing, NATS has clients written in over 30 programming languages.
 
