@@ -1,4 +1,4 @@
-### Chapter 11 - Messaging Systems -Rabbit MQ
+### Chapter 11 - Messaging Systems - Rabbit MQ
 
 ## Introduction
 
