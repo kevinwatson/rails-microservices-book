@@ -47,7 +47,7 @@
   * Testing our Docker and Docker Compose installation
   * Project Directory Structure
   * Wrap-up
-* [Chapter 10 - Event Driven Messaging](110-chapter-10.md)
+* [Chapter 10 - Event Driven Messaging - RabbitMQ](110-chapter-10.md)
   * Introduction
   * Implementation
   * Wrap-up
