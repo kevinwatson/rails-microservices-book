@@ -23,7 +23,7 @@
   * Design
   * Implementation
   * Wrap-up
-* [Chapter 6 - Messaging Systems](070-chapter-06.md)
+* [Chapter 6 - Messaging Systems - NATS](070-chapter-06.md)
   * Introduction
   * Let's run it
   * Wrap-up
