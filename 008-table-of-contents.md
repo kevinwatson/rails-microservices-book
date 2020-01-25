@@ -55,5 +55,11 @@
   * Introduction
   * Let's Run It
   * Wrap-up
+* [Chapter 12 - Active Publisher and Action Subscriber](130-chapter-12.md)
+  * Introduction
+  * Philosophy
+  * Usage
+  * Resources
+  * Wrap-up
 
 [Next >>](010-chapter-00.md)
