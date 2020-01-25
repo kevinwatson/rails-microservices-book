@@ -54,6 +54,7 @@
 * [Chapter 11 - Messaging Systems - Rabbit MQ](120-chapter-11.md)
   * Introduction
   * Let's Run It
+  * Resources
   * Wrap-up
 * [Chapter 12 - Active Publisher and Action Subscriber](130-chapter-12.md)
   * Introduction
