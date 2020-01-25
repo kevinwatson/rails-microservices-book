@@ -53,9 +53,7 @@
   * Wrap-up
 * [Chapter 11 - Messaging Systems - Rabbit MQ](120-chapter-11.md)
   * Introduction
-  * Setup
-  * Testing
-  * Monitoring
+  * Let's Run It
   * Wrap-up
 
 [Next >>](010-chapter-00.md)
