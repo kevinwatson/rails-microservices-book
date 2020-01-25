@@ -25,7 +25,7 @@
   * Wrap-up
 * [Chapter 6 - Messaging Systems - NATS](070-chapter-06.md)
   * Introduction
-  * Let's run it
+  * Let's Run It
   * Wrap-up
 * [Chapter 7 - Data Relationships](080-chapter-07.md)
   * Introduction

@@ -10,9 +10,9 @@ NATS is one such messaging system that provides security, resiliency, is scalabl
 
 In this chapter, we'll spin up a NATS server. We'll test it by publishing and subscribing to messages using a telnet client.
 
-## Let's run it
+## Let's Run It
 
-Let's use Docker to run a local NATS server and write messages to it. We'll include a BusyBox image so we can run telnet commands to test NATS.
+Let's use Docker to run a local NATS server and send messages to it. We'll include a BusyBox image so we can run telnet commands to test NATS.
 
 Listing 6-1 Docker compose with NATS and BusyBox
 
@@ -78,9 +78,9 @@ Hello WORLD! # and this line
 +OK
 ```
 
-You should see the `Hello WORLD!` message in the terminal window where we subscribed to the subject (Figure 6-3). This demonstrates that we have NATS server running, we published a message to a subject, and our subscriber received the message. You can press `Ctrl-C` and then the letter `e` to exit the telnet session, and then `Ctrl-D` or type `exit` to return to the host machine's command prompt.
+You should see the `Hello WORLD!` message in the terminal window where we subscribed to the subject (Listing 6-3). This demonstrates that we have NATS server running, we published a message to a subject, and our subscriber received the message. You can press `Ctrl-C` and then the letter `e` to exit the telnet session, and then `Ctrl-D` or type `exit` to return to the host machine's command prompt.
 
-NATS also provides a monitoring API which we can query to keep tabs on how many messages are sent through the server, etc. Because we're exposing NATS port 8222 outside the Docker environment (see the `docker-compose.yml` file in Figure 6-2), we can view the instrumentation by opening the browser on our host machine at the following address: [http://localhost:8222](http://localhost:8222). A page should render in your browser, with a handful of links. If we were to set up a cluster of NATS servers, additional links would appear.
+NATS also provides a monitoring API which we can query to keep tabs on how many messages are sent through the server, etc. Because we're exposing NATS port 8222 outside the Docker environment (see the `docker-compose.yml` file in Listing 6-2), we can view the instrumentation by opening the browser on our host machine at the following address: [http://localhost:8222](http://localhost:8222). A page should render in your browser, with a handful of links. If we were to set up a cluster of NATS servers, additional links would appear.
 
 As of the time of this writing, there are 5 links on the page. Let's briefly look at each of them:
 
