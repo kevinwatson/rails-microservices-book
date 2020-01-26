@@ -113,6 +113,6 @@ Event-driven messaging systems are a layer in a system architecture that allows 
 
 In this chapter, we successfully spun up a local RabbitMQ server, created a queue, then published and consumed to messages on that queue.
 
-In the next chapter, we'll discuss a couple of Ruby gems that make publishing and consuming Protobuf messages simple.
+In the next chapter, we'll discuss a couple of Ruby gems that make it easy to configure and set up your RabbitMQ clients.
 
 [Next >>](130-chapter-12.md)
