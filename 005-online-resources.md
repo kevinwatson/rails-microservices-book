@@ -1,6 +1,6 @@
 ## Online Resources
 
-The code referenced in this book is available on the book's website at https://github.com/kevinwatson/rails-microservices-sample-code. You can either download and run the sample code, or build the same applications by following along in Chapter 9 - Microservice Playground.
+The code referenced in this book is available on the book's website at https://github.com/kevinwatson/rails-microservices-sample-code. You can either download and run the sample code, or build the same applications by following along in Chapter 9 - Active Remote Microservice Sandbox.
 
 In addition to the sample code on the GitHub website, the following websites will be referenced in this book:
 

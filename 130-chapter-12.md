@@ -1,11 +1,13 @@
-### Chapter 12 - Active Publisher and Action Subscriber
+### Chapter 12 - Active Publisher and Action Subscriber Sandbox
 
 ## Introduction
 
 ## Philosophy
 
-## Usage
+## Implementation
 
 ## Resources
+
+* https://github.com/mxenabled/active_publisher
 
 ## Wrap-up

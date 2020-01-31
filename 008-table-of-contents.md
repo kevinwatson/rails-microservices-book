@@ -40,7 +40,7 @@
   * Implementation
   * Wrap-up
   * References
-* [Chapter 9 - Active Remote Microservice Playground](100-chapter-09.md)
+* [Chapter 9 - Active Remote Microservice Sandbox](100-chapter-09.md)
   * Setup
   * Install Docker
   * What we'll need

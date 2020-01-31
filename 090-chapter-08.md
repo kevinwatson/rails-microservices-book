@@ -47,7 +47,7 @@ This Protobuf definition is by itself not used in your application. What we do n
 
 Protobufs are an efficient way to package and share data between services. They are language agnostic and extendable. Because they are language agnostic, you are not constrainted to building services in a single programming language on your platform. For example, you can write your internal line-of-business applications in Rails while writing your data-crunching algorithms in R.
 
-In the next chapter, we'll spin up a development playground with NATS and Rails. We'll create two Rails applications, one that owns a database and shares the data via Protobuf and Active Remote and another that acts as a client that can retrieve and modify the data in the first app.
+In the next chapter, we'll spin up a development sandbox with NATS and Rails. We'll create two Rails applications, one that owns a database and shares the data via Protobuf and Active Remote and another that acts as a client that can retrieve and modify the data in the first app.
 
 ## References
 
