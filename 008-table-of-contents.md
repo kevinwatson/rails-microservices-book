@@ -56,7 +56,7 @@
   * Let's Run It
   * Resources
   * Wrap-up
-* [Chapter 12 - Active Publisher and Action Subscriber](130-chapter-12.md)
+* [Chapter 12 - Active Publisher and Action Subscriber Sandbox](130-chapter-12.md)
   * Introduction
   * Philosophy
   * Usage
