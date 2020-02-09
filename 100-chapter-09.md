@@ -44,6 +44,8 @@ docker-compose version 1.24.1
 
 If you see any errors, check your Docker Desktop installation.
 
+## Implementation
+
 ### Project Directory Structure
 
 Now we'll need to create a directory for our project. As you follow along, you'll create three project sub-directories, one for our shared Protobuf messages, one for our ActiveRecord Ruby on Rails server application that stores the data in a SQLite database and one for our ActiveRemote client application that will provide a front-end for our ActiveRecord service.
@@ -58,14 +60,14 @@ Personally, I like to create projects in my `~/projects` directory. Following th
 
 ### Set up a development environment
 
-Let's get started by creating a builder Dockerfile and Docker Compose file. We'll use the Dockerfile file to build an image with the command-line apps we need, and we'll use a Docker Compose configuration file to reduce the number of parameters we'll need to run with each command. The alternative is to simply use a Dockerfile and related `docker` commands.
+Let's get started by creating a builder Dockerfile and Docker Compose file. We'll use the Dockerfile file to build an image with the command-line apps we need, and we'll use a Docker Compose configuration file to reduce the number of parameters we'll need to use to run each command. The alternative is to simply use a Dockerfile and related `docker` commands.
 
 Create the following Dockerfile file in the `~/projects/rails-book` directory. We'll use the name `Dockerfile.builder` to differentiate the Dockerfile we'll use to generate new rails services vs the Dockerfile we'll use to build and run our Rails applications.
 
 Note: The first line of a file is the `cat` command, used here to easily reference the file path and the file contents.
 
 ```dockerfile
-# $ cat ~/projects/rails-book/Dockerfile.builder
+# ~/projects/rails-book/Dockerfile.builder
 
 FROM ruby:2.6.5
 
@@ -84,7 +86,7 @@ RUN gem install protobuf
 Create the following `docker-compose.builder.yml` file in the `~/rails-book` directory. We'll use this configuration file to start our development environment with all of the command-line tools that we'll need.
 
 ```yaml
-# $ cat ~/projects/rails-book/docker-compose.builder.yml
+# ~/projects/rails-book/docker-compose.builder.yml
 
 version: "3.4"
 
@@ -126,7 +128,7 @@ $ mkdir -p protobuf/{definitions,lib}
 Our Protobuf definition file:
 
 ```protobuf
-$ cat protobuf/definitions/employee_message.proto
+# protobuf/definitions/employee_message.proto
 
 syntax = "proto3";
 
@@ -157,7 +159,7 @@ service EmployeeMessageService {
 To compile the `.proto` files, we'll use a Rake task provided by the `protobuf` gem. To access the `protobuf` gem's Rake tasks, we'll need to create a `Rakefile`. Let's do that now.
 
 ```ruby
-$ cat protobuf/Rakefile
+# protobuf/Rakefile
 
 require "protobuf/tasks"
 ```
@@ -202,7 +204,7 @@ $ cp protobuf/lib/employee_message.pb.rb active-record/app/lib/
 Next, we'll need to create a service class to define how to handle the remote procedure call service endpoints we defined in the `.proto` file. We'll need to create an `app/services` directory. We'll then add a `app/services/employee_message_service.rb` file to re-open the `EmployeeMessageService` class defined in our `app/lib/employee_message.pb.rb` file to provide implementation details. Lastly, we'll define some scopes and field_scopes in our `app/models/employee.rb` to wire up existing model attributes with protobuf attributes.
 
 ```ruby
-$ cat active-record/app/models/employee.rb
+# active-record/app/models/employee.rb
 
 require 'protobuf'
 
@@ -224,7 +226,7 @@ $ mkdir active-record/app/services
 ```
 
 ```ruby
-$ cat active-record/app/services/employee_message_service.rb
+# active-record/app/services/employee_message_service.rb
 
 class EmployeeMessageService
   def search
@@ -259,7 +261,7 @@ end
 We'll also need to add a few more details. Because the `app/lib/employee_message.pb.rb` file contains multiple classes, only the class that matches the file name is loaded. In development mode, Rails can lazy load files as long as the file name can be inferred from the class name, e.g. code requiring the class `EmployeeMessageService` will try to lazy load a file named `employee_message_service.rb`, and throw an error if the file is not found. We can either separate the classes in the `app/lib/employee_message.pb.rb` file into separate files, or enable eager loading in the config. For the purposes of this demo, let's enable eager loading.
 
 ```ruby
-$ cat active-record/config/environments/development.rb
+# active-record/config/environments/development.rb
 
 ...
 config.eager_load = true
@@ -269,7 +271,7 @@ config.eager_load = true
 The last change we need to make to the `active-record` app is to add a `protobuf_nats.yml` config file to configure the code provided by the `protobuf-nats` gem.
 
 ```yml
-$ cat active-record/config/protobuf_nats.yml
+# active-record/config/protobuf_nats.yml
 
 default: &default
   servers:
@@ -305,7 +307,7 @@ $ cp protobuf/lib/employee_message.pb.rb active-remote/app/lib/
 Now let's edit the `config/environments/development.rb` file to enable eager loading for the same reasons listed above.
 
 ```ruby
-$ cat active-remote/config/environments/development.rb
+# active-remote/config/environments/development.rb
 
 ...
 config.eager_load = true
@@ -315,7 +317,7 @@ config.eager_load = true
 Let's add the `protobuf_nats.yml` file.
 
 ```yml
-$ cat active-record/config/protobuf_nats.yml
+# active-record/config/protobuf_nats.yml
 
 default: &default
   servers:
@@ -328,7 +330,7 @@ development:
 The last thing we need to do is change a couple of method calls in the `employees_controller.rb` file to change the way that our Protobuf messages are retrieved and instantiated. We need to use the `search` method instead of the default `all` and `find` Active Record methods. Also, because we're using uuids (guids) as the unique key between services, we'll generate a new uuid each time the `new` action is called.
 
 ```ruby
-$ cat active-remote/controllers/employees_controller.rb
+# active-remote/controllers/employees_controller.rb
 
   def index
     @employees = Employee.search({})
@@ -352,7 +354,7 @@ $ cat active-remote/controllers/employees_controller.rb
 Last but not least, let's add a `Dockerfile` and `docker-compose.yml` file to create an image and spin up containers and link our services together.
 
 ```dockerfile
-$ cat Dockerfile
+# Dockerfile
 
 FROM ruby:2.6.5
 
@@ -370,7 +372,7 @@ RUN set -ex && bundle install --no-deployment
 ```
 
 ```yml
-$ cat docker-compose.yml
+# docker-compose.yml
 
 version: "3.4"
 
@@ -378,7 +380,6 @@ services:
   active-record:
     environment:
     - PB_SERVER_TYPE=protobuf/nats/runner
-    - RAILS_LOG_TO_STDOUT=1
     build:
       context: ./active-record
       dockerfile: ../Dockerfile
@@ -390,7 +391,6 @@ services:
   active-remote:
     environment:
     - PB_CLIENT_TYPE=protobuf/nats/client
-    - RAILS_LOG_TO_STDOUT=1
     build:
       context: ./active-remote
       dockerfile: ../Dockerfile
