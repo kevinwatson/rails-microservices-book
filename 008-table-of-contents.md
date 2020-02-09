@@ -56,10 +56,14 @@
   * Let's Run It
   * Resources
   * Wrap-up
-* [Chapter 12 - Active Publisher and Action Subscriber Sandbox](130-chapter-12.md)
+* [Chapter 12 - Event Driven Messaging Sandbox](130-chapter-12.md)
   * Introduction
-  * Philosophy
-  * Usage
+  * Implementation
+  * Resources
+  * Wrap-up
+* [Chapter 13 - Active Remote with Events Sandbox](140-chapter-13.md)
+  * Introduction
+  * Implementation
   * Resources
   * Wrap-up
 

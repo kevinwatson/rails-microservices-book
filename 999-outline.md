@@ -80,7 +80,7 @@
    1. Testing
    1. Monitoring
    1. Wrap-up
-1. Chapter 12 - Active Publisher and Action Subscriber Sandbox
+1. Chapter 12 - Event Driven Messaging Sandbox
    1. Introduction
    1. Philosophy
    1. Setup
