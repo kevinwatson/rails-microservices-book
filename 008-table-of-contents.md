@@ -4,6 +4,7 @@
   * Service Architectures
   * Tell me more about microservices
   * Why should I use microservices?
+  * Resources
   * Wrap-up
 * [Chapter 2 - Service Communications](030-chapter-02.md)
   * Introduction

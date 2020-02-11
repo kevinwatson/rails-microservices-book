@@ -27,6 +27,10 @@ As your development team grows, you may want to split the code base into smaller
 
 If you have different uptime requirements for functionality of your application, your codebase may be a candidate for breaking it up into smaller microservices. This will allow you to meet your service level requirements on a service by service basis. The added benefit is that the services can be designed so that if a less critical piece of the platform goes down, the rest of the platform remains unaffected.
 
+## Resources
+
+* https://martinfowler.com/articles/microservices.html
+
 ## Wrap-up
 
 There are many ways to provide the logic that meets your business requirements. Most business applications start small, but grow to meet the needs of your business. Most of the time, business applications grow into a large, monolithic app. While there are many reasons to keep the monolith, as your business and team grow, you may want to split your codebase into smaller, easier to maintain units.
