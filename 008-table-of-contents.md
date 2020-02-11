@@ -43,8 +43,8 @@
   * Introduction
   * Philosophy
   * Implementation
+  * Resources
   * Wrap-up
-  * References
 * [Chapter 9 - Active Remote Microservice Sandbox](100-chapter-09.md)
   * Setup
   * Install Docker

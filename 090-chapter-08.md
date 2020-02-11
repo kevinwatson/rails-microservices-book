@@ -43,15 +43,15 @@ Lines 4-6 are the field definitions. Each line has a type (the guid field is a s
 
 This Protobuf definition is by itself not used in your application. What we do next is compile this `employee.proto` field to a class or structure file in the same language your app is written in, whether that's Java, C#, Go or Ruby. If you support a heterogeneous platform with multiple languages, you may want to build scripts which will automatically compile your `.proto` files to the required languages each time you add a new `.proto` file or add a new field to one of the definitions.
 
+## Resources
+
+* https://developers.google.com/protocol-buffers
+* https://github.com/ruby-protobuf/protobuf/wiki/Compiling-Definitions
+
 ## Wrap-up
 
 Protobufs are an efficient way to package and share data between services. They are language agnostic and extendable. Because they are language agnostic, you are not constrainted to building services in a single programming language on your platform. For example, you can write your internal line-of-business applications in Rails while writing your data-crunching algorithms in R.
 
 In the next chapter, we'll spin up a development sandbox with NATS and Rails. We'll create two Rails applications, one that owns a database and shares the data via Protobuf and Active Remote and another that acts as a client that can retrieve and modify the data in the first app.
-
-## References
-
-* https://developers.google.com/protocol-buffers
-* https://github.com/ruby-protobuf/protobuf/wiki/Compiling-Definitions
 
 [Next >>](100-chapter-09.md)
