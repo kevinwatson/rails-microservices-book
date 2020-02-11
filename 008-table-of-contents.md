@@ -25,6 +25,7 @@
   * Philosophy
   * Design
   * Implementation
+  * Resources
   * Wrap-up
 * [Chapter 6 - Messaging Systems - NATS](070-chapter-06.md)
   * Introduction

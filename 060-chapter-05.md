@@ -24,7 +24,7 @@ Active Remote is packaged as a Ruby gem. The Active Remote gem provides a DSL (d
 
 To share data between services, you'll need to include the Protobuf NATS gem. For the client Rails app, the Active Remote and Protobuf NATS are the two gems you'll need to include with your application. In the server Rails app, you'll want to include the Active Remote, Protobuf NATS and the Protobuf Active Record gems. The Protobuf Active Record gem glues together Protobuf and Active Record, providing features such as linking your Protobuf messages to your Active Remote classes.
 
-## Online Resources
+## Resources
 
 * https://github.com/liveh2o/active_remote
 * https://github.com/ruby-protobuf/protobuf
