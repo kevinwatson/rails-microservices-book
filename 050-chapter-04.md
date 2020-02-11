@@ -20,8 +20,6 @@ Active Model is a library of modules that provides various methods to Active Rec
 - Lint Tests - adds functionality to test whether your object is compliant with the Active Model API
 - SecurePassword - adds methods to store passwords or other data securely using the `bcrypt` gem
 
-https://guides.rubyonrails.org/active_model_basics.html
-
 #### Active Record
 
 The core of a Rails application is it's data. Rails applications (as are many framework patterns) are built in multiple layers. Rails itself follows the model-view-controller (MVC) architecture pattern to separate programming logic into separate elements. Active Record is the model part of the MVC pattern in Rails. Active Record is where you add the behavior and persist the data that is required by your application.
@@ -41,6 +39,11 @@ The most common way to present and persist data in a Rails application is with A
 Active Model is used by Active Record for data validation, serialization and a number of other features. 
 
 Not all models need to be Active Record models that map to a database. We can add models to our app where some models are backed by a database, while another model could map to an API endpoint. This leads us to Active Remote - models that map to a remote service over a message bus. We'll discuss this in detail in the next chapter.
+
+## Resources
+
+* https://guides.rubyonrails.org/active_model_basics.html
+* https://guides.rubyonrails.org/active_record_basics.html
 
 ## Wrap-up
 

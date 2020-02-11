@@ -16,6 +16,7 @@
   * Wrap-up
 * [Chapter 4 - Active Record and Active Model](050-chapter-04.md)
   * Introduction
+  * Resources
   * Wrap-up
 * [Chapter 5 - Active Remote](060-chapter-05.md)
   * Introduction
