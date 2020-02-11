@@ -4,9 +4,9 @@
 
 ## Ruby on Rails
 
-If read to this point in this guide, you'll most likely familiar with the benefits of the Ruby language and the Ruby on Rails framework for building applications. If not, my take is that the Ruby language and the Ruby on Rails framework provides the tools a developer needs to be highly productive while building web applications. New applications can be spun up in a matter of seconds. There are a large number of libraries available (known in the Ruby world as gems), that can be used to extend your application's functionality. For example, if you need to run background processes, there's a gem for that (https://rubygems.org/gems/sidekiq). If your app needs to manage money and currencies, there's a gem for that (https://rubygems.org/gems/money). I could go on, but you get the point.
+If read to this point in this guide, you'll most likely familiar with the benefits of the Ruby language and the Ruby on Rails framework for building applications. If not, my take is that the Ruby language and the Ruby on Rails framework provides the tools a developer needs to be highly productive while building web applications. New applications can be spun up in a matter of seconds. There are a large number of libraries available (known in the Ruby world as gems), that can be used to extend your application's functionality. For example, if you need to run background processes, there's a gem for that: Sidekiq. If your app needs to manage money and currencies, there's a gem for that: the [Money](https://rubygems.org/gems/money). I could go on, but you get the point.
 
-For more information about why you should use the Rails framework, please visit https://rubyonrails.org.
+For more information about why you should use the Rails framework, please review the official Ruby on Rails documentation at https://rubyonrails.org.
 
 ## Ruby
 
@@ -29,6 +29,14 @@ The good news is, there are other interpreters available that can help optimize 
 #### JRuby
 
 JRuby is an implementation of Ruby that compiles Ruby code to Java bytecode. Some of the benefits are true multithreading, the stability of the Java platform, the ability to call native Java classes, and in some cases, better performance. One of the downsides is increased memory consumption (this is Java, after all).
+
+## Resources
+
+* https://rubygems.org/gems/money
+* https://rubygems.org/gems/sidekiq
+* https://rubyonrails.org
+* https://www.jruby.org
+* https://www.ruby-lang.org
 
 ## Wrap-up
 

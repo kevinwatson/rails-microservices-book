@@ -13,6 +13,7 @@
 * [Chapter 3 - Ruby on Rails](040-chapter-03.md)
   * Ruby on Rails
   * Ruby
+  * Resources
   * Wrap-up
 * [Chapter 4 - Active Record and Active Model](050-chapter-04.md)
   * Introduction
