@@ -43,9 +43,8 @@
 * [Chapter 9 - Active Remote Microservice Sandbox](100-chapter-09.md)
   * Setup
   * Install Docker
-  * What we'll need
-  * Testing our Docker and Docker Compose installation
-  * Project Directory Structure
+  * Implementation
+  * Resources
   * Wrap-up
 * [Chapter 10 - Event Driven Messaging](110-chapter-10.md)
   * Introduction

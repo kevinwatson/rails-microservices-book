@@ -16,7 +16,9 @@ If you're using Windows or macOS, download and install Docker Desktop. Download 
 
 We'll also use Docker Compose to configure and run several applications from a single configuration file. Docker Compose is included in Docker Desktop for macOS and Windows. If you're running Linux, you'll need to install Docker separately and then follow the Docker Compose installation instructions found here: https://docs.docker.com/compose/install.
 
-## What we'll need
+## Implementation
+
+### What we'll need
 
 * Ruby
 * Ruby on Rails and related gems
@@ -25,7 +27,7 @@ We'll also use Docker Compose to configure and run several applications from a s
 
 Because we installed Docker Desktop, there is no need to install Ruby, the Ruby on Rails framework, NATS or SQLite on your computer. They will be installed inside of the Docker images and containers that we will spin up next.
 
-### Testing our Docker and Docker Compose installation
+#### Testing our Docker and Docker Compose installation
 
 We can test our installation by running the `docker version` and the `docker-compose --version` commands. The versions you see in your output may differ from the versions you see below.
 
@@ -43,8 +45,6 @@ docker-compose version 1.24.1
 ```
 
 If you see any errors, check your Docker Desktop installation.
-
-## Implementation
 
 ### Project Directory Structure
 
@@ -438,6 +438,12 @@ active-remote_1  | I, [2019-12-28T00:40:43.597089 #1]  INFO -- : [CLT] - 0d68864
 ```
 
 We can also check the NATS connection info to verify that data is being passed over the NATS server. Browse to http://localhost:8222 and click the 'connz' link. Clicking links to pull data on the http://localhost:3000/employees page will pass additional messages to the `active-record` app through the NATS server. Refreshing the http://localhost:8222/connz page will display incrementing counters on the `num_connections` and the `num_connections/in_msgs` and `num_connections/out_msgs` fields.
+
+## Resources
+
+* https://docs.docker.com/compose
+* https://nats.io
+* https://www.sqlite.org
 
 ## Wrap-up
 
