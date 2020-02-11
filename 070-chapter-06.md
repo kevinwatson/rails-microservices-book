@@ -92,6 +92,13 @@ As of the time of this writing, there are 5 links on the page. Let's briefly loo
 
 Some of the endpoints above also have querystring parameters that can be passed, e.g. http://localhost:8222/connz?sort=start, which will sort the connections by the start time. Check out the documentation at https://nats-io.github.io/docs/nats_server/monitoring.html for more information about these endpoints and their options.
 
+## Resources
+
+* https://docs.docker.com/compose
+* https://hub.docker.com/_/nats
+* https://nats.io
+* https://nats-io.github.io/docs/nats_server/monitoring.html
+
 ## Wrap-up
 
 Messaging systems are a layer in a system architecture that allows you to build a platform that is asynchronous, reliable, decoupled and scalable. NATS is one messaging system that is simple to configure and use.
