@@ -4,7 +4,7 @@
 
 ## Ruby on Rails
 
-If read to this point in this guide, you'll most likely familiar with the benefits of the Ruby language and the Ruby on Rails framework for building applications. If not, my take is that the Ruby language and the Ruby on Rails framework provides the tools a developer needs to be highly productive while building web applications. New applications can be spun up in a matter of seconds. There are a large number of libraries available (known in the Ruby world as gems), that can be used to extend your application's functionality. For example, if you need to run background processes, there's a gem for that: Sidekiq. If your app needs to manage money and currencies, there's a gem for that: the [Money](https://rubygems.org/gems/money). I could go on, but you get the point.
+If read to this point in this guide, you'll most likely familiar with the benefits of the Ruby language and the Ruby on Rails framework for building applications. If not, my take is that the Ruby language and the Ruby on Rails framework provides the tools a developer needs to be highly productive while building web applications. New applications can be spun up in a matter of seconds. There are a large number of libraries available (known in the Ruby world as gems), that can be used to extend your application's functionality. For example, if you need to run background processes, there's a gem for that: Sidekiq. If your app needs to manage money and currencies, there's a gem for that: Money. I could go on, but you get the point.
 
 For more information about why you should use the Rails framework, please review the official Ruby on Rails documentation at https://rubyonrails.org.
 
