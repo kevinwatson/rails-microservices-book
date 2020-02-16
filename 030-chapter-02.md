@@ -130,7 +130,15 @@ XML (Extensible Markup Language) is a human-readable, text-based format. Like JS
 
 ## Messaging Systems
 
-## Shared Database
+So far we've described protocols for transfering and packaging our data. Now let's discuss established architectures that we can use to communicate between systems. Microservices are small, independent applications that can reach out to other applications to perform some work.
+
+Services can directly or indirectly call other services. When a service directly calls another service, the caller expects the other service to be available at the endpoint that the caller already knows about. For example, if an API hosts an `HTTP` endpoint at `http://humanresources.internal/employees`, I may write a service that acts as a client that can call that endpoint. I would expect to receive a list of employees, encoded in some format, such as `JSON`.
+
+Indirectly calling a service means that there is some system between the two services. Examples of systems that acts as an intermediary include a proxy server which may return a cached copy of the data or a message queue server which can queue up requests and smooth out the workload of the server that provides the data.
+
+Services can also make request-reply or fire-and-forget requests. The request-reply architecture pattern is used when the service sends a request to another service and expects a response. The fire-and-forget pattern is used to send a message to an intermediary service which then notifies all interested services. The sender of the fire-and-forget message doesn't wait for any responses, only that the message was sent.
+
+Our business needs will drive the microservice architectural patterns that we ultimately implement. These patterns are not mutually exclusive per service. These patterns can be combined in a single service, as we'll show in chapter 13.
 
 ## References
 
