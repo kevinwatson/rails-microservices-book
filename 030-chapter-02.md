@@ -111,7 +111,7 @@ Serialized data
 
 #### XML
 
-XML (Extensible Markup Language) is a human-readable, text-based format. Like JSON, XML defines both the structure and the data in the same message body. It is a very popular choice for exchanging data over the Internet and between systems.
+XML (Extensible Markup Language) is a human-readable, text-based format. Like JSON, XML defines both the structure and the data in the same message body. XML is a popular choice for exchanging data over the Internet and between systems.
 
 ```xml
 <People>
