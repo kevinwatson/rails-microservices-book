@@ -97,12 +97,92 @@ PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
 ```
 
 #### JSON
+
+JSON (JavaScript Object Notation) is a human-readable, text-based format. Its structure consists of name-value pairs. Because of its simple structure, it has become a popular option for sharing data between services.
+
+```json
+{
+  [
+    {
+      "id": 1,
+      "first_name": "George",
+      "last_name": "Costanza"
+    },
+    {
+      "id": 2,
+      "first_name": "Elaine",
+      "last_name": "Benes"
+    }
+  ]
+}
+```
+
 #### Protocol Buffers
+
+Protocol Buffers (Profobuf) are a language-independent format that is used to generate language-specific code to produce very small messages that are sent over the network. The advantage is network efficiency, the disadvantage is both the sender and receiver need to agree to the message structure in advance.
+
+Other formats such as JSON use name/value pairs to describe each piece of data. Protobuf uses a field position to define the fields as they are encoded and decoded from a binary format.
+
+The Person message
+
+```protobuf
+message Person {
+  int32 id = 1;
+  string first_name = 2;
+  string last_name = 3;
+}
+```
+
+A list of people in a single message
+
+```protobuf
+message PeopleMessageList {
+  repeated EmployeeMessage records = 1;
+}
+```
+
+##### Ruby Implementation
+
+The Person class
+
+```ruby
+class PersonMessage < ::Protobuf::Message
+  optional :int32, :id, 1
+  optional :string, :first_name, 2
+  optional :string, :last_name, 3
+end
+```
+
+A class to hold a list of people
+
+```ruby
+class PeopleMessageList < ::Protobuf::Message
+  repeated ::PersonMessage, :records, 1
+end
+```
+
+Serialized data
+
+```console
+# Person 1
+\b\x01\x12\x06George\x1A\bCostanza
+
+# Person 2
+\b\x02\x12\x06Elaine\x1A\x05Benes
+
+# Both
+\n\x14\b\x01\x12\x06George\x1A\bCostanza\n\x11\b\x02\x12\x06Elaine\x1A\x05Benes
+```
+
 #### XML
 
 ## Messaging Systems
 
 ## Shared Database
+
+## References
+
+* https://developers.google.com/protocol-buffers
 
 ## Wrap-up
 
