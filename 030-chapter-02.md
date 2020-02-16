@@ -72,7 +72,7 @@ A list of people in a single message
 
 ```protobuf
 message PeopleMessageList {
-  repeated EmployeeMessage records = 1;
+  repeated PersonMessage records = 1;
 }
 ```
 

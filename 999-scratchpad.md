@@ -4,7 +4,6 @@
 
 ```console
 $ docker-compose -f docker-compose.builder.yml run builder bash
-# require 'protobuf'
 # cd protobuf
 # rake protobuf:compile
 ```
