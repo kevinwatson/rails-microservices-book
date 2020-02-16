@@ -101,20 +101,18 @@ PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
 JSON (JavaScript Object Notation) is a human-readable, text-based format. Its structure consists of name-value pairs. Because of its simple structure, it has become a popular option for sharing data between services.
 
 ```json
-{
-  [
-    {
-      "id": 1,
-      "first_name": "George",
-      "last_name": "Costanza"
-    },
-    {
-      "id": 2,
-      "first_name": "Elaine",
-      "last_name": "Benes"
-    }
-  ]
-}
+[
+  {
+    "id": 1,
+    "first_name": "George",
+    "last_name": "Costanza"
+  },
+  {
+    "id": 2,
+    "first_name": "Elaine",
+    "last_name": "Benes"
+  }
+]
 ```
 
 #### Protocol Buffers
