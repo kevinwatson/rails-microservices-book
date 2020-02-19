@@ -4,7 +4,7 @@
 
 ## Introduction
 
-Active Remote is a Ruby gem that can replace Active Record models in your application to provide access to other models that exist in other applications on your network. Similar in philosophy to Active Resource (https://github.com/rails/activeresource), Active Remote provides data access for remote resources.
+Active Remote is a Ruby gem that can replace Active Record models in your application to provide access to other models that exist in other applications on your network. Similar in philosophy to Active Resource, Active Remote provides data access for remote resources.
 
 The difference is that while Active Resource provides access to RESTful resources, Active Remote provides access using more durable and efficient methods (e.g. using a message bus for durability, and Protobuf for efficient data serialization and deserialization).
 
@@ -26,10 +26,11 @@ To share data between services, you'll need to include the Protobuf NATS gem. Fo
 
 ## Resources
 
-* https://github.com/liveh2o/active_remote
-* https://github.com/ruby-protobuf/protobuf
 * https://github.com/abrandoned/protobuf-nats
+* https://github.com/liveh2o/active_remote
 * https://github.com/liveh2o/protobuf-activerecord
+* https://github.com/rails/activeresource
+* https://github.com/ruby-protobuf/protobuf
 
 ## Wrap-up
 
