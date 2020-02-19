@@ -2,12 +2,6 @@
 
 > What if every creative idea that someone has is unconsciously borrowed from that person's experiences in another reality? Maybe all ideas are plagiarized without us knowing it, because they come to us through some cryptic and unprovable reality slippage? - Elan Mastai, All Our Wrong Todays
 
-## Ruby on Rails
-
-If read to this point in this guide, you'll most likely familiar with the benefits of the Ruby language and the Ruby on Rails framework for building applications. If not, my take is that the Ruby language and the Ruby on Rails framework provides the tools a developer needs to be highly productive while building web applications. New applications can be spun up in a matter of seconds. There are a large number of libraries available (known in the Ruby world as gems), that can be used to extend your application's functionality. For example, if you need to run background processes, there's a gem for that: Sidekiq. If your app needs to manage money and currencies, there's a gem for that: Money. I could go on, but you get the point.
-
-For more information about why you should use the Rails framework, please review the official Ruby on Rails documentation at https://rubyonrails.org.
-
 ## Ruby
 
 The Ruby programming language was designed and developed by Yukihiro "Matz" Matsumoto in the mid 1990s. The language was relatively obscure until David Heinemeier Hansson published the Ruby on Rails framework in July of 2004. Ruby on Rail's popularity drove the development of the Ruby language.
@@ -16,9 +10,15 @@ Ruby is a high-level language. It is high-level because it has a strong abstract
 
 Ruby is also an interpreted language. Interpreted languages (depending on the implementation) run on top of a virtual machine. The virtual machine layer runs on top of the native processor. In contrast, compiled languages are compiled to bytecode and run directly on the native processor. Because of the extra virtual machine layer, interpreted languages are generally slower.
 
+## Ruby on Rails
+
+By the simple fact that you're reading this book, you're most likely familiar with the benefits of the Ruby language and the Ruby on Rails framework. If not, my take is that the Ruby language and the Ruby on Rails framework provide the tools a developer needs to be highly productive while building web applications. New applications can be spun up in a matter of seconds. There are a large number of libraries available (known in the Ruby world as gems), that can be used to extend your application's functionality. For example, if you need to run background processes, there's a gem for that: Sidekiq. If your app needs to manage money and currencies, there's a gem for that: Money. I could go on, but you get the point.
+
+For more information about why you should use the Rails framework, please review the official Ruby on Rails documentation at https://rubyonrails.org.
+
 ### Interpreters
 
-A couple of Ruby interpreters are available.
+There are a few of Ruby interpreters available. We'll discuss a few of them below.
 
 #### MRI & YARV
 
