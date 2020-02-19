@@ -39,6 +39,7 @@
   * Natural vs Surrogate Keys
   * Database vs App Generated
   * When to use each
+  * Resources
   * Wrap-up
 * [Chapter 8 - Protocol Buffers (Protobuf)](090-chapter-08.md)
   * Introduction
