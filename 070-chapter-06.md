@@ -84,13 +84,13 @@ NATS also provides a monitoring API which we can query to keep tabs on how many 
 
 As of the time of this writing, there are 5 links on the page. Let's briefly look at each of them:
 
-* [varz](http://localhost:8222/varz) - General information about the server state and configuration.
-* [connz](http://localhost:8222/connz) - More detailed information on current and recently closed connections.
-* [routez](http://localhost:8222/routez) - Information on active routes for a cluster.
-* [subsz](http://localhost:8222/subsz) - Detailed information about the current subscriptions and the routing data structure.
-* [help](https://nats-io.github.io/docs/nats_server/monitoring.html) - A link to the NATS documentation at https://nats-io.github.io/docs/nats_server/monitoring.html.
+* [varz](http://localhost:8222/varz) - General information about the server state and configuration
+* [connz](http://localhost:8222/connz) - More detailed information on current and recently closed connections
+* [routez](http://localhost:8222/routez) - Information on active routes for a cluster
+* [subsz](http://localhost:8222/subsz) - Detailed information about the current subscriptions and the routing data structure
+* [help](https://nats-io.github.io/docs/nats_server/monitoring.html) - A link to the NATS documentation
 
-Some of the endpoints above also have querystring parameters that can be passed, e.g. http://localhost:8222/connz?sort=start, which will sort the connections by the start time. Check out the documentation at https://nats-io.github.io/docs/nats_server/monitoring.html for more information about these endpoints and their options.
+Some of the endpoints above also have querystring parameters that can be passed, e.g. http://localhost:8222/connz?sort=start, which will sort the connections by the start time. Check out the NATS documentation for more information about these endpoints and their options.
 
 ## Resources
 
