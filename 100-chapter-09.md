@@ -8,11 +8,13 @@ Before we can dive into building our distributed environment, we'll first need t
 
 We'll use the terms images and containers. While these terms are sometimes used interchangeably, there are distinct differences. Docker images are the file structure of an application on your hard drive (think of an image as the files in your project folder). A Docker container is a running instance of the image (think of a container as the instance of your application). One or more containers can be spun up from a single image, as long as separate service names have been provided. Another example is you can run multiple instances of a Rails app from the same directory by specifying a different port number (e.g. `rails server -p 3000` and `rails server -p 3001`).
 
-The sandbox environment we'll build in this chapter will use the Active Remote gem to spin up a client (we'll call this app `active-remote`) that can access data in the service that owns the data (we'll call this app `active-record` because it will use Active Record to persist the data to a database that only it has access to). As Figure 9-1 shows, we'll also use NATS to as as an intermediary messaging system.
+The sandbox environment we'll build in this chapter will use the Active Remote gem to spin up a client (we'll call this app `active-remote`) that can access data in the service that owns the data (we'll call this app `active-record` because it will use Active Record to persist the data to a database that only it has access to).
+
+In this environment, we'll use NATS to pass messages between our microservices. A request to create a new employee will be sent from the Active Remote app to NATS, and NATS will forward the request to any services that have subscribed to that route. The Active Record app that we build will subsribe and respond with the newly created employee entity wrapped in a Protobuf message.
 
 ![alt text](images/active-remote-sequence-diagram.png "Active Remote message passing between applications")
 
-Figure 9-1 - Active Remote Message Passing
+_**Figure 9-1**_ Active Remote Message Passing
 
 ## Install Docker
 
