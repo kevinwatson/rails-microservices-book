@@ -2,7 +2,7 @@
 
 > I try to formulate a plan but my thoughts are a toxic fizz of regret, panic, and self-loathing, as if someone shook up a bottle of carbonated soda and uncapped it inside my brain. - Elan Mastai, All Our Wrong Todays
 
-## Setup
+## Introduction
 
 Before we can dive into building our distributed environment, we'll first need to set up our development environment. We'll use Docker to quickly get up and running. Docker also provides its own isolated network that won't interfere with processes already running on your development machine.
 

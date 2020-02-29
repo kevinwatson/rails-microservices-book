@@ -48,7 +48,7 @@
   * Resources
   * Wrap-up
 * [Chapter 9 - Active Remote Microservice Sandbox](100-chapter-09.md)
-  * Setup
+  * Introduction
   * Install Docker
   * Implementation
   * Resources
@@ -64,6 +64,7 @@
   * Wrap-up
 * [Chapter 12 - Event Driven Messaging Sandbox](130-chapter-12.md)
   * Introduction
+  * What We'll Need
   * Implementation
   * Resources
   * Wrap-up
