@@ -6,7 +6,7 @@ In chapter 9, we set up a sandbox environment to experiment with sending Protobu
 
 In this sandbox environment, we'll create a publisher and a single subscriber. We're not limited to a single subscriber, as Figure 12-1 illustrates. We'll be using the fire-and-forget pattern to publish a message and all interested parties will be notified.
 
-[alt text](images/many-subscribers-sequence-diagram.png "Publisher with many subscribers receiving an employee create message")
+![alt text](images/many-subscribers-sequence-diagram.png "Publisher with many subscribers receiving an employee create message")
 
 _**Figure 12-1**_ Fire and forget
 
