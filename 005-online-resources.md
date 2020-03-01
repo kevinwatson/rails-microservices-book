@@ -4,36 +4,36 @@ The code referenced in this book is available on the book's website at https://g
 
 In addition to the sample code on the GitHub website, the following websites will be referenced in this book:
 
-Active Publisher and Action Subscriber
+#### Active Publisher and Action Subscriber
 
 * https://github.com/mxenabled/action_subscriber
 * https://github.com/mxenabled/active_publisher
 
-Active Remote
+#### Active Remote
 
 * https://github.com/liveh2o/active_remote
 * https://github.com/liveh2o/protobuf-activerecord
 
-Docker
+#### Docker
 
 * https://docker.com
 * https://docs.docker.com/compose
 
-NATS
+#### NATS
 
 * https://nats.io
 
-Protocol Buffers (Protobuf)
+#### Protocol Buffers (Protobuf)
 
 * https://github.com/abrandoned/protobuf-nats
 * https://github.com/ruby-protobuf
 * https://github.com/ruby-protobuf/protobuf/wiki/Serialization
 
-RabbitMQ
+#### RabbitMQ
 
 * https://www.rabbitmq.com
 
-Ruby and Ruby on Rails
+#### Ruby and Ruby on Rails
 
 * https://www.ruby-lang.org
 * https://rubygems.org
