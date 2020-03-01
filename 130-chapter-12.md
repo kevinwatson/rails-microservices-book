@@ -1,5 +1,7 @@
 ### Chapter 12 - Event Driven Messaging Sandbox
 
+> I'll press your flesh, you dimwitted sumbitch! You don't tell your pappy how to court the electorate. We ain't one-at-a-timin' here. We're MASS communicating! - Pappy O'Daniel, O Brother Where Art Thou?
+
 ## Introduction
 
 In chapter 9, we set up a sandbox environment to experiment with sending Protobuf messages over a NATS queue. In this chapter, we'll use Docker and Docker Compose to create an environment and walk through exactly which dependencies we'll need to get a publisher and a consumer up and running. The pub-sub architecture pattern allows us to publish events to 0 or more subscribers, without knowing anything about the individual recipients.
