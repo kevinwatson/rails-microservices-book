@@ -4,6 +4,14 @@
 
 In chapter 9, we set up a sandbox environment to experiment with sending Protobuf messages over a NATS queue. In this chapter, we'll use Docker and Docker Compose to create an environment and walk through exactly which dependencies we'll need to get a publisher and a consumer up and running. The pub-sub architecture pattern allows us to publish events to 0 or more subscribers, without knowing anything about the individual recipients.
 
+In this sandbox environment, we'll create a publisher and a single subscriber. We're not limited to a single subscriber, as Figure 12-1 illustrates. We'll be using the fire-and-forget pattern to publish a message and all interested parties will be notified.
+
+[alt text](images/many-subscribers-sequence-diagram.png "Publisher with many subscribers receiving an employee create message")
+
+_**Figure 12-1**_ Fire and forget
+
+For this sandbox environment, we'll create a single publisher and a single subscriber.
+
 ## What We'll Need
 
 * RabbitMQ
