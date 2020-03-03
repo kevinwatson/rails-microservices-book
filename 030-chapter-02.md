@@ -10,14 +10,10 @@ While there are a wide number of protocols available, our discussion will only i
 
 | Protocol | Advantages | Disadvantages | Example uses |
 |---|---|---|---|
-| tcp | one of the main protocols on the Internet, used for establishing the connection between server and client | guarantees that the data was delivered to the client, provides error checking and resends lost packets | ssh, world wide web, email |
-| http | runs on top of TCP | | world wide web, email |
-| nats | text-based, so clients are available for a wide variety of programming languages | only used to connect to a NATS server | publishing to or listening on queues on a NATS server |
-| udp | its connection-less design is for speed and efficiency | Does not provide error checking or any guarantees that the client received the data | video streaming, dns |
-
-### HTTP(S)
-### TCP
-### UDP
+| TCP | One of the main protocols on the Internet, used for establishing the connection between server and client, guarantees that the data was delivered to the client, provides error checking and resends lost packets | | SSH, World Wide Web, Email |
+| HTTP | Runs on top of TCP | | World Wide Web, Email |
+| NATS | Text-based, so clients are available for a wide variety of programming languages | Only used to connect to a NATS server | Publishing to or listening on queues on a NATS server |
+| UDP | Its connection-less design is for speed and efficiency | Does not provide error checking or any guarantees that the client received the data | Video streaming, DNS |
 
 ## Data Serialization
 
@@ -25,13 +21,13 @@ The data that is sent over the wire needs to be pakcaged for delivery. A few way
 
 | Format | Text/Binary | Advantages | Disadvantages |
 |---|---|---|---|
-| json | text | structured, human readable | |
-| protocol buffers (protobuf) | binary | small footprint | both client and server need to know the structure of the encoded message |
-| xml | text | structured, human readable | opening and closing tags which increase the message size |
+| JSON | Text | Structured, human readable | |
+| Protocol Buffers (Protobuf) | Binary | Small footprint | Both client and server need to know the structure of the encoded message |
+| XML | Text | Structured, human readable | Opening and closing tags which increase the message size |
 
 ### Examples
 
-Here are examples in each format.
+Here are examples of serialized data in each format.
 
 #### JSON
 
@@ -96,7 +92,9 @@ class PeopleMessageList < ::Protobuf::Message
 end
 ```
 
-Serialized data
+**Serialized Data**
+
+Note that the data below is a string representation of the binary encoding.
 
 ```console
 # Person 1
@@ -143,6 +141,8 @@ Our business needs will drive the microservice architectural patterns that we ul
 ## References
 
 * https://developers.google.com/protocol-buffers
+* https://www.json.org
+* https://www.w3.org/XML
 
 ## Wrap-up
 
