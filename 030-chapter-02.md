@@ -11,9 +11,9 @@ Various protocols can be used to move data between services. Each has its advant
 | Protocol | Advantages | Disadvantages | Example uses |
 |---|---|---|---|
 | AMQP | A binary format that provides queuing, routing, reliability | Binary only | Passing messages to and from RabbitMQ |
-| TCP | One of the most popular protocols on the Internet, used for establishing the connection between server and client, guarantees that the data was delivered to the client, provides error checking and resends lost packets | | SSH, World Wide Web, Email |
 | HTTP(S) | Runs on top of TCP, provides request methods, authentication and persistent connections | Some processing overhead is required to provide some of its features, headers are also sent over the wire with each request | World Wide Web, Email, RESTful APIs |
 | NATS | Text-based, so clients are available for a wide variety of programming languages | Only used to connect to a NATS server | Publishing to or listening on queues on a NATS server |
+| TCP | One of the most popular protocols on the Internet, used for establishing the connection between server and client, guarantees that the data was delivered to the client, provides error checking and resends lost packets | | SSH, World Wide Web, Email |
 | UDP | Its connection-less design is for speed and efficiency | Does not provide error checking or any guarantees that the client received the data | Video streaming, DNS |
 
 ## Data Serialization
