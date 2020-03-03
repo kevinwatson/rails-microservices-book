@@ -6,12 +6,13 @@ As your service infrastructure grows, you'll need to find a communication protoc
 
 ## Protocols
 
-While there are a wide number of protocols available, our discussion will only include those in the table below:
+Various protocols can be used to move data between services. Each has its advantages and disadvantages. For example, HTTP is one of the most widely used protocols for web pages and RESTful APIs. HTTP provides many useful features such as authentication, but also sends header data with each request. Sending header data with each request could cause undesired network congestion when we're designing a platform that, in order to scale, requires each message to be a small as possible.
 
 | Protocol | Advantages | Disadvantages | Example uses |
 |---|---|---|---|
-| TCP | One of the main protocols on the Internet, used for establishing the connection between server and client, guarantees that the data was delivered to the client, provides error checking and resends lost packets | | SSH, World Wide Web, Email |
-| HTTP | Runs on top of TCP | | World Wide Web, Email |
+| AMQP | A binary format that provides queuing, routing, reliability | Binary only | Passing messages to and from RabbitMQ |
+| TCP | One of the most popular protocols on the Internet, used for establishing the connection between server and client, guarantees that the data was delivered to the client, provides error checking and resends lost packets | | SSH, World Wide Web, Email |
+| HTTP(S) | Runs on top of TCP, provides request methods, authentication and persistent connections | Some processing overhead is required to provide some of its features, headers are also sent over the wire with each request | World Wide Web, Email, RESTful APIs |
 | NATS | Text-based, so clients are available for a wide variety of programming languages | Only used to connect to a NATS server | Publishing to or listening on queues on a NATS server |
 | UDP | Its connection-less design is for speed and efficiency | Does not provide error checking or any guarantees that the client received the data | Video streaming, DNS |
 
@@ -140,7 +141,9 @@ Our business needs will drive the microservice architectural patterns that we ul
 
 ## References
 
+* https://www.amqp.org
 * https://developers.google.com/protocol-buffers
+* https://docs.nats.io/nats-protocol/nats-protocol
 * https://www.json.org
 * https://www.w3.org/XML
 
