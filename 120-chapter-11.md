@@ -13,7 +13,7 @@ Let's run a local RabbitMQ server and send messages to it. We'll include a Ruby 
 Listing 11-1 Docker compose with RabbitMQ and Ruby
 
 ```yml
-$ cat ~/projects/rabbitmq/docker-compose.yml
+# ~/projects/rabbitmq/docker-compose.yml
 # usage: docker-compose up
 
 version: "3.4"

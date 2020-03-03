@@ -17,7 +17,7 @@ Let's use Docker to run a local NATS server and send messages to it. We'll inclu
 Listing 6-1 Docker compose with NATS and BusyBox
 
 ```yml
-$ cat ~/projects/nats/docker-compose.yml
+# ~/projects/nats/docker-compose.yml
 # usage: docker-compose up
 
 version: "3.4"
