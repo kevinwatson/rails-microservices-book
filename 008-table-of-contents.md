@@ -12,7 +12,7 @@
   * Data Serialization
   * Messaging Systems
   * Wrap-up
-* [Chapter 3 - Ruby and Rails](040-chapter-03.md)
+* [Chapter 3 - Ruby and Ruby on Rails](040-chapter-03.md)
   * Ruby
   * Ruby on Rails
   * Resources
