@@ -73,5 +73,6 @@
   * Implementation
   * Resources
   * Wrap-up
+* [Chapter 14 - Summary](150-chapter-14.md)
 
 [Next >>](010-chapter-00.md)
