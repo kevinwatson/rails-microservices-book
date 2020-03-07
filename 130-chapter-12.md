@@ -35,7 +35,7 @@ We'll use the Protobuf gem to encode and decode our data as described in chapter
 
 ### Project Directory Structure
 
-Let's create a directory for our project. We'll need four project sub-directories, one for our shared Protobuf messages, one for our Active Publisher Ruby on Rails application that we'll use to publish messages, and a consumer. You could create multiple consumers to demonstrate that multiple clients can listen for the same events published over the same queue.
+Let's create a directory for our project. We'll need three project sub-directories, one for our shared Protobuf messages, one for our Active Publisher Ruby on Rails application that we'll use to publish messages, and a consumer. You could create multiple consumers to demonstrate that multiple clients can listen for the same events published over the same queue.
 
 In chapter 9, we created a `projects/rails-book` directory in our home directory. The specific path is not important, but if you've been following along, we can reuse some of the code we generated in chapter 9. Following the tutorial in this chapter, you should end up with the following directories (and many files and directories in each directory).
 
