@@ -12,6 +12,17 @@ _**Figure 13-1**_ Creating an employee and notifying all interested parties
 
 ## What We'll Need
 
+* NATS
+* RabbitMQ
+* Ruby
+* Ruby gems
+  * Active Publisher
+  * Active Remote
+  * Action Subscriber
+  * Protobuf
+  * Rails
+* SQLite
+
 ## Implementation
 
 ## Resources

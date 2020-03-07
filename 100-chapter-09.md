@@ -28,9 +28,12 @@ We'll also use Docker Compose to configure and run several applications from a s
 
 ### What we'll need
 
-* Ruby
-* Ruby on Rails and related gems
 * NATS
+* Ruby
+* Ruby gems
+  * Active Remote
+  * Protobuf
+  * Rails
 * SQLite
 
 Because we installed Docker Desktop, there is no need to install Ruby, the Ruby on Rails framework, NATS or SQLite on your computer. They will be installed inside of the Docker images and containers that we will spin up next.

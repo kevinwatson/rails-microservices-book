@@ -22,6 +22,8 @@ For this sandbox environment, we'll create a single publisher and a single subsc
   * Active Publisher
   * Action Subscriber
   * Protobuf
+  * Rails
+* SQLite
 
 Active Publisher is a gem that makes it easy to configure a RabbitMQ publisher in a Rails app. It depends on the bunny gem we used for testing in chapter 11.
 
