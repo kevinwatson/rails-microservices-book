@@ -63,11 +63,11 @@ Now we'll need to create a directory for our project. As you follow along, you'l
 
 Personally, I like to create projects in my `~/projects` directory. Following this tutorial, you should end up with the following directories (and many files and directories in each directory).
 
-* ~/projects
-  * rails-book
+* rails-microservices-sample-code
+  * chapter-09
     * active-record
     * active-remote
-    * protobuf
+  * protobuf
 
 ### Set up a development environment
 
@@ -78,7 +78,7 @@ Create the following Dockerfile file in the `~/projects/rails-book` directory. W
 Note: The first line of a file is the `cat` command, used here to easily reference the file path and the file contents.
 
 ```dockerfile
-# ~/projects/rails-book/Dockerfile.builder
+# rails-microservices-sample-code/Dockerfile.builder
 
 FROM ruby:2.6.5
 
@@ -97,7 +97,7 @@ RUN gem install protobuf
 Create the following `docker-compose.builder.yml` file in the `~/rails-book` directory. We'll use this configuration file to start our development environment with all of the command-line tools that we'll need.
 
 ```yaml
-# ~/projects/rails-book/docker-compose.builder.yml
+# ~/rails-microservices-sample-code/docker-compose.builder.yml
 
 version: "3.4"
 
@@ -134,12 +134,13 @@ Create a couple of directories for our input and output files. The `mkdir -p` co
 
 ```console
 $ mkdir -p protobuf/{definitions,lib}
+$ mkdir chapter-09
 ```
 
 Our Protobuf definition file:
 
 ```protobuf
-# protobuf/definitions/employee_message.proto
+# rails-microservices-sample-code/protobuf/definitions/employee_message.proto
 
 syntax = "proto3";
 
@@ -170,7 +171,7 @@ service EmployeeMessageService {
 To compile the `.proto` files, we'll use a Rake task provided by the `protobuf` gem. To access the `protobuf` gem's Rake tasks, we'll need to create a `Rakefile`. Let's do that now.
 
 ```ruby
-# protobuf/Rakefile
+# rails-microservices-sample-code/protobuf/Rakefile
 
 require "protobuf/tasks"
 ```
@@ -192,6 +193,7 @@ The first Rails app we'll generate will have an Active Record model and will be 
 Let's generate the Rails app that will act as the server and owner of the data. As the owner of the data, it can persist the data to a database. We'll call this app `active-record`.
 
 ```console
+# cd chapter-09
 # rails new active-record
 # cd active-record
 # echo "gem 'active_remote'" >> Gemfile
@@ -208,14 +210,14 @@ Be sure to inspect the output of each of the commands above, looking for errors.
 Let's customize the app to serve our Employee entity via Protobuf. We'll need an `app/lib` directory, and then we'll copy the generated `employee_message.pb.rb` file to this directory.
 
 ```console
-$ mkdir active-record/app/lib
-$ cp protobuf/lib/employee_message.pb.rb active-record/app/lib/
+$ mkdir chapter-09/active-record/app/lib
+$ cp protobuf/lib/employee_message.pb.rb chapter-09/active-record/app/lib/
 ```
 
 Next, we'll need to create a service class to define how to handle the remote procedure call service endpoints we defined in the `.proto` file. We'll need to create an `app/services` directory. We'll then add a `app/services/employee_message_service.rb` file to re-open the `EmployeeMessageService` class defined in our `app/lib/employee_message.pb.rb` file to provide implementation details. Lastly, we'll define some scopes and field_scopes in our `app/models/employee.rb` to wire up existing model attributes with protobuf attributes.
 
 ```ruby
-# active-record/app/models/employee.rb
+# rails-microservices-sample-code/chapter-09/active-record/app/models/employee.rb
 
 require 'protobuf'
 
@@ -233,11 +235,11 @@ end
 ```
 
 ```console
-$ mkdir active-record/app/services
+$ mkdir chapter-09/active-record/app/services
 ```
 
 ```ruby
-# active-record/app/services/employee_message_service.rb
+# rails-microservices-sample-code/chapter-09/active-record/app/services/employee_message_service.rb
 
 class EmployeeMessageService
   def search
@@ -272,7 +274,7 @@ end
 We'll also need to add a few more details. Because the `app/lib/employee_message.pb.rb` file contains multiple classes, only the class that matches the file name is loaded. In development mode, Rails can lazy load files as long as the file name can be inferred from the class name, e.g. code requiring the class `EmployeeMessageService` will try to lazy load a file named `employee_message_service.rb`, and throw an error if the file is not found. We can either separate the classes in the `app/lib/employee_message.pb.rb` file into separate files, or enable eager loading in the config. For the purposes of this demo, let's enable eager loading.
 
 ```ruby
-# active-record/config/environments/development.rb
+# rails-microservices-sample-code/chapter-09/active-record/config/environments/development.rb
 
 ...
 config.eager_load = true
@@ -282,7 +284,7 @@ config.eager_load = true
 The last change we need to make to the `active-record` app is to add a `protobuf_nats.yml` config file to configure the code provided by the `protobuf-nats` gem.
 
 ```yml
-# active-record/config/protobuf_nats.yml
+# rails-microservices-sample-code/chapter-09/active-record/config/protobuf_nats.yml
 
 default: &default
   servers:
@@ -300,6 +302,7 @@ Let's generate the `active-remote` app. We won't need the Active Record persiste
 
 ```console
 $ docker-compose -f docker-compose.builder.yml run builder bash
+# cd chapter-09
 # rails new active-remote --skip-active-record
 # cd active-remote
 # echo "gem 'active_remote'" >> Gemfile
@@ -311,14 +314,14 @@ $ docker-compose -f docker-compose.builder.yml run builder bash
 We'll need to make a couple of changes to the `active-remote` app. First, let's copy the Protobuf file.
 
 ```console
-$ mkdir active-remote/app/lib
-$ cp protobuf/lib/employee_message.pb.rb active-remote/app/lib/
+$ mkdir chapter-09/active-remote/app/lib
+$ cp protobuf/lib/employee_message.pb.rb chapter-09/active-remote/app/lib/
 ```
 
 Now let's edit the `config/environments/development.rb` file to enable eager loading for the same reasons listed above.
 
 ```ruby
-# active-remote/config/environments/development.rb
+# rails-microservices-sample-code/chapter-09/active-remote/config/environments/development.rb
 
 ...
 config.eager_load = true
@@ -328,7 +331,7 @@ config.eager_load = true
 Let's add the `protobuf_nats.yml` file.
 
 ```yml
-# active-record/config/protobuf_nats.yml
+# rails-microservices-sample-code/chapter-09/active-record/config/protobuf_nats.yml
 
 default: &default
   servers:
@@ -341,7 +344,7 @@ development:
 The last thing we need to do is change a couple of method calls in the `employees_controller.rb` file to change the way that our Protobuf messages are retrieved and instantiated. We need to use the `search` method instead of the default `all` and `find` Active Record methods. Also, because we're using uuids (guids) as the unique key between services, we'll generate a new uuid each time the `new` action is called.
 
 ```ruby
-# active-remote/controllers/employees_controller.rb
+# rails-microservices-sample-code/chapter-09/active-remote/controllers/employees_controller.rb
 
   def index
     @employees = Employee.search({})
@@ -365,7 +368,7 @@ The last thing we need to do is change a couple of method calls in the `employee
 Last but not least, let's add a `Dockerfile` and `docker-compose.yml` file to create an image and spin up containers and link our services together.
 
 ```dockerfile
-# Dockerfile
+# rails-microservices-sample-code/Dockerfile
 
 FROM ruby:2.6.5
 
@@ -383,7 +386,7 @@ RUN set -ex && bundle install --no-deployment
 ```
 
 ```yml
-# docker-compose.yml
+# rails-microservices-sample-code/chapter-09/docker-compose.yml
 
 version: "3.4"
 
@@ -393,7 +396,7 @@ services:
     - PB_SERVER_TYPE=protobuf/nats/runner
     build:
       context: ./active-record
-      dockerfile: ../Dockerfile
+      dockerfile: ../../Dockerfile
     command: bundle exec rpc_server start -p 9399 -o active-record ./config/environment.rb
     volumes:
     - ./active-record:/usr/src/service
@@ -404,7 +407,7 @@ services:
     - PB_CLIENT_TYPE=protobuf/nats/client
     build:
       context: ./active-remote
-      dockerfile: ../Dockerfile
+      dockerfile: ../../Dockerfile
     command: bundle exec puma -C config/puma.rb
     ports:
     - 3000:3000
@@ -423,6 +426,7 @@ services:
 Congratulations! Your apps are now configured and ready to run in a Docker container. Run the following command to download the required images, build a new image that will be used by both Rails containers, and start three services: `active-record`, `active-remote` and `nats`.
 
 ```console
+$ cd chapter-09
 $ docker-compose up
 ```
 
