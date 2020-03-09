@@ -182,7 +182,6 @@ Be sure to inspect the output of each of the commands above, looking for errors.
 Let's customize the app to serve our Employee entity via Protobuf. We'll need an `app/lib` directory, and then we'll copy the generated `employee_message.pb.rb` file to this directory.
 
 ```console
-$ cd rails-microservices-sample-code
 $ mkdir chapter-12/active-publisher/app/lib
 $ cp protobuf/lib/employee_message.pb.rb chapter-12/active-publisher/app/lib/
 ```
@@ -226,7 +225,7 @@ class Employee < ApplicationRecord
 
   def publish_created
     Rails.logger.info "Publishing employee object #{self.inspect} on the employee.created queue."
-    ::ActivePublisher.publish("employee.created", self.to_proto.encode, "events", {}) # to_json?
+    ::ActivePublisher.publish("employee.created", self.to_proto.encode, "events", {})
   end
 
   def publish_updated
@@ -341,7 +340,7 @@ config.logger    = ActiveSupport::TaggedLogging.new(logger)
 
 ### Create and Configure Our Environment
 
-Last but not least, let's add a `Dockerfile` and `docker-compose.yml` file to build an image and spin up a Rails and RabbitMQ containers. The `Dockerfile` may already exist from the sandbox we built in chapter 9, but if not, it has the same content here. The `docker-compose.yml` file is new.
+Last but not least, let's add a `Dockerfile` and `docker-compose.yml` file to build an image and spin up our Rails and RabbitMQ containers. The `Dockerfile` may already exist from the sandbox we built in chapter 9, but if not, it has the same content here. The `docker-compose.yml` file is new.
 
 ```dockerfile
 # rails-microservices-sample-code/Dockerfile
@@ -411,7 +410,7 @@ Now that everything's in place, let's start our sandbox environment. Because we 
 
 ```console
 $ cd chapter-12
-$ docker-compose -f docker-compose-subscriber.yml run action-subscriber bash -c 'bundle exec action_subscriber start'
+$ docker-compose up
 ```
 
 Once you see lines like this, RabbitMQ has started and the Active Publisher Rails app has successfully connected.
