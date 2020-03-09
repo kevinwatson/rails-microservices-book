@@ -73,7 +73,7 @@ Personally, I like to create projects in my `~/projects` directory. Following th
 
 Let's get started by creating a builder Dockerfile and Docker Compose file. We'll use the Dockerfile file to build an image with the command-line apps we need, and we'll use a Docker Compose configuration file to reduce the number of parameters we'll need to use to run each command. The alternative is to simply use a Dockerfile and related `docker` commands.
 
-Create the following Dockerfile file in the `~/projects/rails-book` directory. We'll use the name `Dockerfile.builder` to differentiate the Dockerfile we'll use to generate new rails services vs the Dockerfile we'll use to build and run our Rails applications.
+Create the following Dockerfile file in the `rails-microservices-sample-code` directory. We'll use the name `Dockerfile.builder` to differentiate the Dockerfile we'll use to generate new rails services vs the Dockerfile we'll use to build and run our Rails applications.
 
 Note: The first line of a file is the `cat` command, used here to easily reference the file path and the file contents.
 
@@ -94,7 +94,7 @@ RUN gem install rails -v 5.1.7
 RUN gem install protobuf
 ```
 
-Create the following `docker-compose.builder.yml` file in the `~/rails-book` directory. We'll use this configuration file to start our development environment with all of the command-line tools that we'll need.
+Create the following `docker-compose.builder.yml` file in the `rails-microservices-sample-code` directory. We'll use this configuration file to start our development environment with all of the command-line tools that we'll need.
 
 ```yaml
 # ~/rails-microservices-sample-code/docker-compose.builder.yml
@@ -112,7 +112,7 @@ services:
     tty: true
 ```
 
-Let's start and log into the builder container. We'll then run the Rails generate commands from the container, which will create two Rails apps. Because we've mapped a volume in the `.yml` file above, the files that are generated will be saved to the `~/projects/rails-book` directory. If we didn't map a volume, the files we generate would only exist inside the container, and each time we stop and restart the container they would need to be regenerated. Mapping a volume to a directory on the host computer's will serve files through the container's environment, which includes a specific version of Ruby, Rails and the gems we'll need to run our apps.
+Let's start and log into the builder container. We'll then run the Rails generate commands from the container, which will create two Rails apps. Because we've mapped a volume in the `.yml` file above, the files that are generated will be saved to the `rails-microservices-sample-code` directory. If we didn't map a volume, the files we generate would only exist inside the container, and each time we stop and restart the container they would need to be regenerated. Mapping a volume to a directory on the host computer's will serve files through the container's environment, which includes a specific version of Ruby, Rails and the gems we'll need to run our apps.
 
 ```console
 $ docker-compose -f docker-compose.builder.yml run builder bash

@@ -37,7 +37,7 @@ We'll use the Protobuf gem to encode and decode our data as described in chapter
 
 Let's create a directory for our project. We'll need three project sub-directories, one for our shared Protobuf messages, one for our Active Publisher Ruby on Rails application that we'll use to publish messages, and a consumer. You could create multiple consumers to demonstrate that multiple clients can listen for the same events published over the same queue.
 
-In chapter 9, we created a `projects/rails-book` directory in our home directory. The specific path is not important, but if you've been following along, we can reuse some of the code we generated in chapter 9. Following the tutorial in this chapter, you should end up with the following directories (and many files and directories in each directory).
+In chapter 9, we created a `rails-microservices-sample-code` directory in our home directory. The specific path is not important, but if you've been following along, we can reuse some of the code we generated in chapter 9. Following the tutorial in this chapter, you should end up with the following directories (and many files and directories in each directory).
 
 * rails-microservices-sample-code
   * chapter-12
@@ -51,7 +51,7 @@ Some of the steps below are the same as the steps covered in chapter 9. We'll re
 
 Let's create a builder Dockerfile and Docker Compose file. We'll use the Dockerfile file to build an image with the command-line apps we need, and we'll use a Docker Compose configuration file to reduce the number of parameters we'll need to use to run each command.
 
-Create the following Dockerfile file in the `~/projects/rails-book` directory. We'll use the name `Dockerfile.builder` to differentiate the Dockerfile we'll use to generate new rails services vs the Dockerfile we'll use to build and run our Rails applications.
+Create the following Dockerfile file in the `rails-microservices-sample-code` directory. We'll use the name `Dockerfile.builder` to differentiate the Dockerfile we'll use to generate new rails services vs the Dockerfile we'll use to build and run our Rails applications.
 
 ```dockerfile
 # rails-microservices-sample-code/Dockerfile.builder
@@ -70,7 +70,7 @@ RUN gem install rails -v 5.1.7
 RUN gem install protobuf
 ```
 
-Create the following `docker-compose.builder.yml` file in the `~/rails-book` directory. We'll use this configuration file to start our development environment with all of the command-line tools that we'll need.
+Create the following `docker-compose.builder.yml` file in the `rails-microservices-sample-code` directory. We'll use this configuration file to start our development environment with all of the command-line tools that we'll need.
 
 ```yaml
 # rails-microservices-sample-code/docker-compose.builder.yml
@@ -88,7 +88,7 @@ services:
     tty: true
 ```
 
-Let's start and log into the builder container. We'll then run the Rails generate commands from the container, which will create two Rails apps. Because we've mapped a volume in the `.yml` file above, the files that are generated will be saved to the `~/projects/rails-book` directory. If we didn't map a volume, the files we generate would only exist inside the container, and each time we stop and restart the container they would need to be regenerated. Mapping a volume to a directory on the host computer's will serve files through the container's environment, which includes a specific version of Ruby, Rails and the gems we'll need to run our apps.
+Let's start and log into the builder container. We'll then run the Rails generate commands from the container, which will create two Rails apps. Because we've mapped a volume in the `.yml` file above, the files that are generated will be saved to the `rails-microservices-sample-code` directory. If we didn't map a volume, the files we generate would only exist inside the container, and each time we stop and restart the container they would need to be regenerated. Mapping a volume to a directory on the host computer's will serve files through the container's environment, which includes a specific version of Ruby, Rails and the gems we'll need to run our apps.
 
 ```console
 $ docker-compose -f docker-compose.builder.yml run builder bash
