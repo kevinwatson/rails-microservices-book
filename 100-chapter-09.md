@@ -134,7 +134,6 @@ Create a couple of directories for our input and output files. The `mkdir -p` co
 
 ```console
 $ mkdir -p protobuf/{definitions,lib}
-$ mkdir chapter-09
 ```
 
 Our Protobuf definition file:
@@ -179,6 +178,7 @@ require "protobuf/tasks"
 Now we can run the `compile` Rake task to generate the file.
 
 ```console
+$ mkdir chapter-09 # create a directory for this chapter
 $ docker-compose -f docker-compose.builder.yml run builder bash
 # cd protobuf
 # rake protobuf:compile

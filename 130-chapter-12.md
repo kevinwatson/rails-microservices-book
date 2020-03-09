@@ -110,7 +110,6 @@ Create a couple of directories for our input and output files. The `mkdir -p` co
 
 ```console
 $ mkdir -p protobuf/{definitions,lib}
-$ mkdir chapter-12
 ```
 
 Our Protobuf definition file:
@@ -165,6 +164,7 @@ The first Rails app we'll generate will use the ActivePublisher gem to publish m
 Let's generate the Rails app that will act as the publisher of the events. We'll call this app `active-publisher`. We'll also add the Protobuf Active Record gem so we can serialize our Active Record object to a Protobuf message.
 
 ```console
+$ mkdir chapter-12 # create a directory for this chapter
 $ docker-compose -f docker-compose.builder.yml run builder bash
 # cd chapter-12
 # rails new active-publisher
