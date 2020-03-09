@@ -472,9 +472,9 @@ ADD Gemfile* ./
 RUN set -ex && bundle install --no-deployment
 ```
 
-The following Docker Compose file includes an instance of RabbitMQ and our new `active-publisher` and `action-subscriber` Rails apps. We'll expose the web app on port 3001. RabbitMQ can take a few seconds to start, so we'll our `action-subscriber` service to restart if it can't connect. In a real-world application we would want to check the response from RabbitMQ before we started up the subscriber.
+The following Docker Compose file includes an instance of RabbitMQ and our new `active-record-publisher` and `active-remote` Rails apps. We'll expose the `active-remote` web app on port 3002.
 
-Normally, we would add the subscriber to the same Docker Compose file, but, because the Action Subscriber service tries to connect immediately and RabbitMQ can take a few seconds to load, we'll run the subscriber process from a separate Docker Compose file. We'll also need to expose port 5672 to the host machine so we can connect from another Compose environment.
+Normally, we would add the subscriber to the same Docker Compose file, but, because the Action Subscriber service tries to connect immediately and RabbitMQ can take a few seconds to load, we'll run the subscriber process from a separate Docker Compose file. We'll also need to expose port 5672 to the host machine so we can connect from the other Compose environment.
 
 ```yml
 # rails-microservices-sample-code/chapter-13/docker-compose.yml
@@ -516,7 +516,7 @@ services:
     image: nats:latest
 ```
 
-The Action Subscriber configuration file. Note that because the Action Subscriber executable runs spawns a child process to listen for events from RabbmitMQ, we lose the log output if we start the container normally. To view all of the log info in the terminal, we'll us the Docker Compose `run` command to start a bash shell and run our `action_subscriber` executable there.
+Now let's add the `action-subscriber` configuration file. Note that because the Action Subscriber executable spawns a child process to listen for events from RabbmitMQ, we lose the log output if we start the container using the `up` command. To view all of the log info in the terminal, we'll us the Docker Compose `run` command to start a bash shell and run our `action_subscriber` executable there.
 
 ```yml
 # rails-microservices-sample-code/chapter-13/docker-compose-subscriber.yml
@@ -589,7 +589,7 @@ I, [2020-03-09T02:54:50.674268 #1]  INFO -- : Action Subscriber connected
 
 These log lines indicate that the subscriber has connected to the server successfully, connected to two queues and is now listening for events.
 
-Let's create some events. Open your browser and browse to http://localhost:3002/employees. Port 3001 is the port we exposed from the Active Publisher Rails app in the `docker-compose.yml` file. You should see a simple web page with the title **Employees** and a 'New Employee' link. Let's go ahead and click the link. You should now be able to create a new employee record in the web form. Once you fill it out and click the 'Create Employee' button, several things will happen. First, the form data will be sent back to the Active Publisher Rails app. The controller will pass that data on to Active Record, which will create a new record in the SQLite database. Next, the `after_create` callback will run, encoding our Protobuf message and placing it on the `actionsubscriber.employee.created` queue. RabbitMQ will notify subscribers of a specific queue of any new messages. Our Action Subscriber Rails app is one such subscriber. In our `EmployeeSubscriber#created` event handler method, we wrote code to log that we received a message. If you inspect the output from the terminal window where we started the Action Subscriber Rails app, you should see output like the output below.
+Let's create an event. Open your browser and browse to http://localhost:3002/employees. Port 3002 is the port we exposed from the `active-remote` Rails app in the `docker-compose.yml` file. You should see a simple web page with the title **Employees** and a 'New Employee' link. Let's go ahead and click the link. You should now be able to create a new employee record in the web form. Once you fill it out and click the 'Create Employee' button, several things will happen. First, the form data will be sent back to the `active-remote` Rails app. The controller will pass that data on to the Active Remote Employee model, which will send the data via NATS to our `active-record-publisher` Rails app. The `active-record-publisher` app will create a new record in the SQLite database. In the `active-record-publisher` model, the `after_create` callback will run, encoding our Protobuf message and placing it on the `actionsubscriber.employee.created` queue. RabbitMQ will notify all subscribers listening on a specific queue of any new messages. Our `action-subscriber` Rails app is one such subscriber. In our `EmployeeSubscriber#created` event handler method, we wrote code to log that we received a message. If you inspect the output from the terminal window where we started the `action-subscriber` Rails app, you should see logging info similar to the output below.
 
 ```console
 I, [2020-03-09T03:03:05.876609 #1]  INFO -- : RECEIVED 35f733 from actionsubscriber.employee.created
@@ -605,5 +605,9 @@ Congratulations! You have successfully built a messaging platform that can publi
 * https://github.com/kevinwatson/rails-microservices-sample-code
 
 ## Wrap-up
+
+In this chapter, we have built three Rails applications that share data using patterns that provide both real-time and event-driven communications. Each pattern has its place. Sometimes communication needs to be real-time, such as when a microservice needs access to one or more records. Other times, requests between services doesn't need to be real-time, but event-driven, such as when a service needs to be notified and a long-running process needs to be started, but the caller doesn't need to know when the process has finished. Examining your business requirements can help you determine when each is necessary.
+
+This chapter wraps up our journey of building microservices using Ruby on Rails. We've covered a lot of ground. In our next and final chapter, we'll summarize what we've learned so far. We'll also discuss a few ways to continue our journey.
 
 [Next >>](150-chapter-14.md)
