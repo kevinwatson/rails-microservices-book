@@ -61,7 +61,7 @@ If you see any errors, check your Docker Desktop installation.
 
 Now we'll need to create a directory for our project. As you follow along, you'll create three project sub-directories, one for our shared Protobuf messages, one for our ActiveRecord Ruby on Rails server application that stores the data in a SQLite database and one for our ActiveRemote client application that will provide a front-end for our ActiveRecord service.
 
-Personally, I like to create projects in my `~/projects` directory. Following this tutorial, you should end up with the following directories (and many files and directories in each directory).
+Following along in this tutorial, you should end up with the following directories (and many files and directories in each directory). The directory `rails-microservices-sample-code` is named after the GitHub repo found at https://github.com/kevinwatson/rails-microservices-sample-code.
 
 * rails-microservices-sample-code
   * chapter-09
@@ -97,7 +97,7 @@ RUN gem install protobuf
 Create the following `docker-compose.builder.yml` file in the `rails-microservices-sample-code` directory. We'll use this configuration file to start our development environment with all of the command-line tools that we'll need.
 
 ```yaml
-# ~/rails-microservices-sample-code/docker-compose.builder.yml
+# rails-microservices-sample-code/docker-compose.builder.yml
 
 version: "3.4"
 
@@ -316,6 +316,20 @@ We'll need to make a couple of changes to the `active-remote` app. First, let's 
 ```console
 $ mkdir chapter-09/active-remote/app/lib
 $ cp protobuf/lib/employee_message.pb.rb chapter-09/active-remote/app/lib/
+```
+
+Let's now add a model that inherits from Active Remote.
+
+```ruby
+# rails-microservices-sample-code/chapter-09/active-remote/app/models/employee.rb
+
+class Employee < ActiveRemote::Base
+  service_class ::EmployeeMessageService
+
+  attribute :guid
+  attribute :first_name
+  attribute :last_name
+end
 ```
 
 Now let's edit the `config/environments/development.rb` file to enable eager loading for the same reasons listed above.
