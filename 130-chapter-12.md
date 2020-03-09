@@ -267,7 +267,7 @@ That's it. Now let's build our subscriber.
 
 ### Create a Message Subscriber
 
-Let's create the `action-subscriber` app. This app will act as an email manager. It will subscribe to the employee created and updated message queues and simply log that it received a message on the queue.
+Let's create the `action-subscriber` app. It will subscribe to the employee created and updated message queues and simply log that it received a message on the queue.
 
 ```console
 $ docker-compose -f docker-compose.builder.yml run builder bash
