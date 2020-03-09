@@ -388,7 +388,7 @@ services:
     - 5672:5672
 ```
 
-The Action Subscriber configuration file. Note that because the Action Subscriber executable runs spawns a child process to listen for events from RabbmitMQ, we lose the log output if we start the container normally. To view all of the log info in the terminal, we'll us the Docker Compose `run` command to start a bash shell and run our `action_subscriber` executable there.
+Now let's add the `action-subscriber` configuration file. Note that because the Action Subscriber executable spawns a child process to listen for events from RabbmitMQ, we lose the log output if we start the container using the `up` command. To view all of the log info in the terminal, we'll us the Docker Compose `run` command to start a bash shell and run our `action_subscriber` executable there.
 
 ```yml
 # rails-microservices-sample-code/chapter-12/docker-compose-subscriber.yml
