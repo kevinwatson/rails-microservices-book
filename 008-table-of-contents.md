@@ -70,6 +70,7 @@
   * Wrap-up
 * [Chapter 13 - Active Remote with Events Sandbox](140-chapter-13.md)
   * Introduction
+  * What We'll Need
   * Implementation
   * Resources
   * Wrap-up
