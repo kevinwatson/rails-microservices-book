@@ -59,7 +59,7 @@ RUN apt-get update && apt-get install -qq -y --no-install-recommends \
 
 WORKDIR /home/root
 
-RUN gem install rails -v 5.1.7
+RUN gem install rails -v 5.2.4
 RUN gem install protobuf
 ```
 
@@ -466,7 +466,7 @@ ENV HOME=$INSTALL_PATH PATH=$INSTALL_PATH/bin:$PATH
 RUN mkdir -p $INSTALL_PATH
 WORKDIR $INSTALL_PATH
 
-RUN gem install rails -v 5.1.7
+RUN gem install rails -v 5.2.4
 
 ADD Gemfile* ./
 RUN set -ex && bundle install --no-deployment
