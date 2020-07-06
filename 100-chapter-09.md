@@ -444,15 +444,11 @@ $ cd chapter-09
 $ docker-compose up
 ```
 
-It may take a few minutes, but once all of the containers are up and running, you can browse to http://localhost:3000/employees. You should see something like the following:
-
-TODO: add screenshot of the index page
-
-The Rails app running on port 3000 is the Active Remote app.
+It may take a few minutes, but once all of the containers are up and running, we can browse to http://localhost:3000/employees. The Rails app running on port 3000 is the Active Remote app.
 
 ### Monitoring
 
-Review the log output in the console where you ran the `docker-compose up` command, you should see output like the following:
+If we review the log output in the console where you ran the `docker-compose up` command, we should see output like the following:
 
 ```console
 active-remote_1  | I, [2019-12-28T00:35:06.460838 #1]  INFO -- : [CLT] - 6635f4080982 - 2aca3d71d6d0 - EmployeeMessageService#search - 48B/75B - 0.0647s - OK - 2019-12-28T00:35:06+00:00
