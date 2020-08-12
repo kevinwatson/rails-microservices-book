@@ -16,7 +16,7 @@ Further, because Active Remote implements a pub-sub messaging system, clients do
 
 ## Design
 
-During application initialization, Active Record models read the database schema and generate all of the getters, setters and methods which reduces the amount of biolerplate code that needs to be added to your models which inherit from ActiveRecord::Base. Because Active Remote doesn't have direct access to the database, on the client side, you'll need to declare the Active Remote model's attributes using the `attribute` method. On the server side, where you want to share the Active Record data, you'll need to create a Service class for each model that will define endpoints to allow for searching, creating, updating, deleting, etc.
+During application initialization, Active Record models read the database schema and generate all of the getters, setters and methods which reduces the amount of boilerplate code that needs to be added to your models which inherit from ActiveRecord::Base. Because Active Remote doesn't have direct access to the database, on the client side, you'll need to declare the Active Remote model's attributes using the `attribute` method. On the server side, where you want to share the Active Record data, you'll need to create a Service class for each model that will define endpoints to allow for searching, creating, updating, deleting, etc.
 
 ## Implementation
 
