@@ -36,7 +36,7 @@ Using Active Record, whether stand-alone or in a Rails app, provides the followi
 
 #### What's the Difference?
 
-The most common way to present and persist data in a Rails application is with Active Record. Active Record is a wrapper for database tables and their relationships. Active Resource is a wrapper for RESTful. 
+The most common way to persist and retrieve data in a Rails application is with Active Record. Active Record is a wrapper for database tables and their relationships. Active Resource is a wrapper for RESTful resources.
 
 Active Model is used by Active Record for data validation, serialization and a number of other features. 
 
