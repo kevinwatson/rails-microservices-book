@@ -8,7 +8,7 @@ Distributed application architecture defines separate, specialized modules or co
 
 This book will walk you through building distributed applications in Ruby on Rails. We will discuss monolithic applications, breaking those applications into smaller units (microservices), and describe ways to share data between these services. We'll use a handful of Ruby gems, generously open sourced by the people at [MX](https://mx.com). MX is a financial services company based in Utah. The people at MX have built a distributed, heterogeneous platform from the ground up that processes and analyzes billions of financial transactions every month.
 
-MX's generous contribution to Protobuf, RabbitMQ and NATS open standards includes (but is not limited to) the following gems: `active_remote`, `protobuf-nats`, `action_subscriber`, `active_publisher` and `protobuf-activerecord`. We'll discuss each gem in detail in this book.
+MX's generous contributions to Protobuf, RabbitMQ and NATS open standards includes (but is not limited to) the following gems: `active_remote`, `protobuf-nats`, `action_subscriber`, `active_publisher` and `protobuf-activerecord`. We'll discuss each gem in detail in this book.
 
 Ruby continues to evolve and grow in popularity. MX's open source contributions help ensure that Ruby continues to be a viable choice when designing and deploying modern distributed systems.
 
