@@ -533,11 +533,11 @@ services:
     - ./action-subscriber:/usr/src/service
 ```
 
-Now that everything's in place, let's start our subscriber. We can use the `-f` flag to specify that we want to use the `docker-compose-subscriber.yml` file. Let's run this command now.
+Now that everything's in place, let's start our active-remote and active-record-publisher apps. 
 
 ```console
 $ cd chapter-13
-$ docker-compose -f docker-compose-subscriber.yml run action-subscriber bash -c 'bundle exec action_subscriber start'
+$ docker-compose up
 ```
 
 Once you see lines like this, RabbitMQ has started and the Active Publisher Rails app has successfully connected.
@@ -549,7 +549,7 @@ rabbit_1            |  completed with 0 plugins.
 rabbit_1            | 2020-02-09 22:54:37.395 [info] <0.641.0> connection <0.641.0> (172.30.0.1:53140 -> 172.30.0.2:5672): user 'guest' authenticated and granted access to vhost '/'
 ```
 
-Now let's start the subscriber in another terminal window.
+Now let's start the subscriber in another terminal window. We can use the `-f` flag to specify that we want to use the `docker-compose-subscriber.yml` file. Let's run this command now.
 
 ```console
 $ docker-compose -f docker-compose-subscriber.yml run action-subscriber bash -c 'bundle exec action_subscriber start'
