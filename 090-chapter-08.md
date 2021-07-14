@@ -45,7 +45,7 @@ This Protobuf definition is by itself not used in your application. What we do n
 
 We briefly covered the [Ruby implementation in chapter 2](https://github.com/kevinwatson/rails-microservices-book/blob/master/030-chapter-02.md#protocol-buffers), but let's review and go into more detail here.
 
-The example below is the output for the Ruby implementation (additional setup and details can be found in [Chapter 9](https://github.com/kevinwatson/rails-microservices-book/blob/master/100-chapter-09.md)). After defining the `.proto` definition file and running the `rake protobuf:compile` command, we will now have files similar to the following:
+The example below is the output for the Ruby implementation (additional setup and details can be found in [chapter 9](https://github.com/kevinwatson/rails-microservices-book/blob/master/100-chapter-09.md)). After defining the `.proto` definition file and running the `rake protobuf:compile` command, we will now have files similar to the following:
 
 ```ruby
 # file employee.pb.rb
