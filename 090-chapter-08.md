@@ -41,7 +41,35 @@ Line 3 is the beginning of our message declaration.
 
 Lines 4-6 are the field definitions. Each line has a type (the guid field is a string type). Line 5 has an attribute name of `guid`, and the field number of 1.
 
-This Protobuf definition is by itself not used in your application. What we do next is compile this `employee.proto` field to a class or structure file in the same language your app is written in, whether that's Java, C#, Go or Ruby. If you support a heterogeneous platform with multiple languages, you may want to build scripts which will automatically compile your `.proto` files to the required languages each time you add a new `.proto` file or add a new field to one of the definitions.
+This Protobuf definition is by itself not used in your application. What we do next is compile this `employee.proto` field to a class or structure file in the same language your app is written in, whether that's Java, C#, Go or Ruby. If you support a heterogeneous platform with multiple languages, you may want to build scripts which will automatically compile your `.proto` files to the required languages each time you add a new `.proto` file or add a new field to one of your existing definitions.
+
+We briefly covered the [Ruby implementation in chapter 2](https://github.com/kevinwatson/rails-microservices-book/blob/master/030-chapter-02.md#protocol-buffers), but let's review and go into more detail here.
+
+The example below is the output for the Ruby implementation (additional setup and details can be found in [Chapter 9](https://github.com/kevinwatson/rails-microservices-book/blob/master/100-chapter-09.md)). After defining the `.proto` definition file and running the `rake protobuf:compile` command, we will now have files similar to the following:
+
+```ruby
+# file employee.pb.rb
+class Employee < ::Protobuf::Message
+  optional :string, :guid, 1
+  optional :string, :first_name, 2
+  optional :string, :last_name, 3
+end
+```
+
+**Serialized Data**
+
+Note that the data below is a string representation of the binary encoding.
+
+```console
+# Employee
+\b\x01\x12\x06George\x1A\bCostanza
+```
+
+There are a couple of things to note in this string. The first is that no space is wasted in defining the field names. The numbers at the end of the line in both the `.proto` and `.rb` files indicates the field index. When the data in the protobuf message is serialized, the data is packed in a sequential order without the field names. A delimiter is used to separate the fields, which will always be in the same order. Occasionally, we may need to deprecate or remove a field. Because the fields are indexed, the index of the field that needs to be removed will always take that slot and we should never reuse that index number. If we were to reuse the index number, services which are still using the old definition would misinterpret the data in that position and things can go south especially when the data type is modified but the field index is reused (e.g. if the data type changes from an int32 to a bool).
+
+It's up to the receiver to know the indexes and their related field names when deserializing the message. This has the advantage of requiring less network bandwidth to deliver the message when compared to other message envelopes such as JSON or XML. Another advantage is that when the protobuf message is deserialized, extra fields that are not defined in the protobuf class are ignored. This makes the platform maintainable, because the senders and receivers can be updated and deployed independently.
+
+For example, a sender can have a newer `::Protobuf::Message` class which adds new fields to a protobuf message. When this message is received by another service, the new fields will be ignored by any receivers that are using an older version of the `::Protobuf::Message` class. A receiver can also be modified independently to expect a new field but if it's not defined in the sender's proto message, the field is marked as `nil` (or the language's equivalent zero or `nil` value). In these examples there is a chance that data in the new fields will be lost, so you may want to update the receivers before updating the senders. This design allows you to update the services independently without the risk of breaking the receiving apps because they aren't ready to receive the newly defined fields.
 
 ## Resources
 
