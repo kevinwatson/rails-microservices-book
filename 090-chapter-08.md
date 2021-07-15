@@ -62,7 +62,7 @@ Note that the data below is a string representation of the binary encoding.
 
 ```console
 # Employee
-\b\x01\x12\x06George\x1A\bCostanza
+\n$d4b3c75c-2b0c-4f74-87d7-651c5ac284aa\x12\x06George\x1A\bCostanza
 ```
 
 There are a couple of things to note in this string. The first is that no space is wasted in defining the field names. The numbers at the end of the line in both the `.proto` and `.rb` files indicates the field index. When the data in the protobuf message is serialized, the data is packed in a sequential order without the field names. A delimiter is used to separate the fields, which will always be in the same order. Occasionally, we may need to deprecate or remove a field. Because the fields are indexed, the index of the field that needs to be removed will always take that slot and we should never reuse that index number. If we were to reuse the index number, services which are still using the old definition would misinterpret the data in that position and things can go south especially when the data type is modified but the field index is reused (e.g. if the data type changes from an int32 to a bool).
