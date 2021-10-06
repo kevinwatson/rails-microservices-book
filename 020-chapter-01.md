@@ -23,12 +23,13 @@ A microservice is a small app that provides a limited set of functionality. In t
 
 By nature, building a microservices architecture incurs additional overhead that may not be worth the time in the early stages of a project. Once the app becomes popular and you can identify bottlenecks in the process, then it may be time to identify and carve out specific functionality into its own service.
 
-As your development team grows, you may want to split the code base into smaller units that can be maintained and deployed separately. This can have other benefits, such as shorter development and release cycles, faster turn around times for your Quality Assurance (QA) teams because less time will need to be spent regression testing a small codebase vs a large codebase.
+As your development team grows, you may want to split the code base into smaller units that can be maintained and deployed separately. This can have other benefits, too. These benefits include shorter development cycles, test and release cycles. Less code means less regression testing for the quality assurance team.
 
 If you have different uptime requirements for functionality of your application, your codebase may be a candidate for breaking it up into smaller microservices. This will allow you to meet your service level requirements on a service by service basis. The added benefit is that the services can be designed so that if a less critical piece of the platform goes down, the rest of the platform remains unaffected.
 
 ## Resources
 
+* https://en.wikipedia.org/wiki/Unix_philosophy
 * https://martinfowler.com/articles/microservices.html
 
 ## Wrap-up
