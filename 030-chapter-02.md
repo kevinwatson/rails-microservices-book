@@ -93,9 +93,9 @@ class PeopleMessageList < ::Protobuf::Message
 end
 ```
 
-**Serialized Data**
+*Serialized Data*
 
-Note that the data below is a string representation of the binary encoding.
+The data below is a string representation of the binary encoding.
 
 ```console
 # Person 1
