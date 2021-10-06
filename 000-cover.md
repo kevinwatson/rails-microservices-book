@@ -4,10 +4,4 @@
 
 ### Kevin Watson
 
-#### With Contributions By
-
-* Chris Miller
-* Igor Morgunov
-* Naoto Suzuki
-
 [Next >>](001-preface.md)
