@@ -14,7 +14,7 @@ In this chapter, we'll spin up a NATS server. We'll test it by publishing and su
 
 Let's use Docker to run a local NATS server and send messages to it. We'll include a BusyBox image so we can run telnet commands to test NATS.
 
-Listing 6-1 Docker compose with NATS and BusyBox
+**Listing 6-1** Docker compose with NATS and BusyBox
 
 ```yml
 # ~/projects/nats/docker-compose.yml
@@ -36,7 +36,7 @@ services:
 
 Save the file with the filename `docker-compose.yml`. Let's now switch to that directory and run the containers. The versions of the software and output may differ from what you see in your terminal.
 
-Listing 6-2 Start NATS and Busybox
+**Listing 6-2** Start NATS and Busybox
 
 ```console
 $ cd ~/projects/nats
@@ -53,7 +53,7 @@ nats_1     | [1] 2019/10/07 13:53:36.033766 [INF] Server is ready
 
 Creating a subscriber is simple. We'll open a NATS session with telnet. Telnet is a client application that will allow us to issue text-based commands to NATS. We'll provide a subject (in example 6-3 we'll create a subject named 'messages') and also provide a _subscription identifier_. The subscription identifier can be a number or a string. We'll use the keyword `sub` to create and subscribe to a subject. Docker Compose provides a convenient `exec` command to connect and ssh into to a running container. We'll use the `exec` command to log into the running BusyBox container and subscribe via telnet.
 
-Listing 6-3 Subscribing to a Subject
+**Listing 6-3** Subscribing to a Subject
 
 ```console
 $ docker-compose exec busybox sh
@@ -67,7 +67,7 @@ Let's open a new terminal and create a publisher. The publishing client will nee
 
 Let's run a telnet command to publish messages to NATS. 
 
-Listing 6-4 Publishing to a Subject
+**Listing 6-4** Publishing to a Subject
 
 ```console
 $ docker-compose exec busybox sh
