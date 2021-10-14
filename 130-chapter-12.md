@@ -53,6 +53,8 @@ Let's create a builder Dockerfile and Docker Compose file. We'll use the Dockerf
 
 Create the following Dockerfile file in the `rails-microservices-sample-code` directory. We'll use the name `Dockerfile.builder` to differentiate the Dockerfile we'll use to generate new rails services vs the Dockerfile we'll use to build and run our Rails applications.
 
+_**Listing 12-1**_ Dockerfile used to create an image that we'll use to generate our Rails application
+
 ```dockerfile
 # rails-microservices-sample-code/Dockerfile.builder
 
@@ -72,6 +74,8 @@ RUN gem install protobuf
 
 Create the following `docker-compose.builder.yml` file in the `rails-microservices-sample-code` directory. We'll use this configuration file to start our development environment with all of the command-line tools that we'll need.
 
+_**Listing 12-2**_ Docker Compose file to start the container we'll use to generate our Rails application
+
 ```yaml
 # rails-microservices-sample-code/docker-compose.builder.yml
 
@@ -89,6 +93,8 @@ services:
 ```
 
 Let's start and log into the builder container. We'll then run the Rails generate commands from the container, which will create two Rails apps. Because we've mapped a volume in the `.yml` file above, the files that are generated will be saved to the `rails-microservices-sample-code` directory. If we didn't map a volume, the files we generate would only exist inside the container, and each time we stop and restart the container they would need to be regenerated. Mapping a volume to a directory on the host computer's will serve files through the container's environment, which includes a specific version of Ruby, Rails and the gems we'll need to run our apps.
+
+_**Listing 12-3**_ Starting our builder container
 
 ```console
 $ docker-compose -f docker-compose.builder.yml run builder bash
@@ -108,11 +114,15 @@ Create a couple of directories for our input and output files. The `mkdir -p` co
   * definitions
   * lib
 
+_**Listing 12-4**_ Creating needed directories
+
 ```console
 $ mkdir -p protobuf/{definitions,lib}
 ```
 
 Our Protobuf definition file:
+
+_**Listing 12-5**_ Employee message protobuf file
 
 ```protobuf
 # rails-microservices-sample-code/protobuf/definitions/employee_message.proto
@@ -141,6 +151,8 @@ message EmployeeMessageList {
 
 To compile the `.proto` files, we'll use a Rake task provided by the `protobuf` gem. To access the `protobuf` gem's Rake tasks, we'll need to create a `Rakefile`. Let's do that now.
 
+_**Listing 12-6**_ Rakefile
+
 ```ruby
 # rails-microservices-sample-code/protobuf/Rakefile
 
@@ -148,6 +160,8 @@ require "protobuf/tasks"
 ```
 
 Now we can run the `compile` Rake task to generate the file.
+
+_**Listing 12-7**_ Starting the builder container and compiling the protobuf definition
 
 ```console
 $ docker-compose -f docker-compose.builder.yml run builder bash
@@ -162,6 +176,8 @@ This will generate a file named `employee_message.pb.rb` file in the `protobuf/l
 The first Rails app we'll generate will use the ActivePublisher gem to publish messages to RabbitMQ. We'll add the `active_publisher` gem to the `Gemfile` file. We'll then run the `bundle` command to retrieve the gems from https://rubygems.org. After retrieving the gems, we'll create scaffolding for an Employee entity. This app will store the data in a SQLite database so we can experiment with create and update events.
 
 Let's generate the Rails app that will act as the publisher of the events. We'll call this app `active-publisher`. We'll also add the Protobuf Active Record gem so we can serialize our Active Record object to a Protobuf message.
+
+_**Listing 12-8**_ Generating the Rails apps and necessary files
 
 ```console
 $ mkdir chapter-12 # create a directory for this chapter
@@ -181,12 +197,16 @@ Be sure to inspect the output of each of the commands above, looking for errors.
 
 Let's customize the app to serve our Employee entity via Protobuf. We'll need an `app/lib` directory, and then we'll copy the generated `employee_message.pb.rb` file to this directory.
 
+_**Listing 12-9**_ Setting up the app/lib directory
+
 ```console
 $ mkdir chapter-12/active-publisher/app/lib
 $ cp protobuf/lib/employee_message.pb.rb chapter-12/active-publisher/app/lib/
 ```
 
 Next, we'll add an `active_publisher` configuration file to the `config` directory. This file will define how our app should connect to the RabbitMQ server. The `rabbit` host will be defined in the `docker-compose` file we'll define in a couple of minutes.
+
+_**Listing 12-10**_ Active Publisher configuration
 
 ```yml
 # rails-microservices-sample-code/chapter-12/active-publisher/config/active_publisher.yml
@@ -202,6 +222,8 @@ development:
 
 Now let's create an initializer for Active Publisher. This will load the gem, set the adapter, and load the configuration file. Let's create this file in the `config/initializers` directory.
 
+_**Listing 12-11**_ Active Publisher initializer
+
 ```ruby
 # rails-microservices-sample-code/chapter-12/active-publisher/config/initializers/active_publisher.rb
 
@@ -211,6 +233,8 @@ require "active_publisher"
 ```
 
 Next, let's modify the employee model so we can send the employee Profobuf object to RabbitMQ. We'll use Active Record callbacks to publish messages to separate `created` and `updated` queues after an employee record has been created or modified. Open the `app/models/employee.rb` file and add the following code.
+
+_**Listing 12-12**_ Employee Active Record model
 
 ```ruby
 # rails-microservices-sample-code/chapter-12/active-publisher/app/models/employee.rb
@@ -237,6 +261,8 @@ end
 
 Because we're using GUIDs to uniquely identify objects that we're serializing and passing between services, let's modify the controller's `new` action so that it will generate a new GUID.
 
+_**Listing 12-13**_ Employee controller
+
 ```ruby
 # rails-microservices-sample-code/chapter-12/active-publisher/controllers/employees_controller.rb
 
@@ -246,6 +272,8 @@ end
 ```
 
 We'll also need to add a few more details. Because the `app/lib/employee_message.pb.rb` file contains multiple classes, only the class that matches the file name is loaded. In development mode, Rails can lazy load files as long as the file name can be inferred from the class name, e.g. code requiring the class `EmployeeMessageService` will try to lazy load a file named `employee_message_service.rb`, and throw an error if the file is not found. We can either separate the classes in the `app/lib/employee_message.pb.rb` file into separate files, or enable eager loading in the config. For the purposes of this demo, let's enable eager loading and also cache classes. We'll also need to configure the logger to send output to Docker logs.
+
+_**Listing 12-14**_ Development configuration
 
 ```ruby
 # rails-microservices-sample-code/chapter-12/active-publisher/config/environments/development.rb
@@ -268,6 +296,8 @@ That's it. Now let's build our subscriber.
 
 Let's create the `action-subscriber` app. It will subscribe to the employee created and updated message queues and simply log that it received a message on the queue.
 
+_**Listing 12-15**_ Generating the Rails apps and necessary files
+
 ```console
 $ docker-compose -f docker-compose.builder.yml run builder bash
 # cd chapter-12
@@ -281,19 +311,18 @@ $ docker-compose -f docker-compose.builder.yml run builder bash
 
 Now let's set up Action Subscriber to listen for events. We'll need to add a `EmployeeSubscriber` class and add routes via the `ActionSubscriber.draw_routes` method.
 
-We'll want to put our subscriber classes in their own `subscribers` directory. We'll also need the `lib` directory where we'll copy our Employee Protobuf class. Let's create these directories:
+We'll want to put our subscriber classes in their own `subscribers` directory. We'll also need the `lib` directory where we'll copy our Employee Protobuf class. Let's create these directories and copy the files to one of those directories:
+
+_**Listing 12-16**_ Generating Rails app directories and copying the message class
 
 ```console
 $ mkdir chapter-12/action-subscriber/app/{lib,subscribers}
-```
-
-Let's copy the Protobuf class to the `lib` directory.
-
-```console
 $ cp protobuf/lib/employee_message.pb.rb chapter-12/action-subscriber/app/lib/
 ```
 
 Now let's add the subscriber class. For our the purposes of our playground we'll keep it simple - just log that we received the message.
+
+_**Listing 12-17**_ Employee subscriber class
 
 ```ruby
 # rails-microservices-sample-code/chapter-12/action-subscriber/app/subscribers/employee_subscriber.rb
@@ -311,6 +340,8 @@ end
 
 Our app needs to know which queues to subscribe to, so we use the `default_routes_for` method which will read our `EmployeeSubscriber` class and generate queues for each of our public methods or subscribe to those queues if they already exist. The hostname `host.docker.internal` is a special Docker hostname, it points to the ip address of the host machine.
 
+_**Listing 12-18**_ Action Subscriber initializer
+
 ```ruby
 # rails-microservices-sample-code/chapter-12/action-subscriber/config/initializers/action_subscriber.rb
 
@@ -325,6 +356,8 @@ end
 ```
 
 We'll need to enable the `cache_classes` and `eager_load` settings, the same way we did for the publisher. We'll also need to set up a logger so that we can see the log output from our Docker container.
+
+_**Listing 12-19**_ Development configuration
 
 ```ruby
 # rails-microservices-sample-code/chapter-12/action-subscriber/config/environments/development.rb
@@ -341,6 +374,8 @@ config.logger    = ActiveSupport::TaggedLogging.new(logger)
 ### Create and Configure Our Environment
 
 Last but not least, let's add a `Dockerfile` and `docker-compose.yml` file to build an image and spin up our Rails and RabbitMQ containers. The `Dockerfile` may already exist from the sandbox we built in chapter 9, but if not, it has the same content here. The `docker-compose.yml` file is new.
+
+_**Listing 12-20**_ Sandbox Dockerfile
 
 ```dockerfile
 # rails-microservices-sample-code/Dockerfile
@@ -363,6 +398,8 @@ RUN set -ex && bundle install --no-deployment
 The following Docker Compose file includes an instance of RabbitMQ and our new `active-publisher` and `action-subscriber` Rails apps. We'll expose the web app on port 3001. RabbitMQ can take a few seconds to start, so we'll our `action-subscriber` service to restart if it can't connect. In a real-world application we would want to check the response from RabbitMQ before we started up the subscriber.
 
 Normally, we would add the subscriber to the same Docker Compose file, but, because the Action Subscriber service tries to connect immediately and RabbitMQ can take a few seconds to load, we'll run the subscriber process from a separate Docker Compose file. We'll also need to expose port 5672 to the host machine so we can connect from another Compose environment.
+
+_**Listing 12-21**_ Sandbox Docker Compose file
 
 ```yml
 # rails-microservices-sample-code/chapter-12/docker-compose.yml
@@ -390,6 +427,8 @@ services:
 
 Now let's add the `action-subscriber` configuration file. Note that because the Action Subscriber executable spawns a child process to listen for events from RabbmitMQ, we lose the log output if we start the container using the `up` command. To view all of the log info in the terminal, we'll us the Docker Compose `run` command to start a bash shell and run our `action_subscriber` executable there.
 
+_**Listing 12-22**_ Sandbox Docker Compose subscriber file
+
 ```yml
 # rails-microservices-sample-code/chapter-12/docker-compose-subscriber.yml
 # Usage: docker-compose -f docker-compose-subscriber.yml run action-subscriber bash -c 'bundle exec action_subscriber start'
@@ -408,12 +447,16 @@ services:
 
 Now that everything's in place, let's start our sandbox environment. Because we may already have a `docker-compose.yml` file in the directory, we named our new config files `docker-compose.yml` and `docker-compose-subscriber.yml`. If we ran the shortest version of the `docker-compose up` command, it would by default look for and load the `docker-compose.yml` file. We can use the `-f` flag to specify that we want to use other configuration files instead. Let's run those commands now.
 
+_**Listing 12-23**_ Starting the sandbox
+
 ```console
 $ cd chapter-12
 $ docker-compose up
 ```
 
 Once you see lines like this, RabbitMQ has started and the Active Publisher Rails app has successfully connected.
+
+_**Listing 12-24**_ Sandbox logging
 
 ```console
 rabbit_1            | 2020-02-09 22:54:02.253 [info] <0.8.0> Server startup complete; 0 plugins started.
@@ -424,11 +467,15 @@ rabbit_1            | 2020-02-09 22:54:37.395 [info] <0.641.0> connection <0.641
 
 Now let's start the subscriber in another terminal window.
 
+_**Listing 12-25**_ Starting the subscriber sandbox
+
 ```console
 $ docker-compose -f docker-compose-subscriber.yml run action-subscriber bash -c 'bundle exec action_subscriber start'
 ```
 
 You should see output like the following.
+
+_**Listing 12-26**_ Subscriber sandbox logging
 
 ```console
 I, [2020-02-09T22:54:53.900735 #1]  INFO -- : Loading configuration...
@@ -465,6 +512,8 @@ I, [2020-02-09T22:54:59.393366 #1]  INFO -- : Action Subscriber connected
 These log lines indicate that the subscriber has connected to the server successfully, connected to two queues and is now listening for events.
 
 Let's create some events. Open your browser and browse to http://localhost:3001/employees. Port 3001 is the port we exposed from the Active Publisher Rails app in the `docker-compose.yml` file. You should see a simple web page with the title **Employees** and a 'New Employee' link. Let's go ahead and click the link. You should now be able to create a new employee record in the web form. Once you fill it out and click the 'Create Employee' button, several things will happen. First, the form data will be sent back to the Active Publisher Rails app. The controller will pass that data on to Active Record, which will create a new record in the SQLite database. Next, the `after_create` callback will run, encoding our Protobuf message and placing it on the `actionsubscriber.employee.created` queue. RabbitMQ will notify subscribers of a specific queue of any new messages. Our Action Subscriber Rails app is one such subscriber. In our `EmployeeSubscriber#created` event handler method, we wrote code to log that we received a message. If you inspect the output from the terminal window where we started the Action Subscriber Rails app, you should see output like the output below.
+
+_**Listing 12-27**_ More subscriber sandbox logging
 
 ```console
 I, [2020-02-09T23:14:31.163127 #1]  INFO -- : RECEIVED 7a99f6 from actionsubscriber.employee.created
