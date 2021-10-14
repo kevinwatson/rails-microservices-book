@@ -8,6 +8,8 @@ As your service infrastructure grows, you'll need to find a communication protoc
 
 Various protocols can be used to move data between services. Each has its advantages and disadvantages. For example, HTTP is one of the most widely used protocols for web pages and RESTful APIs. HTTP provides many useful features such as authentication, but also sends header data with each request. Sending header data with each request could cause undesired network congestion when we're designing a platform that, in order to scale, requires each message to be a small as possible.
 
+_**Table 2-1**_ Network protocols
+
 | Protocol | Advantages | Disadvantages | Example uses |
 |---|---|---|---|
 | AMQP | A binary format that provides queuing, routing, reliability | Binary only | Passing messages to and from RabbitMQ |
@@ -19,6 +21,8 @@ Various protocols can be used to move data between services. Each has its advant
 ## Data Serialization
 
 The data that is sent over the wire needs to be pakcaged for delivery. A few ways to package this data are in the table below:
+
+_**Table 2-2**_ Data serialization formats
 
 | Format | Text/Binary | Advantages | Disadvantages |
 |---|---|---|---|
