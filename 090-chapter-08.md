@@ -22,6 +22,8 @@ Protobuf attempts to solve these and other problems by encoding data to a binary
 
 An example Protobuf definition is below. Protobuf files have the file extension `.proto`.
 
+**Listing 8-1** Employee protobuf message
+
 ```proto
 // file employee.proto
 1 syntax = "proto3";
@@ -47,6 +49,8 @@ We briefly covered the [Ruby implementation in chapter 2](https://github.com/kev
 
 The example below is the output for the Ruby implementation (additional setup and details can be found in [chapter 9](https://github.com/kevinwatson/rails-microservices-book/blob/master/100-chapter-09.md)). After defining the `.proto` definition file and running the `rake protobuf:compile` command, we will now have files similar to the following:
 
+**Listing 8-2** Employee Ruby protobuf class
+
 ```ruby
 # file employee.pb.rb
 class Employee < ::Protobuf::Message
@@ -59,6 +63,8 @@ end
 **Serialized Data**
 
 Note that the data below is a string representation of the binary encoding.
+
+**Listing 8-3** Employee protobuf encoding
 
 ```console
 # Employee
