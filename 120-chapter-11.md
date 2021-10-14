@@ -10,7 +10,7 @@ We're going to run RabbitMQ the same way we ran NATS in chapter 6. Docker makes 
 
 Let's run a local RabbitMQ server and send messages to it. We'll include a Ruby image so we can build a Ruby client to send messages to and receive messages from queues on the RabbitMQ server. With NATS we used telnet to send and receive simple test-based messages - with RabbitMQ we'll need to construct binary messages that we'll send to RabbitMQ.
 
-Listing 11-1 Docker compose with RabbitMQ and Ruby
+_**Listing 11-1**_ Docker Compose file with RabbitMQ and Ruby
 
 ```yml
 # ~/projects/rabbitmq/docker-compose.yml
@@ -31,7 +31,7 @@ services:
 
 Save the file with the filename `docker-compose.yml`. Let's now switch to that directory and run the containers. The versions of the software and output may differ from what you see in your terminal.
 
-Listing 11-2 Start RabbitMQ and Ruby
+_**Listing 11-2**_ Start RabbitMQ and Ruby
 
 ```console
 $ cd ~/projects/nats
@@ -55,7 +55,7 @@ rabbit_1   | 2020-01-25 14:18:46.099 [info] <0.8.0> Server startup complete; 0 p
 
 Creating a producer is simple. We'll connect to the Ruby container and run IRB to create a connection, a channel and a queue. Let's create a message in a new terminal window.
 
-Listing 11-3 Creating a message
+_**Listing 11-3**_ Creating a message
 
 ```console
 $ docker-compose exec ruby bash
@@ -74,7 +74,7 @@ Creating a consumer is just about as simple as creating a producer. We'll create
 
 Let's open another terminal window and run the commands in listing 11-4.
 
-Listing 11-4 Consuming messages
+_**Listing 11-4**_ Consuming messages
 
 ```console
 $ docker-compose exec ruby bash
@@ -92,7 +92,7 @@ irb(main):008:0> end
 
 You should see the `- Received Hello World` message in the terminal window where we consumed the message (Listing 11-4). This demonstrates that we have RabbitMQ server running, we published a message to a queue, and our consumer received the message. Let's switch back to the IRB session we started in listing 11-3 and publish another message.
 
-Listing 11-5 Publish a second message
+_**Listing 11-5**_ Publish a second message
 
 ```console
 irb(main):007:0> channel.default_exchange.publish('We thought you were a toad!', routing_key: queue.name) # encode and publish another message
