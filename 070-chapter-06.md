@@ -88,7 +88,7 @@ As of the time of this writing, there are 5 links on the page. Let's briefly loo
 * [connz](http://localhost:8222/connz) - More detailed information on current and recently closed connections
 * [routez](http://localhost:8222/routez) - Information on active routes for a cluster
 * [subsz](http://localhost:8222/subsz) - Detailed information about the current subscriptions and the routing data structure
-* [help](https://nats-io.github.io/docs/nats_server/monitoring.html) - A link to the NATS documentation
+* [help](https://docs.nats.io/nats-server/configuration/monitoring) - A link to the NATS documentation
 
 Some of the endpoints above also have querystring parameters that can be passed, e.g. http://localhost:8222/connz?sort=start, which will sort the connections by the start time. Check out the NATS documentation for more information about these endpoints and their options.
 
@@ -97,7 +97,7 @@ Some of the endpoints above also have querystring parameters that can be passed,
 * https://docs.docker.com/compose
 * https://hub.docker.com/_/nats
 * https://nats.io
-* https://nats-io.github.io/docs/nats_server/monitoring.html
+* https://docs.nats.io/nats-server/configuration/monitoring
 
 ## Wrap-up
 
