@@ -34,7 +34,7 @@ Save the file with the filename `docker-compose.yml`. Let's now switch to that d
 _**Listing 11-2**_ Start RabbitMQ and Ruby
 
 ```console
-$ cd ~/projects/nats
+$ cd ~/projects/rabbitmq
 $ docker-compose up
 Starting rabbitmq_ruby_1 ... done
 Creating rabbitmq_rabbit_1  ... done
