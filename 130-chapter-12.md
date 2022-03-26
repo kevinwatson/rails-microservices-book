@@ -320,7 +320,7 @@ $ mkdir chapter-12/action-subscriber/app/{lib,subscribers}
 $ cp protobuf/lib/employee_message.pb.rb chapter-12/action-subscriber/app/lib/
 ```
 
-Now let's add the subscriber class. For our the purposes of our playground we'll keep it simple - just log that we received the message.
+Now let's add the subscriber class. For the purposes of our playground we'll keep it simple - just log that we received the message.
 
 _**Listing 12-17**_ Employee subscriber class
 
