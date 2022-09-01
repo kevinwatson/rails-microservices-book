@@ -2,7 +2,7 @@
 
 * [Capítulo 1 - Microservicios](020-chapter-01.es.md)
   * Arquitectura del Servicio
-  * Dime más acerca de los microservicios
+  * Más acerca de los microservicios
   * ¿Por qué debemos usar microservicios?
   * Recursos
   * Empaquetando
