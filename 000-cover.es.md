@@ -2,6 +2,8 @@
 
 ## Usando Protocol Buffers, NATS y RabbitMQ
 
-### Kevin Watson, Luilver Garces
+### Kevin Watson
+
+Traducción al Español: Luilver Garcés Briñas
 
 [Siguiente >>](001-preface.es.md)
