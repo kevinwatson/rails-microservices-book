@@ -49,6 +49,12 @@ cualquier lenguaje de programación soportado.
 Inlcuso si lenguaje no fuera Ruby, ojalá este libro brinde una visión general de
 cómo diseñar y construir servicios distribuidos.
 
+Hemos querido llevar al público hispanoparlante esta obra de valor incalculable
+ya que casi toda la información relativa al desarrollo de microservicios en la
+nube se genera en países en los que no se habla español. Esto provoca que sea
+difícil para nosotros acceder en nuestro idioma nativo a información actualizada
+y de calidad sobre estos temas. (N. del T.)
+
 [Siguiente >>](002-who-is-this-book-for.es.md)
 
 [MX]: https://mx.com
