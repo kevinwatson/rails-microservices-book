@@ -2,7 +2,7 @@
 
 ## Usando Protocol Buffers, NATS y RabbitMQ
 
-Comienza por el inicio: [Cubierta](000-cover.es.md)
+Comencemos por el inicio: [Portada](000-cover.es.md)
 
 Prefacio: [Prefacio](001-preface.es.md)
 

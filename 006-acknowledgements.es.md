@@ -1,4 +1,4 @@
-## Agradecimientos
+## Dedicatoria
 
 Primero me gustaría agradecer a mi esposa, Mónica, por su paciencia y
 comprensión cuando persigo aficiones tales como escribir.
