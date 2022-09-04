@@ -4,13 +4,13 @@ Bienvenido a *Creando Aplicaciones Distribuidas con Rails*.
 
 Ruby on Rails es una plataforma construida sobre el lenguaje de programación
 Ruby. La plataforma Rails provee las herramientas necesarias para construir
-aplicaciones respaldadas con bases de datos. Rails ha logrado una popularidad
-generalizada, muchos sitios populares corren sobre Rails, entre los que se
+aplicaciones con bases de datos y ha logrado una popularidad generalizada,
+actualmente muchos sitios populares corren sobre Rails, entre los que se
 incluyen Shopify, Basecamp y Github.
 
-Una arquitectura de aplicaciones distribuídas define modulos especializados o
+Una arquitectura de aplicaciones distribuidas define modulos especializados o
 componentes de un sistema en el cual, como un todo, proveen la funcionalidad que
-los usuarios requiren. Las aplicaciones distribuídas pueden ser configuradas
+los usuarios requiren. Las aplicaciones distribuidas pueden ser configuradas
 para escalar tanto hacia arriba como hacia abajo según sea necesario,
 especificamente por aquellos módulos que requieran un poder de cómputo adicional
 . Por ejemplo el módulo que muestra el formulario para el inicio de sesión puede
@@ -18,7 +18,7 @@ no requerir mucha potencia de cómputo pero el que optimiza las fotos que suben
 los clientes puede necesitar ponerlas a escala cada vez que un usuario añade un
 conjunto nuevo de imágenes.
 
-Este libro te adentrará a través del proceso de crear aplicaciones distribuídas
+Este libro te adentrará a través del proceso de crear aplicaciones distribuidas
 usando Ruby on Rails. Discutiremos aplicaciones monolíticas las cuales serán a
 su vez divididas en unidades más pequeñas (microservicios) y describiremos
 algunas formas de compartir datos entre estos microservicios. Usaremos un
@@ -39,7 +39,7 @@ contribuciones de MX a la comunidad de código abierto ayudan a asegurar que Rub
 coninúe siendo una opción viable para diseñar y desplegar modernos sistemas
 distribuidos.
 
-Debido a que la plataforma de MX está construída sobre estándares abiertos (Ej:
+Debido a que la plataforma de MX está construida sobre estándares abiertos (Ej:
  Protocol Buffers, RabbitMQ y NATS) es agnóstica a los lenguajes de programación
  que sean empleados para crear nuevos servicios sobre ella. Siempre y cuando un
  servicio se comunique usando mensajes Protobuff y se conecte a NATS o a
