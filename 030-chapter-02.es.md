@@ -46,9 +46,9 @@ He aquí algunos ejemplos de datos serializados para cada formato.
 
 #### JSON
 
-JSON (del inglés JavaScript Object Notation) es un formato basado en texto e 
+JSON (del inglés JavaScript Object Notation) es un formato basado en texto e
 inteligible por un humano, cuya estructura consiste en pares nombre-valor.
-Debido a su estructura simple se ha convertido en una opción popular para 
+Debido a su estructura simple se ha convertido en una opción popular para
 compartir datos entre servicios.
 
 ```json
@@ -137,7 +137,7 @@ binaria.
 
 #### XML
 
-XML (del Inglés Extensible Markup Language) es un formato basado en texto e 
+XML (del Inglés Extensible Markup Language) es un formato basado en texto e
 inteligible por un humano que al igual que JSON define tanto la estructura como
 los datos en el mismo cuerpo del mensaje. XML también es una opción popular para
 el intercambio de datos en Internet y entre sistemas.
