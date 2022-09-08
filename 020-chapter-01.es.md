@@ -33,7 +33,7 @@ ser pequeños. Sin embargo en la medida que el tiempo pasa comenzamos a añadir
 características y la aplicación crece llegando a convertirse en un sistema más
 grande. A este tipo de sistema llamamos Monolito y no hay nada malo en construir
 monolitos siempre y cuando puedan manejar la carga de procesamiento. Los
-monolitos son la arquitectura más simple porque sin simple de mantener por
+monolitos son la arquitectura más simple porque son simples de mantener por
 pequeños equipos, todo el código está en el mismo lugar y la comunicaicón entre
 módulos es instantánea pues no hay sobrecarga por la red.
 
