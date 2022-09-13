@@ -71,7 +71,7 @@ a lo que cada servicio necesita.
 * [Filosofía Unix][]
 * [Microservicios en Inglés][] 
 
-## Empaquetando
+## Recapitulando
 
 Hay muchas maneras de proveer la lógica que nuestro negocio requiere. Muchos
 negocios comienzan con pequeñas aplicaciones que luego van creciendo en la

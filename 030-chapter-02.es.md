@@ -200,7 +200,7 @@ servicio como mostraremos en el capítulo 13.
 [JSON][]
 [XML][]
 
-## Empaquetando
+## Recapitulando
 
 En este capítulo discutimos varios protocolos y formatos de mensajes que se
 pueden usar para compartir datos entre servicios. En el próximo capítulo,
