@@ -26,7 +26,7 @@ To share data between services, you'll need to include the Protobuf NATS gem. Fo
 
 ## Resources
 
-* https://github.com/abrandoned/protobuf-nats
+* https://github.com/mxenabled/protobuf-nats
 * https://github.com/liveh2o/active_remote
 * https://github.com/liveh2o/protobuf-activerecord
 * https://github.com/rails/activeresource
