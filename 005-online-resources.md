@@ -25,7 +25,7 @@ In addition to the sample code on the GitHub website, the following websites wil
 
 #### Protocol Buffers (Protobuf)
 
-* https://github.com/abrandoned/protobuf-nats
+* https://github.com/mxenabled/protobuf-nats
 * https://github.com/ruby-protobuf
 * https://github.com/ruby-protobuf/protobuf/wiki/Serialization
 

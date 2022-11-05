@@ -12,7 +12,7 @@ The difference is that while Active Resource provides access to RESTful resource
 
 Active Remote attempts to provide a solution for accessing and managing distributed resources by providing a model which can be implemented with a minimal amount of code. Whether the model's data is persisted locally or somewhere else is of no concern to the rest of the application.
 
-Further, because Active Remote implements a pub-sub messaging system, clients do not need to be configured with details about which servers own and respond to specific resources. Clients only need to know which message system subjects to publish to and that some other server will respond to their requests.
+Further, because Active Remote implements a pub-sub messaging system, clients do not need to be configured with details about which servers own and respond to specific resources. To publish, clients need only specify the message broker and the subject. Some other server will respond to their requests.
 
 ## Design
 
@@ -26,7 +26,7 @@ To share data between services, you'll need to include the Protobuf NATS gem. Fo
 
 ## Resources
 
-* https://github.com/abrandoned/protobuf-nats
+* https://github.com/mxenabled/protobuf-nats
 * https://github.com/liveh2o/active_remote
 * https://github.com/liveh2o/protobuf-activerecord
 * https://github.com/rails/activeresource
