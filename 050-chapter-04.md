@@ -8,7 +8,7 @@ The model architectural pattern provides the serialization and deserialization o
 
 #### Active Record
 
-The core of a Rails application is it's data. Rails applications (as are many framework patterns) are built in multiple layers. Rails itself follows the model-view-controller (MVC) architecture pattern to separate programming logic into separate elements. Active Record is the model part of the MVC pattern in Rails. Active Record is where you add the behavior and persist the data that is required by your application.
+The core of a Rails application is its data. Rails applications (as are many framework patterns) are built in multiple layers. Rails itself follows the model-view-controller (MVC) architecture pattern to separate programming logic into separate elements. Active Record is the model part of the MVC pattern in Rails. Active Record is where you add the behavior and persist the data that is required by your application.
 
 Using Active Record, whether stand-alone or in a Rails app, provides the following benefits:
 
