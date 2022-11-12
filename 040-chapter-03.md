@@ -4,7 +4,7 @@
 
 ## Ruby
 
-The Ruby programming language was designed and developed by Yukihiro "Matz" Matsumoto in the mid 1990s. The language was relatively obscure until David Heinemeier Hansson published the Ruby on Rails framework in July of 2004. Ruby on Rail's popularity drove the development of the Ruby language.
+The Ruby programming language was designed and developed by Yukihiro "Matz" Matsumoto in the mid 1990s. The language was relatively obscure until David Heinemeier Hansson published the Ruby on Rails framework in July of 2004. Ruby on Rails' popularity drove the development of the Ruby language.
 
 Ruby is a high-level language. It is high-level because it has a strong abstraction from the details of the computer hardware. The benefit is that the developer has more freedom to write code that the Ruby interpreter will interpret and in some cases optimize for the hardware. The downside is that the developer has more freedom to write code that may not be optimized for the hardware.
 
