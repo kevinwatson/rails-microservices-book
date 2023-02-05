@@ -95,8 +95,8 @@ nustra aplicación.
 [Siguiente >>](050-chapter-04.es.md)
 
   [documentación oficial]: https://rubyonrails.org
-  [Money]:                 https://rubygems.org/gems/money]
-  [Sidekiq]:               https://rubygems.org/gems/sidekiq]
-  [Ruby on Rails]:         https://rubyonrails.org]
-  [JRuby]:                 https://www.jruby.org]
-  [Ruby Lang]:             https://www.ruby-lang.org]
+  [Money]:                 https://rubygems.org/gems/money
+  [Sidekiq]:               https://rubygems.org/gems/sidekiq
+  [Ruby on Rails]:         https://rubyonrails.org
+  [JRuby]:                 https://www.jruby.org
+  [Ruby Lang]:             https://www.ruby-lang.org
