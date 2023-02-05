@@ -79,7 +79,6 @@ consumo de memoria; a fin de cuentas es Java.
 * [JRuby][]
 * [Ruby Lang][]
 
-
 ## Recapitulando
 
 Ruby es un lenguaje que fue concebido con la idea de la productividda del
