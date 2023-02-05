@@ -1,6 +1,6 @@
 ### Capítulo 4 - Active Record y Active Model
 
-> Un objeto que envuelve una columna en una base de datos o en una vista
+> Un objeto que encapsula una tabla en una base de datos o en una vista
 encapsulua el acceso a dicha base de datos y añade lógica de dominio en esos
 datos - Martin Fowler, Patterns of Enterprise Architecture
 
