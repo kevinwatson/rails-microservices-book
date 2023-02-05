@@ -6,7 +6,7 @@ datos - Martin Fowler, Patterns of Enterprise Architecture
 
 ## Introducción
 
-El patrón de modelo arquitectural provee la serialización y deserialización de
+El patrón arquitectura de modelo provee la serialización y deserialización de
 datos para nuestra aplicación.
 
 #### Active Model
