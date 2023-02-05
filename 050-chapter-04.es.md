@@ -73,8 +73,8 @@ el próximo capítulo.
 
 ## Recursos
 
-* https://guides.rubyonrails.org/active_model_basics.html
-* https://guides.rubyonrails.org/active_record_basics.html
+* [Active Model][]
+* [Active Record][]
 
 ## Recapitulando
 
@@ -88,3 +88,6 @@ continuar utlizando el patrón MVC de Rails y  nos permite compartir datos entre
 aplicaciones de manera eficiente.
 
 [Next >>](060-chapter-05.es.md)
+
+  [Active Model]:  https://guides.rubyonrails.org/active_model_basics.html
+  [Active Record]:  https://guides.rubyonrails.org/active_record_basics.html
