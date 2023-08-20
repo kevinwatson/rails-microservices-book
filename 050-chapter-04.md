@@ -6,6 +6,18 @@
 
 The model architectural pattern provides the serialization and deserialization of data for your application.
 
+#### Active Record
+
+The core of a Rails application is its data. Rails applications (as are many framework patterns) are built in multiple layers. Rails itself follows the model-view-controller (MVC) architecture pattern to separate programming logic into separate elements. Active Record is the model part of the MVC pattern in Rails. Active Record is where you add the behavior and persist the data that is required by your application.
+
+Using Active Record, whether stand-alone or in a Rails app, provides the following benefits:
+
+* A way to represent models and data
+* Associations between models
+* Hierarchies through related models
+* Data validation
+* Database access using objects
+
 #### Active Model
 
 Active Model is a library of modules that provides various methods to Active Record. Active Model's modules can also be included in your classes to provide the same functionality. Some of the included modules are below.
@@ -22,18 +34,6 @@ Active Model is a library of modules that provides various methods to Active Rec
 - Lint Tests - adds functionality to test whether your object is compliant with the Active Model API
 - SecurePassword - adds methods to store passwords or other data securely using the `bcrypt` gem
 
-#### Active Record
-
-The core of a Rails application is it's data. Rails applications (as are many framework patterns) are built in multiple layers. Rails itself follows the model-view-controller (MVC) architecture pattern to separate programming logic into separate elements. Active Record is the model part of the MVC pattern in Rails. Active Record is where you add the behavior and persist the data that is required by your application.
-
-Using Active Record, whether stand-alone or in a Rails app, provides the following benefits:
-
-* A way to represent models and data
-* Associations between models
-* Hierarchies through related models
-* Data validation
-* Database access using objects
-
 #### What's the Difference?
 
 The most common way to persist and retrieve data in a Rails application is with Active Record. Active Record is a wrapper for database tables and their relationships. Active Resource is a wrapper for RESTful resources.
@@ -44,8 +44,8 @@ Not all models need to be Active Record models that map to a database. We can ad
 
 ## Resources
 
-* https://guides.rubyonrails.org/active_model_basics.html
 * https://guides.rubyonrails.org/active_record_basics.html
+* https://guides.rubyonrails.org/active_model_basics.html
 
 ## Wrap-up
 

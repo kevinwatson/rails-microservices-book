@@ -20,7 +20,7 @@ _**Table 2-1**_ Network protocols
 
 ## Data Serialization
 
-The data that is sent over the wire needs to be pakcaged for delivery. A few ways to package this data are in the table below:
+The data that is sent over the wire needs to be packaged for delivery. A few ways to package this data are in the table below:
 
 _**Table 2-2**_ Data serialization formats
 
