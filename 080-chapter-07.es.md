@@ -1,6 +1,6 @@
 ### Capítulo 7 - Relaciones entre los datos
 
-## Introduction
+## Introducción
 
 Lo más probable es que su aplicación se diseñe con una o más tablas en base de
 datos, ya sea que estén almacenadas en una base de datos relacional o en una
@@ -15,7 +15,7 @@ fila en una relación (también conocida como tabla en la terminología de las
 bases de dato). Las llaves foráneas se utilizan para asociar registros hijos o
 dependientes a otra relación.
 
-## Llaves naturales Vs llaves substitutas
+## Llaves naturales Vs llaves subrogadas
 
 En la mayoría de las relaciones las filas deben tener un identificador único.
 Un identificador único puede ser un solo atributo, dos o más atributos.
