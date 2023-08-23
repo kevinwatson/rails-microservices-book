@@ -1,4 +1,4 @@
-### Chapter 9 - El sandbox del microservicio Active Remote
+### Capítulo 9 - El sandbox del microservicio Active Remote
 
 > Intento formular un plan pero mis pensamientos son una mezcla tóxica de
 arrepentimiento, pánico y autodesprecio; como si alguien agitara una botella
