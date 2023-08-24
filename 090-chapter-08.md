@@ -6,7 +6,7 @@
 
 Why did you build your app? Most likely the reason was that you needed to track some data. You or someone at your company may have started with a spreadsheet, but over time, realized that tracking the data in a spreadsheet became cumbersome and no longer met your needs. So, an app was born. Your fresh out-of-the-box app then started to grow, with relationships between data entities. As the amount of data and the number of relationships and the processing requirements grew, you decided that you needed to split your app into separate services. When a piece of data needs to be shared between applications, we need to make a couple of decisions. What attributes will be shared? How will clients access the data? Which app will own and persist the data? How can we make it easy to extend or add new attributes to our entities that are still backwards compatible?
 
-When you build a microservice platform, you need to make several decisions, one of them being how do we share data between services. As discussed in chapter 2, protocol buffers (aka protobuf) is one of those options. 
+When you build a microservice platform, you need to make several decisions, one of them being how do we share data between services. As discussed in chapter 2, protocol buffers (aka protobuf) is one of those options.
 
 Developed by Google, protobuf is a method of serializing data in a binary format that allows for performance over flexibility. Protobuf has a standard definition structure that is used to define messages. Compilers are available to convert the definitions to classes or structures that are language specific. For example, the same definition file can be used to generate classes or structures for both Java and Ruby, so that apps written in both languages can share the same message.
 
@@ -41,7 +41,7 @@ Line 1 defines the version of the Protobuf syntax we'd like to use.
 
 Line 3 is the beginning of our message declaration.
 
-Lines 4-6 are the field definitions. Each line has a type (the guid field is a string type). Line 5 has an attribute name of `guid`, and the field number of 1.
+Lines 4-6 are the field definitions. Each line has a type (the guid field is a string type). Line 4 has an attribute name of `guid`, and the field number of 1.
 
 This Protobuf definition is by itself not used in your application. What we do next is compile this `employee.proto` field to a class or structure file in the same language your app is written in, whether that's Java, C#, Go or Ruby. If you support a heterogeneous platform with multiple languages, you may want to build scripts which will automatically compile your `.proto` files to the required languages each time you add a new `.proto` file or add a new field to one of your existing definitions.
 
