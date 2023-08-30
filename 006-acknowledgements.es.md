@@ -11,8 +11,8 @@ on Rails de manera sencilla hoy.
 
 Agradecimientos especiales a Chris Miller quien ha sido mi mentor en Ruby on
 Rails durante muchos cambios de posición laboral. Me gustaría también agradecer
-a Igor Morgunov, Naoto Suzuki y Luilver Garcés Briñas por sus contribuciones y
-retroalimentacion para con este libro.
+a Igor Morgunov, Naoto Suzuki, Luilver Garcés Briñas, Mark Oveson y Sheldon
+Teerlink por sus contribuciones y retroalimentación para con este libro.
 
 [Siguiente >>](007-copyright.es.md)
 
