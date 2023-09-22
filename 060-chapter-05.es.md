@@ -24,7 +24,7 @@ distribuídos brindando un modelo el cual puede ser implementado con una cantida
 de código mínima. Si el modelo de datos persiste de manera local o en cualquier
 otro lugar no es problema para el resto de la aplicación.
 
-Incluso, ya que Active Remote implementa un sistema de mensajería
+Incluso, ya que Active Remote implementa un sistema de mensajes
 publicador-subscriptor, los clientes no necesitan estar configurados con
 detalles acerca de cuáles servidores poseen o responden a determinados recursos.
 Los clientes sólo necesitan saber cuáles temas publicar hacie el sistema de

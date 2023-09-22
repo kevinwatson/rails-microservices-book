@@ -8,14 +8,14 @@ equivocados
 
 ## Introducción
 
-Los sistemas de mensajería son un componente crítico cuando se diseñan sistemas
+Los sistemas de mensajes son un componente crítico cuando se diseñan sistemas
 distribuidos. Se utilizan para proporcionar a la arquitectura de su plataforma,
 una capa que se utiliza para mezclar mensajes entre servicios. Una capa de
 mensaje proporciona un punto de acceso para que los servicios se comuniquen.
 Cada servicio solo necesita saber cómo comunicarse con la cola de mensajes, a
 qué colas suscribirse y en qué colas escuchar.
 
-NATS es uno de esos sistemas de mensajería que brinda seguridad, flexibilidad,
+NATS es uno de esos sistemas de mensajes que brinda seguridad, flexibilidad,
 es escalable y puede cumplir con los requisitos de rendimiento de la mayoría de
 las plataformas. Al momento de escribir este libro, NATS tiene clientes escritos
 en más de 30 lenguajes de programación.
