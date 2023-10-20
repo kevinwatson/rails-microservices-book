@@ -46,15 +46,18 @@ We can test our installation by running the `docker version` and the `docker-com
 
 ```console
 $ docker version
-Client: Docker Engine - Community
- Version:           19.03.5
+Client:
+ Cloud integration: v1.0.29
+ Version:           20.10.17
+ API version:       1.41
 ...
-Server: Docker Engine - Community
+Server: Docker Desktop 4.12.0 (85629)
  Engine:
-  Version:          19.03.5
+  Version:          20.10.17
+  API version:      1.41 (minimum version 1.12)
 
-$ docker-compose --version
-docker-compose version 1.24.1
+$ docker compose version
+Docker Compose version v2.10.2
 ```
 
 If you see any errors, check your Docker Desktop installation.
@@ -84,7 +87,7 @@ _**Listing 9-3**_ Dockerfile used to create an image that we'll use to generate 
 ```dockerfile
 # rails-microservices-sample-code/Dockerfile.builder
 
-FROM ruby:2.6.5
+FROM ruby:3.0.6
 
 RUN apt-get update && apt-get install -qq -y --no-install-recommends \
     build-essential \
@@ -94,7 +97,7 @@ RUN apt-get update && apt-get install -qq -y --no-install-recommends \
 
 WORKDIR /home/root
 
-RUN gem install rails -v 5.2.4
+RUN gem install rails -v 6.1
 RUN gem install protobuf
 ```
 
@@ -121,7 +124,7 @@ services:
 Let's start and log into the builder container. We'll then run the Rails generate commands from the container, which will create two Rails apps. Because we've mapped a volume in the `.yml` file above, the files that are generated will be saved to the `rails-microservices-sample-code` directory. If we didn't map a volume, the files we generate would only exist inside the container, and each time we stop and restart the container they would need to be regenerated. Mapping a volume to a directory on the host computer's will serve files through the container's environment, which includes a specific version of Ruby, Rails and the gems we'll need to run our apps.
 
 ```console
-$ docker-compose -f docker-compose.builder.yml run builder bash
+$ docker compose -f docker-compose.builder.yml run builder bash
 ```
 
 The `run` Docker Compose command will build the image (if it wasn't built already), start the container, ssh into the running container and give us a command prompt using the `bash` shell.
@@ -198,7 +201,7 @@ This will generate a file named `employee_message.pb.rb` file in the `protobuf/l
 
 ### Create a Rails App with a Database
 
-The first Rails app we'll generate will have an Active Record model and will be able to persist the records to a SQLite database. We'll add the `active_remote`, `protobuf-nats` and `protobuf-activerecord` gems to the `Gemfile` file. We'll then run the `bundle` command to retrieve the gems from https://rubygems.org. After retrieving the gems, we'll create scaffolding for an Employee entity and generate an `employees` table in the SQLite database. We could connect our app to a PostgreSQL or MySQL database, but for the purposes of this demo app, the file-based SQLite database is sufficient for the purposes of this demo app. Of course, the Active Remote app we generate will not know nor will it care how the data is persisted (or if the data is persisted at all).
+The first Rails app we'll generate will have an Active Record model and will be able to persist the records to a SQLite database. We'll add the `active_remote`, `protobuf-nats` and `protobuf-activerecord` gems to the `Gemfile` file. We'll then run the `bundle` command to retrieve the gems from https://rubygems.org. After retrieving the gems, we'll create scaffolding for an Employee entity and generate an `employees` table in the SQLite database. We could connect our app to a PostgreSQL or MySQL database, but for the purposes of this demo app, the file-based SQLite database is sufficient for our purposes. Of course, the Active Remote app we generate will not know nor will it care how the data is persisted (or if the data is persisted at all).
 
 Let's generate the Rails app that will act as the server and owner of the data. As the owner of the data, it can persist the data to a database. We'll call this app `active-record`.
 
@@ -287,6 +290,8 @@ end
 
 We'll also need to add a few more details. Because the `app/lib/employee_message.pb.rb` file contains multiple classes, only the class that matches the file name is loaded. In development mode, Rails can lazy load files as long as the file name can be inferred from the class name, e.g. code requiring the class `EmployeeMessageService` will try to lazy load a file named `employee_message_service.rb`, and throw an error if the file is not found. We can either separate the classes in the `app/lib/employee_message.pb.rb` file into separate files, or enable eager loading in the config. For the purposes of this demo, let's enable eager loading.
 
+Rails 6 now uses zeitwerk to autoload files. Zeitwerk expects that filenames ending with `.rb` match the convention of one class per file, but the employee_message.pb.rb file we generated above doesn't follow this convention. For this reason, we'll need to change the default autoloader configuration back to classic mode by setting `autoloader = :classic`.
+
 _**Listing 9-8**_ Development configuration file
 
 ```ruby
@@ -294,6 +299,8 @@ _**Listing 9-8**_ Development configuration file
 
 ...
 config.eager_load = true
+...
+config.autoloader = :classic
 ...
 ```
 
@@ -321,12 +328,13 @@ Let's generate the `active-remote` app. We won't need the Active Record persiste
 ```console
 $ docker-compose -f docker-compose.builder.yml run builder bash
 # cd chapter-09
-# rails new active-remote --skip-active-record
+# rails new active-remote --skip-active-record --skip-webpack-install
 # cd active-remote
 # echo "gem 'active_remote'" >> Gemfile
 # echo "gem 'protobuf-nats'" >> Gemfile
 # bundle
 # rails generate scaffold Employee guid:string first_name:string last_name:string
+# exit
 ```
 
 We'll need to make a couple of changes to the `active-remote` app. First, let's copy the Protobuf file.
@@ -352,7 +360,7 @@ class Employee < ActiveRemote::Base
 end
 ```
 
-Now let's edit the `config/environments/development.rb` file to enable eager loading for the same reasons listed above.
+Now let's edit the `config/environments/development.rb` file to enable eager loading and use the classic autoloader for the same reasons listed above.
 
 _**Listing 9-11**_ Development configuration file
 
@@ -362,6 +370,8 @@ _**Listing 9-11**_ Development configuration file
 ...
 config.eager_load = true
 ...
+config.autoloader = :classic
+...
 ```
 
 Let's add the `protobuf_nats.yml` file.
@@ -369,7 +379,7 @@ Let's add the `protobuf_nats.yml` file.
 _**Listing 9-12**_ Protobuf Nats config file
 
 ```yml
-# rails-microservices-sample-code/chapter-09/active-record/config/protobuf_nats.yml
+# rails-microservices-sample-code/chapter-09/active-remote/config/protobuf_nats.yml
 
 default: &default
   servers:
@@ -379,9 +389,19 @@ development:
   <<: *default
 ```
 
+Because we don't need webpacker or JavaScript for our test app, we'll need to disable pre-defined calls to the runtime. We can do this by removing the `javascript_pack_tag` line from the `application.html.erb` file.
+
+_**Listing 9-13**_ Remove javascript_pack_tag
+
+```ruby
+# rails-microservices-sample-code/chapter-09/active-remote/app/views/layouts/application.html.erb
+
+<%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+```
+
 The last thing we need to do is change a couple of method calls in the `employees_controller.rb` file to change the way that our Protobuf messages are retrieved and instantiated. We need to use the `search` method instead of the default `all` and `find` Active Record methods. Also, because we're using uuids (guids) as the unique key between services, we'll generate a new uuid each time the `new` action is called.
 
-_**Listing 9-13**_ Employee controller class
+_**Listing 9-14**_ Employee controller class
 
 ```ruby
 # rails-microservices-sample-code/chapter-09/active-remote/controllers/employees_controller.rb
@@ -407,12 +427,12 @@ _**Listing 9-13**_ Employee controller class
 
 Last but not least, let's add a `Dockerfile` and `docker-compose.yml` file to create an image and spin up containers and link our services together.
 
-_**Listing 9-14**_ Sandbox Dockerfile
+_**Listing 9-15**_ Sandbox Dockerfile
 
 ```dockerfile
 # rails-microservices-sample-code/Dockerfile
 
-FROM ruby:2.6.5
+FROM ruby:3.0.6
 
 RUN apt-get update && apt-get install -qq -y --no-install-recommends build-essential nodejs
 
@@ -421,13 +441,13 @@ ENV HOME=$INSTALL_PATH PATH=$INSTALL_PATH/bin:$PATH
 RUN mkdir -p $INSTALL_PATH
 WORKDIR $INSTALL_PATH
 
-RUN gem install rails -v 5.2.4
+RUN gem install rails -v 6.1
 
 ADD Gemfile* ./
 RUN set -ex && bundle install --no-deployment
 ```
 
-_**Listing 9-15**_ Sandbox Docker Compose file
+_**Listing 9-16**_ Sandbox Docker Compose file
 
 ```yml
 # rails-microservices-sample-code/chapter-09/docker-compose.yml
