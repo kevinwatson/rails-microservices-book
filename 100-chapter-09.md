@@ -395,6 +395,7 @@ _**Listing 9-13**_ Remove javascript_pack_tag
 
 ```ruby
 # rails-microservices-sample-code/chapter-09/active-remote/app/views/layouts/application.html.erb
+# remove or comment out this line
 
 <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
 ```
