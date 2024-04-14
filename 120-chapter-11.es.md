@@ -4,7 +4,7 @@
 
 RabbitMQ es una de las muchas implementaciones de intermediarios de mensajes.
 Proporciona muchas funciones, como cola de mensajes, compatibilidad con
-múltiples protocolos de mensajería y acuse de recibo de entrega. Discutiremos
+múltiples protocolos de mensajes y acuse de recibo de entrega. Discutiremos
 algunas de estas características en este capítulo.
 
 Ejecutaremos RabbitMQ de la misma manera que ejecutamos NATS en el capítulo 6:
@@ -136,10 +136,10 @@ del sistema de la máquina host.
 
 ## Recapitulando
 
-Los sistemas de mensajería basados en eventos son una capa en la arquitectura
+Los sistemas de mensajes basados en eventos son una capa en la arquitectura
 del sistema que le permite construir una plataforma asincrónica, confiable,
 desacoplada y escalable. Junto con NATS, RabbitMQ es uno de esos sistemas de
-mensajería fácil de configurar y usar.
+mensajes fácil de configurar y usar.
 
 En este capítulo, pusimos en marcha con éxito un servidor RabbitMQ local,
 creamos una cola y luego publicamos y consumimos mensajes en esa cola.

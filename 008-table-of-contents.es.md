@@ -53,7 +53,7 @@
   * Implementación
   * Recursos
   * Recapitulando
-* [Capítulo 10 - Mensajería Orientada a Eventos](110-chapter-10.es.md)
+* [Capítulo 10 - Mensajes Orientados a Eventos](110-chapter-10.es.md)
   * Introducción
   * Implementación
   * Recapitulando
@@ -62,7 +62,7 @@
   * Ejecutémoslo
   * Recursos
   * Recapitulando
-* [Capítulo 12 - El Sandbox de Mensajería Orientada a Eventos](130-chapter-12.es.md)
+* [Capítulo 12 - El Sandbox de Mensajes Orientados a Eventos](130-chapter-12.es.md)
   * Introducción
   * Lo que vamos a necesitar
   * Implementación
