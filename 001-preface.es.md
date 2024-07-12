@@ -27,7 +27,7 @@ un pequeño grupo de gemas de Ruby que han sido generosamente liberadas por
 
 MX es una compañía de servicios financieros basada en Utah. Sus miembros hemos
 desarrollado una plataforma, desde sus inicios, distribuida y heterogénea que
-procesa y analiza miles de millones de transacciones financieras cada mes. 
+procesa y analiza miles de millones de transacciones financieras cada mes.
 Las contribuciones de MX a los estándares abiertos Protobuf, RabbitMQ y NATS
 incluyen, pero no se limitan a, las siguiente gemas: `active_remote`,
 `protobuf-nats`, `action_subscriber`, `active_publisher` and

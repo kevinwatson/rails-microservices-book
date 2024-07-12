@@ -69,7 +69,7 @@ a lo que cada servicio necesita.
 ## Recursos
 
 * [Filosofía Unix][]
-* [Microservicios en Inglés][] 
+* [Microservicios en Inglés][]
 
 ## Recapitulando
 

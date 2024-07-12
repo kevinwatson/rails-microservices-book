@@ -142,7 +142,7 @@ service EmployeeMessageService {
   rpc Search (EmployeeMessageRequest) returns (EmployeeMessageList);
   rpc Create (EmployeeMessage) returns (EmployeeMessage);
   rpc Update (EmployeeMessage) returns (EmployeeMessage);
-  rpc Destroy (EmployeeMessage) returns (EmployeeMessage);  
+  rpc Destroy (EmployeeMessage) returns (EmployeeMessage);
 }
 ```
 
@@ -153,7 +153,7 @@ _**Listing 13-7**_ Rakefile
 ```ruby
 # rails-microservices-sample-code/protobuf/Rakefile
 
-require "protobuf/tasks"
+require 'protobuf/tasks'
 ```
 
 Now we can run the `compile` Rake task to generate the file.
@@ -248,21 +248,21 @@ _**Listing 13-14**_ Employee controller
 ```ruby
 # rails-microservices-sample-code/chapter-13/active-remote/controllers/employees_controller.rb
 
-  def index
-    @employees = Employee.search({})
-  end
+def index
+  @employees = Employee.search({})
+end
 
-  ...
+...
 
-  def new
-    @employee = Employee.new(guid: SecureRandom.uuid)
-  end
+def new
+  @employee = Employee.new(guid: SecureRandom.uuid)
+end
 
-  ...
+...
 
-  def set_employee
-    @employee = Employee.search(guid: params[:id]).first
-  end
+def set_employee
+  @employee = Employee.search(guid: params[:id]).first
+end
 ```
 
 ### Create a Rails App with a Database
@@ -335,7 +335,7 @@ _**Listing 13-19**_ Active Publisher initializer
 ```ruby
 # rails-microservices-sample-code/chapter-13/active-record-publisher/config/initializers/active_publisher.rb
 
-require "active_publisher"
+require 'active_publisher'
 
 ::ActivePublisher::Configuration.configure_from_yaml_and_cli
 ```
@@ -355,22 +355,22 @@ class Employee < ApplicationRecord
   after_create :publish_created
   after_update :publish_updated
 
-  scope :by_guid, lambda { |*values| where(guid: values) }
-  scope :by_first_name, lambda { |*values| where(first_name: values) }
-  scope :by_last_name, lambda { |*values| where(last_name: values) }
+  scope :by_guid, ->(*values) { where(guid: values) }
+  scope :by_first_name, ->(*values) { where(first_name: values) }
+  scope :by_last_name, ->(*values) { where(last_name: values) }
 
   field_scope :guid
   field_scope :first_name
   field_scope :last_name
 
   def publish_created
-    Rails.logger.info "Publishing employee object #{self.inspect} on the employee.created queue."
-    ::ActivePublisher.publish("employee.created", self.to_proto.encode, "events", {})
+    Rails.logger.info "Publishing employee object #{inspect} on the employee.created queue."
+    ::ActivePublisher.publish('employee.created', to_proto.encode, 'events', {})
   end
 
   def publish_updated
-    Rails.logger.info "Publishing employee object #{self.inspect} on the employee.updated queue."
-    ::ActivePublisher.publish("employee.updated", self.to_proto.encode, "events", {})
+    Rails.logger.info "Publishing employee object #{inspect} on the employee.updated queue."
+    ::ActivePublisher.publish('employee.updated', to_proto.encode, 'events', {})
   end
 end
 ```
@@ -420,7 +420,7 @@ class EmployeeMessageService
   def search
     records = ::Employee.search_scope(request).map(&:to_proto)
 
-    respond_with records: records
+    respond_with records:
   end
 
   def create
@@ -476,7 +476,7 @@ ActionSubscriber.draw_routes do
 end
 
 ActionSubscriber.configure do |config|
-  config.hosts = ["host.docker.internal"]
+  config.hosts = ['host.docker.internal']
   config.port = 5672
 end
 ```
@@ -492,7 +492,7 @@ config.cache_classes = true
 ...
 config.eager_load = true
 ...
-logger           = ActiveSupport::Logger.new(STDOUT)
+logger           = ActiveSupport::Logger.new($stdout)
 logger.formatter = config.log_formatter
 config.logger    = ActiveSupport::TaggedLogging.new(logger)
 ```
@@ -586,7 +586,7 @@ services:
     - ./action-subscriber:/usr/src/service
 ```
 
-Now that everything's in place, let's start our active-remote and active-record-publisher apps. 
+Now that everything's in place, let's start our active-remote and active-record-publisher apps.
 
 _**Listing 13-31**_ Starting the sandbox
 

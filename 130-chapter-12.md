@@ -156,7 +156,7 @@ _**Listing 12-6**_ Rakefile
 ```ruby
 # rails-microservices-sample-code/protobuf/Rakefile
 
-require "protobuf/tasks"
+require 'protobuf/tasks'
 ```
 
 Now we can run the `compile` Rake task to generate the file.
@@ -227,7 +227,7 @@ _**Listing 12-11**_ Active Publisher initializer
 ```ruby
 # rails-microservices-sample-code/chapter-12/active-publisher/config/initializers/active_publisher.rb
 
-require "active_publisher"
+require 'active_publisher'
 
 ::ActivePublisher::Configuration.configure_from_yaml_and_cli
 ```
@@ -248,13 +248,13 @@ class Employee < ApplicationRecord
   after_update :publish_updated
 
   def publish_created
-    Rails.logger.info "Publishing employee object #{self.inspect} on the employee.created queue."
-    ::ActivePublisher.publish("employee.created", self.to_proto.encode, "events", {})
+    Rails.logger.info "Publishing employee object #{inspect} on the employee.created queue."
+    ::ActivePublisher.publish('employee.created', to_proto.encode, 'events', {})
   end
 
   def publish_updated
-    Rails.logger.info "Publishing employee object #{self.inspect} on the employee.updated queue."
-    ::ActivePublisher.publish("employee.updated", self.to_proto.encode, "events", {})
+    Rails.logger.info "Publishing employee object #{inspect} on the employee.updated queue."
+    ::ActivePublisher.publish('employee.updated', to_proto.encode, 'events', {})
   end
 end
 ```
@@ -284,7 +284,7 @@ Rails.application.configure do
   ...
   config.eager_load = true
   ...
-  logger           = ActiveSupport::Logger.new(STDOUT)
+  logger           = ActiveSupport::Logger.new($stdout)
   logger.formatter = config.log_formatter
   config.logger    = ActiveSupport::TaggedLogging.new(logger)
 end
@@ -350,7 +350,7 @@ ActionSubscriber.draw_routes do
 end
 
 ActionSubscriber.configure do |config|
-  config.hosts = ["host.docker.internal"]
+  config.hosts = ['host.docker.internal']
   config.port = 5672
 end
 ```
@@ -366,7 +366,7 @@ config.cache_classes = true
 ...
 config.eager_load = true
 ...
-logger           = ActiveSupport::Logger.new(STDOUT)
+logger           = ActiveSupport::Logger.new($stdout)
 logger.formatter = config.log_formatter
 config.logger    = ActiveSupport::TaggedLogging.new(logger)
 ```
