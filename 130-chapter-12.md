@@ -58,7 +58,7 @@ _**Listing 12-1**_ Dockerfile used to create an image that we'll use to generate
 ```dockerfile
 # rails-microservices-sample-code/Dockerfile.builder
 
-FROM ruby:2.6.5
+FROM ruby:3.0.6
 
 RUN apt-get update && apt-get install -qq -y --no-install-recommends \
     build-essential \
@@ -68,7 +68,7 @@ RUN apt-get update && apt-get install -qq -y --no-install-recommends \
 
 WORKDIR /home/root
 
-RUN gem install rails -v 5.2.4
+RUN gem install rails -v 6.1
 RUN gem install protobuf
 ```
 
@@ -102,7 +102,7 @@ $ docker-compose -f docker-compose.builder.yml run builder bash
 
 The `run` Docker Compose command will build the image (if it wasn't built already), start the container, ssh into the running container and give us a command prompt using the `bash` shell.
 
-You should now see that you're logged in as the root user in the container (you'll see a prompt starting with a hash `#`). Logging in as the root user is usually ok inside a container, because the isolation of the container environment limits what the root user can do.
+You should now see that you're logged in as the root user in the container (you'll see a prompt starting with a hash `#`). Logging in as the root user is usually ok inside a container, because the isolation of the container environment limits what the root user can do. You can now type `exit` to shut down the container. We'll start it back up later to generate our rails apps.
 
 ### Protobuf
 
@@ -114,7 +114,7 @@ Create a couple of directories for our input and output files. The `mkdir -p` co
   * definitions
   * lib
 
-_**Listing 12-4**_ Creating needed directories
+_**Listing 12-4**_ Create protobuf directories (if you created these in chapter 9 you won't need to run this command again)
 
 ```console
 $ mkdir -p protobuf/{definitions,lib}
@@ -122,7 +122,7 @@ $ mkdir -p protobuf/{definitions,lib}
 
 Our Protobuf definition file:
 
-_**Listing 12-5**_ Employee message protobuf file
+_**Listing 12-5**_ Employee message protobuf file (if you created and compiled this file in chapter 9 you can skip ahead to the 'Create a Rails Message Publisher' section below)
 
 ```protobuf
 # rails-microservices-sample-code/protobuf/definitions/employee_message.proto
@@ -183,7 +183,7 @@ _**Listing 12-8**_ Generating the Rails apps and necessary files
 $ mkdir chapter-12 # create a directory for this chapter
 $ docker-compose -f docker-compose.builder.yml run builder bash
 # cd chapter-12
-# rails new active-publisher
+# rails new active-publisher --skip-webpack-install
 # cd active-publisher
 # echo "gem 'active_publisher'" >> Gemfile
 # echo "gem 'protobuf-activerecord'" >> Gemfile
@@ -259,6 +259,17 @@ class Employee < ApplicationRecord
 end
 ```
 
+Our simple app won't need webpacker or JavaScript, so we'll need to disable pre-defined calls to the runtime. We can do this by removing the `javascript_pack_tag` line from the `application.html.erb` file.
+
+_**Listing 9-13**_ Remove javascript_pack_tag
+
+```ruby
+# rails-microservices-sample-code/chapter-12/active-publisher/app/views/layouts/application.html.erb
+# remove or comment out this line
+
+<%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+```
+
 Because we're using GUIDs to uniquely identify objects that we're serializing and passing between services, let's modify the controller's `new` action so that it will generate a new GUID.
 
 _**Listing 12-13**_ Employee controller
@@ -273,6 +284,8 @@ end
 
 We'll also need to add a few more details. Because the `app/lib/employee_message.pb.rb` file contains multiple classes, only the class that matches the file name is loaded. In development mode, Rails can lazy load files as long as the file name can be inferred from the class name, e.g. code requiring the class `EmployeeMessageService` will try to lazy load a file named `employee_message_service.rb`, and throw an error if the file is not found. We can either separate the classes in the `app/lib/employee_message.pb.rb` file into separate files, or enable eager loading in the config. For the purposes of this demo, let's enable eager loading and also cache classes. We'll also need to configure the logger to send output to Docker logs.
 
+As we covered in chapter 9, Rails 6 now uses zeitwerk to autoload files by default, so we'll also want to change the default and set `autoloader = :classic` in our environment file.
+
 _**Listing 12-14**_ Development configuration
 
 ```ruby
@@ -284,7 +297,9 @@ Rails.application.configure do
   ...
   config.eager_load = true
   ...
-  logger           = ActiveSupport::Logger.new($stdout)
+  config.autoloader = :classic
+  ...
+  logger           = ActiveSupport::Logger.new(STDOUT)
   logger.formatter = config.log_formatter
   config.logger    = ActiveSupport::TaggedLogging.new(logger)
 end
@@ -355,7 +370,7 @@ ActionSubscriber.configure do |config|
 end
 ```
 
-We'll need to enable the `cache_classes` and `eager_load` settings, the same way we did for the publisher. We'll also need to set up a logger so that we can see the log output from our Docker container.
+We'll need to enable the `cache_classes` and `eager_load` settings, the same way we did for the publisher. We'll also want to use classic mode for `autoloader`. We'll also need to set up a logger so that we can see the log output from our Docker container.
 
 _**Listing 12-19**_ Development configuration
 
@@ -366,7 +381,9 @@ config.cache_classes = true
 ...
 config.eager_load = true
 ...
-logger           = ActiveSupport::Logger.new($stdout)
+config.autoloader = :classic
+...
+logger           = ActiveSupport::Logger.new(STDOUT)
 logger.formatter = config.log_formatter
 config.logger    = ActiveSupport::TaggedLogging.new(logger)
 ```
@@ -375,12 +392,12 @@ config.logger    = ActiveSupport::TaggedLogging.new(logger)
 
 Last but not least, let's add a `Dockerfile` and `docker-compose.yml` file to build an image and spin up our Rails and RabbitMQ containers. The `Dockerfile` may already exist from the sandbox we built in chapter 9, but if not, it has the same content here. The `docker-compose.yml` file is new.
 
-_**Listing 12-20**_ Sandbox Dockerfile
+_**Listing 12-20**_ Sandbox Dockerfile (if you created this file in chapter 9 no additional changes are needed)
 
 ```dockerfile
 # rails-microservices-sample-code/Dockerfile
 
-FROM ruby:2.6.5
+FROM ruby:3.0.6
 
 RUN apt-get update && apt-get install -qq -y --no-install-recommends build-essential nodejs
 
@@ -389,7 +406,7 @@ ENV HOME=$INSTALL_PATH PATH=$INSTALL_PATH/bin:$PATH
 RUN mkdir -p $INSTALL_PATH
 WORKDIR $INSTALL_PATH
 
-RUN gem install rails -v 5.2.4
+RUN gem install rails -v 6.1
 
 ADD Gemfile* ./
 RUN set -ex && bundle install --no-deployment
@@ -470,6 +487,7 @@ Now let's start the subscriber in another terminal window.
 _**Listing 12-25**_ Starting the subscriber sandbox
 
 ```console
+$ cd chapter-12
 $ docker-compose -f docker-compose-subscriber.yml run action-subscriber bash -c 'bundle exec action_subscriber start'
 ```
 
