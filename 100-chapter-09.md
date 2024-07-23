@@ -171,7 +171,7 @@ service EmployeeMessageService {
   rpc Search (EmployeeMessageRequest) returns (EmployeeMessageList);
   rpc Create (EmployeeMessage) returns (EmployeeMessage);
   rpc Update (EmployeeMessage) returns (EmployeeMessage);
-  rpc Destroy (EmployeeMessage) returns (EmployeeMessage);  
+  rpc Destroy (EmployeeMessage) returns (EmployeeMessage);
 }
 ```
 
@@ -182,7 +182,7 @@ _**Listing 9-6**_ Rakefile
 ```ruby
 # rails-microservices-sample-code/protobuf/Rakefile
 
-require "protobuf/tasks"
+require 'protobuf/tasks'
 ```
 
 Now we can run the `compile` Rake task to generate the file.
@@ -236,9 +236,9 @@ require 'protobuf'
 class Employee < ApplicationRecord
   protobuf_message :employee_message
 
-  scope :by_guid, lambda { |*values| where(guid: values) }
-  scope :by_first_name, lambda { |*values| where(first_name: values) }
-  scope :by_last_name, lambda { |*values| where(last_name: values) }
+  scope :by_guid, ->(*values) { where(guid: values) }
+  scope :by_first_name, ->(*values) { where(first_name: values) }
+  scope :by_last_name, ->(*values) { where(last_name: values) }
 
   field_scope :guid
   field_scope :first_name
@@ -259,7 +259,7 @@ class EmployeeMessageService
   def search
     records = ::Employee.search_scope(request).map(&:to_proto)
 
-    respond_with records: records
+    respond_with records:
   end
 
   def create
@@ -390,17 +390,17 @@ _**Listing 9-13**_ Employee controller class
     @employees = Employee.search({})
   end
 
-  ...
+...
 
-  def new
-    @employee = Employee.new(guid: SecureRandom.uuid)
-  end
+def new
+  @employee = Employee.new(guid: SecureRandom.uuid)
+end
 
-  ...
+...
 
-  def set_employee
-    @employee = Employee.search(guid: params[:id]).first
-  end
+def set_employee
+  @employee = Employee.search(guid: params[:id]).first
+end
 ```
 
 ### Create and Configure Our Environment
