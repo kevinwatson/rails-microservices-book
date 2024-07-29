@@ -65,7 +65,7 @@ sub messages 1 # and this line
 
 Let's open a new terminal and create a publisher. The publishing client will need to provide the name of the subject it wishes to publish the message on. Along with the subject, the client will also provide the number of bytes that will be published. If the number of bytes is missing or incorrect, the publisher is not following the NATS protocol and the message will be rejected.
 
-Let's run a telnet command to publish messages to NATS. 
+Let's run a telnet command to publish messages to NATS.
 
 **Listing 6-4** Publishing to a Subject
 
