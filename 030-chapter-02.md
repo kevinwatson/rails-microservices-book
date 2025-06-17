@@ -62,7 +62,7 @@ Other formats such as JSON use name/value pairs to describe each piece of data. 
 The Person message
 
 ```protobuf
-message Person {
+message PersonMessage {
   int32 id = 1;
   string first_name = 2;
   string last_name = 3;

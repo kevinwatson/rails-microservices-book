@@ -374,44 +374,15 @@ class Employee < ApplicationRecord
   end
 end
 ```
-
-### Create a Message Subscriber
-
-Let's create the `action-subscriber` app. It will subscribe to the employee created and updated message queues and simply log that it received a message on the queue.
-
-_**Listing 13-21**_ Starting our builder container
-
-```console
-$ docker-compose -f docker-compose.builder.yml run builder bash
-# cd chapter-13
-# rails new action-subscriber --skip-active-record
-# cd action-subscriber
-# echo "gem 'action_subscriber'" >> Gemfile
-# echo "gem 'protobuf'" >> Gemfile
-# bundle
-# exit
-```
-
-Now let's set up Action Subscriber to listen for events. We'll need to add a `EmployeeSubscriber` class and add routes via the `ActionSubscriber.draw_routes` method.
-
-We'll want to put our subscriber classes in their own `subscribers` directory. We'll also need the `lib` directory where we'll copy our Employee Protobuf class. Let's create these directories and copy the generated `employee_message.pb.rb` file to this directory.
-
-_**Listing 13-22**_ Setting up the app/lib directory
-
-```console
-$ mkdir chapter-13/action-subscriber/app/{lib,subscribers}
-$ cp protobuf/lib/employee_message.pb.rb chapter-13/action-subscriber/app/lib/
-```
-
 We'll need to add a service directory and class to listen for Active Remote messages published via NATS.
 
-_**Listing 13-23**_ Creating the app/services directory
+_**Listing 13-21**_ Creating the app/services directory
 
 ```console
 $ mkdir chapter-13/active-record-publisher/app/services
 ```
 
-_**Listing 13-24**_ Employee message service class
+_**Listing 13-22**_ Employee message service class
 
 ```ruby
 # rails-microservices-sample-code/chapter-13/active-record-publisher/app/services/employee_message_service.rb
@@ -444,6 +415,34 @@ class EmployeeMessageService
     respond_with record.to_proto
   end
 end
+```
+
+### Create a Message Subscriber
+
+Let's create the `action-subscriber` app. It will subscribe to the employee created and updated message queues and simply log that it received a message on the queue.
+
+_**Listing 13-23**_ Starting our builder container
+
+```console
+$ docker-compose -f docker-compose.builder.yml run builder bash
+# cd chapter-13
+# rails new action-subscriber --skip-active-record
+# cd action-subscriber
+# echo "gem 'action_subscriber'" >> Gemfile
+# echo "gem 'protobuf'" >> Gemfile
+# bundle
+# exit
+```
+
+Now let's set up Action Subscriber to listen for events. We'll need to add a `EmployeeSubscriber` class and add routes via the `ActionSubscriber.draw_routes` method.
+
+We'll want to put our subscriber classes in their own `subscribers` directory. We'll also need the `lib` directory where we'll copy our Employee Protobuf class. Let's create these directories and copy the generated `employee_message.pb.rb` file to this directory.
+
+_**Listing 13-24**_ Setting up the app/lib directory
+
+```console
+$ mkdir chapter-13/action-subscriber/app/{lib,subscribers}
+$ cp protobuf/lib/employee_message.pb.rb chapter-13/action-subscriber/app/lib/
 ```
 
 Now let's add the subscriber class. For our the purposes of our playground we'll keep it simple - just log that we received the message.

@@ -10,7 +10,7 @@ We'll use the terms images and containers. While these terms are sometimes used 
 
 The sandbox environment we'll build in this chapter will use the Active Remote gem to spin up a client (we'll call this app `active-remote`) that can access data in the service that owns the data (we'll call this app `active-record` because it will use Active Record to persist the data to a database that only it has access to).
 
-In this environment, we'll use NATS to pass messages between our microservices. A request to create a new employee will be sent from the Active Remote app to NATS, and NATS will forward the request to any services that have subscribed to that route. The Active Record app that we build will subsribe and respond with the newly created employee entity wrapped in a Protobuf message.
+In this environment, we'll use NATS to pass messages between our microservices. A request to create a new employee will be sent from the Active Remote app to NATS, and NATS will forward the request to any services that have subscribed to that route. The Active Record app that we build will subscribe and respond with the newly created employee entity wrapped in a Protobuf message.
 
 _**Figure 9-1**_ Active Remote Message Passing
 
