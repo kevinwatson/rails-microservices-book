@@ -1,6 +1,6 @@
 ## What's in This Book?
 
-This book has several sections. We'll discuss several architectural patterns for building distributed or not-so-distributed systems. We'll discuss various methods of moving data between applications. 
+This book has several sections. We'll discuss several architectural patterns for building distributed or not-so-distributed systems. We'll discuss various methods of moving data between applications.
 
 We'll discuss the Ruby on Rails framework, and the building blocks that provide access to the data your application will process. We'll discuss messaging platforms. We'll discuss modeling data entities and their relationships in a distributed environment.
 
